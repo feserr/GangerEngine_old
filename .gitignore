@@ -1,0 +1,14 @@
+# git ignore file
+# folders
+deps/
+Debug/
+Release/
+GangerEngine/Debug/
+GangerEngine/Release/
+
+# files
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.vcxproj*
