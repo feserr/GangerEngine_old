@@ -1,6 +1,7 @@
 # git ignore file
 # folders
 deps/
+Build/
 Debug/
 Release/
 GangerEngine/Debug/
