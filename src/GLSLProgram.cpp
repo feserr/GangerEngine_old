@@ -1,6 +1,6 @@
-#include "GLSLProgram.h"
-#include "Errors.h"
-#include "IOFiles.h"
+
+#include <GLSLProgram.h>
+#include <Errors.h>
 
 #include <vector>
 #include <fstream>
@@ -16,17 +16,15 @@ GLSLProgram::~GLSLProgram()
 
 void GLSLProgram::CompileShader(const std::string& filePath, GLuint& id)
 {
-    //const char* contentsPtr = GetFileContents(filePath.c_str()).c_str();
-
     std::ifstream shaderFile(filePath);
     if (shaderFile.fail()) {
         perror(filePath.c_str());
         FatalError("Failed to open " + filePath);
     }
 
-    //File contents stores all the text in the file
+    // File contents stores all the text in the file
     std::string fileContents = "";
-    //line is used to grab each line of the file
+    // Line is used to grab each line of the file
     std::string line;
 
     //Get all the lines in the file and add it to the contents
@@ -37,12 +35,12 @@ void GLSLProgram::CompileShader(const std::string& filePath, GLuint& id)
 
     shaderFile.close();
 
-    //get a pointer to our file contents c string;
+    // Get a pointer to our file contents c string;
     const char* contentsPtr = fileContents.c_str();
-    //tell opengl that we want to use fileContents as the contents of the shader file
+    // Tell OpenGL that we want to use fileContents as the contents of the shader file
     glShaderSource(id, 1, &contentsPtr, nullptr);
 
-    //compile the shader
+    // Compile the shader
     glCompileShader(id);
 
     GLint isCompiled = 0;
@@ -56,7 +54,7 @@ void GLSLProgram::CompileShader(const std::string& filePath, GLuint& id)
         std::vector<char> errorLog(maxLength);
         glGetShaderInfoLog(id, maxLength, &maxLength, &errorLog[0]);
 
-        // Provide the infolog in whatever manor you deem best.
+        // Provide the info log in whatever manor you deem best.
         // Exit with failure.
         glDeleteShader(id); // Don't leak the shader.
 
@@ -68,38 +66,38 @@ void GLSLProgram::CompileShader(const std::string& filePath, GLuint& id)
 void GLSLProgram::CompileShaders(const std::string& vertexShaderFile,
     const std::string& fragmentShaderFile)
 {
-    //Vertex and fragment shaders are successfully compiled.
-    //Now time to link them together into a program.
-    //Get a program object.
+    /* Vertex and fragment shaders are successfully compiled.
+     * Now is time to link them together into a program.
+     * Get a program object.*/
     _programID = glCreateProgram();
 
-    //Create the vertex shader object, and store its ID
+    // Create the vertex shader object, and store its ID
     _vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
     if (_vertexShaderID == 0) {
         FatalError("Vertex shader failed to be created!");
     }
 
-    //Create the fragment shader object, and store its ID
+    // Create the fragment shader object, and store its ID
     _fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
     if (_fragmentShaderID == 0) {
         FatalError("Fragment shader failed to be created!");
     }
 
-    //Compile each shader
+    // Compile each shader
     CompileShader(vertexShaderFile, _vertexShaderID);
     CompileShader(fragmentShaderFile, _fragmentShaderID);
 }
 
 void GLSLProgram::LinkShaders()
 {
-    //Attach our shaders to our program
+    // Attach our shaders to our program
     glAttachShader(_programID, _vertexShaderID);
     glAttachShader(_programID, _fragmentShaderID);
 
-    //Link our program
+    // Link our program
     glLinkProgram(_programID);
 
-    //Note the different functions here: glGetProgram* instead of glGetShader*.
+    // Note the different functions here: glGetProgram* instead of glGetShader*.
     GLint isLinked = 0;
     glGetProgramiv(_programID, GL_LINK_STATUS, (int *)&isLinked);
     if (isLinked == GL_FALSE)
@@ -107,24 +105,24 @@ void GLSLProgram::LinkShaders()
         GLint maxLength = 0;
         glGetProgramiv(_programID, GL_INFO_LOG_LENGTH, &maxLength);
 
-        //The maxLength includes the NULL character
+        // The maxLength includes the NULL character
         std::vector<char> errorLog(maxLength);
         glGetProgramInfoLog(_programID, maxLength, &maxLength, &errorLog[0]);
 
-        //We don't need the program anymore.
+        // We don't need the program anymore.
         glDeleteProgram(_programID);
         //Don't leak shaders either.
         glDeleteShader(_vertexShaderID);
         glDeleteShader(_fragmentShaderID);
 
-        //Use the infoLog as you see fit.
+        // Use the infoLog as you see fit.
 
-        //In this simple program, we'll just leave
+        // In this simple program, we'll just leave
         std::printf("%s\n", &(errorLog[0]));
         FatalError("Shaders: Failed to link it");
     }
 
-    //Always detach shaders after a successful link.
+    // Always detach shaders after a successful link.
     glDetachShader(_programID, _vertexShaderID);
     glDetachShader(_programID, _fragmentShaderID);
 
