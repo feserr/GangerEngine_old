@@ -1,8 +1,11 @@
+
 #pragma once
 
-#include "Vertex.h"
+#include <Vertex.h>
+#include <GLTexture.h>
 
 #include <GL\glew.h>
+#include <string>
 
 class Sprite
 {
@@ -10,7 +13,7 @@ public:
     Sprite();
     ~Sprite();
 
-    void Init(float x, float y, float width, float height);
+    void Init(float x, float y, float width, float height, std::string texturePath);
     void Draw();
 
 private:
@@ -22,5 +25,6 @@ private:
 
     float _x, _y, _width, _height;
     GLuint _vboID;
+    GLTexture _texture;
 };
 

@@ -13,26 +13,29 @@ GangerEngine
 - [License](#license)
 
 <a name="about"></a>
-# GangerEngine 0.0.1
+# GangerEngine 0.0.2
 
 GangerEngine is an open source game framework for making desktop games.
 
-Version: 0.0.1 - Released: 27th April 2015
+Version: 0.0.2 - Released: 04th May 2015
 
 <a name="whats-new"></a>
-## What's new in 0.0.1?
+## What's new in 0.0.2?
 
-This version has all that the [tutorial](https://www.youtube.com/playlist?list=PLSPw4ASQYyymu3PfG9gxywSPghnSMiOAW) by Benjamin Arnold till video number 12.
+The library has arrive!!! A minimal game engine (at this time) is live.
+
+This version has all that the [tutorial](https://www.youtube.com/playlist?list=PLSPw4ASQYyymu3PfG9gxywSPghnSMiOAW) by Benjamin Arnold till video number 18.
 
 <a name="change-log"></a>
 ## Change Log
 
-Version: 0.0.1 - Released: 27th April 2015
+Version: 0.0.2 - Released: 04th May 2015
 
 ### New features
 
-* Load and display Shaders.
-* Load PNG files.
+* Sprites
+* FPS limit
+* Resource and texture cache
 
 <a name="how-to-build"></a>
 ## How to Build

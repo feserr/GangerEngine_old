@@ -11,18 +11,21 @@ GLTexture ImageLoader::LoadPNG (std::string filePath)
     // Initialize all parameters to zero
     GLTexture texture = {};
 
+    //This is the output data from decodePNG, which is the pixel data for our texture
     std::vector<unsigned char> out;
+
+    // This is the input data to decodePNG, which we load from a file
     std::vector<unsigned char> in;
 
     unsigned long width, height;
 
     // Read the image file into a buffer
-    if (IOManager::readFileToBuffer (filePath, in))
+    if (IOManager::ReadFileToBuffer (filePath, in) == false)
         FatalError ("Failed to load PNG file to buffer.");
 
 
-    // Decode the png into an array of pixels
-    int error = decodePNG (out, width, height, &in[0], in.size);
+    // Decode the PNG into an array of pixels
+    int error = decodePNG (out, width, height, &in[0], in.size());
     if (error != 0)
     {
         FatalError ("DecodePNG failed with error: " + std::to_string(error) + ".");
@@ -49,6 +52,10 @@ GLTexture ImageLoader::LoadPNG (std::string filePath)
 
     // Unbind the texture
     glBindTexture (GL_TEXTURE_2D, 0);
+
+    // Apply width and height to the texture
+    texture.width = width;
+    texture.height = height;
 
     // Return a copy of the texture data
     return texture;
