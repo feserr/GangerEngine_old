@@ -1,17 +1,20 @@
 
-#include <Errors.h>
+#include <GangerEngine/Errors.h>
 
 #include <SDL\SDL.h>
 #include <iostream>
 #include <cstdlib>
 
-void FatalError(std::string errorString)
+namespace GangerEngine
 {
-    do
+    void FatalError (std::string errorString)
     {
-        std::cout << '\n' << errorString <<"\n\nPress a key to continue...";
-    } while (std::cin.get() != '\n');
+        do
+        {
+            std::cout << '\n' << errorString << "\n\nPress a key to continue...";
+        } while (std::cin.get () != '\n');
 
-    SDL_Quit();
-    exit(70);
+        SDL_Quit ();
+        exit (70);
+    }
 }
