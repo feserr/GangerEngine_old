@@ -27,7 +27,18 @@ namespace GangerEngine
         Vertex bottonLeft;
         Vertex topRight;
         Vertex bottonRight;
-    };   
+    };
+
+    class RenderBatch
+    {
+    public:
+        RenderBatch(GLuint offset, GLuint numVertices, GLuint texture) : offset(offset),
+            numVertices(numVertices), texture(texture) {}
+
+        GLuint offset;
+        GLuint numVertices;
+        GLuint texture;
+    };
 
     class SpriteBatch
     {
@@ -47,6 +58,7 @@ namespace GangerEngine
 
     private:
         void CreateVertexArray();
+        void CreateRenderBatches();
         void SortGlyphs();
 
         static bool CompareBackToFront(Glyph* a, Glyph* b);
@@ -59,5 +71,6 @@ namespace GangerEngine
         GlyphSortType _glyphSortType;
 
         std::vector<Glyph*> _glyphs;
+        std::vector<GangerEngine::RenderBatch> _renderBatches;
     };
 }
