@@ -1,10 +1,32 @@
 
-#include <GangerEngine\SpriteBatch.h>
+#include <GangerEngine/SpriteBatch.h>
 
 #include <algorithm>
 
 namespace GangerEngine
 {
+    Glyph::Glyph(const glm::vec4& destRect, const glm::vec4& uvRect,
+                 const GLuint& Texture, const float& Depth, const ColorRGBA8& color) :
+        texture(Texture), depth(Depth)
+    {
+        topLeft.SetPosition(destRect.x, destRect.y + destRect.w);
+        topLeft.SetUV(uvRect.x, uvRect.y + uvRect.w);
+        topLeft.color = color;
+        
+        bottonLeft.SetPosition(destRect.x, destRect.y);
+        bottonLeft.SetUV(uvRect.x, uvRect.y);
+        bottonLeft.color = color;
+        
+        bottonRight.SetPosition(destRect.x + destRect.z, destRect.y);
+        bottonRight.SetUV(uvRect.x + uvRect.z, uvRect.y);
+        bottonRight.color = color;
+        
+        topRight.SetPosition(destRect.x + destRect.z, destRect.y + destRect.w);
+        topRight.SetUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
+        topRight.color = color;
+    }
+    
+    
     SpriteBatch::SpriteBatch() : _vbo(0), _vao(0)
     {
     }
@@ -24,45 +46,26 @@ namespace GangerEngine
         _glyphSortType = glyphSortType;
         _renderBatches.clear();
 
-        for(unsigned int i = 0; i < _glyphs.size(); i++)
-        {
-            delete _glyphs[i];
-        }
-
         _glyphs.clear();
     }
     
     void SpriteBatch::End()
     {
+        // Set up all pointer for fast sorting
+        _glyphsPointer.resize(_glyphs.size());
+        for(int i = 0; i < _glyphs.size(); i++)
+        {
+            _glyphsPointer[i] = &_glyphs[i];
+        }
+        
         SortGlyphs();
         CreateRenderBatches();
     }
 
     void SpriteBatch::Draw(const glm::vec4& destRect, const glm::vec4& uvRect,
-        const GLuint& texture, const float& depth, const Color& color)
+        const GLuint& texture, const float& depth, const ColorRGBA8& color)
     {
-        Glyph* glyph = new Glyph();
-        glyph->texture = texture;
-        glyph->depth = depth;
-
-        
-        glyph->topLeft.SetPosition(destRect.x, destRect.y + destRect.w);
-        glyph->topLeft.SetUV(uvRect.x, uvRect.y + uvRect.w);
-        glyph->topLeft.color = color;
-
-        glyph->bottonLeft.SetPosition(destRect.x, destRect.y);
-        glyph->bottonLeft.SetUV(uvRect.x, uvRect.y);
-        glyph->bottonLeft.color = color;
-
-        glyph->bottonRight.SetPosition(destRect.x + destRect.z, destRect.y);
-        glyph->bottonRight.SetUV(uvRect.x + uvRect.z, uvRect.y);
-        glyph->bottonRight.color = color;
-
-        glyph->topRight.SetPosition(destRect.x + destRect.z, destRect.y + destRect.w);
-        glyph->topRight.SetUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
-        glyph->topRight.color = color;
-
-        _glyphs.push_back(glyph);
+        _glyphs.emplace_back(destRect, uvRect, texture, depth, color);
     }
 
     void SpriteBatch::RenderBatch()
@@ -82,39 +85,39 @@ namespace GangerEngine
 
     void SpriteBatch::CreateRenderBatches()
     {
-        if(_glyphs.empty())
+        if(_glyphsPointer.empty())
             return;
 
         // This will store all the vertices's that we need to upload
         std::vector<Vertex> vertices;
 
         // Allocate all the memory we need for the vertices's we will add
-        vertices.resize(_glyphs.size() * 6);
+        vertices.resize(_glyphsPointer.size() * 6);
 
         int offset = 0;
         int currentVertex = 0;
 
         // Create a new object and push it back
-        _renderBatches.emplace_back(offset, 6, _glyphs[0]->texture);
+        _renderBatches.emplace_back(offset, 6, _glyphsPointer[0]->texture);
 
         // Add the first batch
-        vertices[currentVertex++] = _glyphs[0]->topLeft;
-        vertices[currentVertex++] = _glyphs[0]->bottonLeft;
-        vertices[currentVertex++] = _glyphs[0]->bottonRight;
-        vertices[currentVertex++] = _glyphs[0]->bottonRight;
-        vertices[currentVertex++] = _glyphs[0]->topRight;
-        vertices[currentVertex++] = _glyphs[0]->topLeft;
+        vertices[currentVertex++] = _glyphsPointer[0]->topLeft;
+        vertices[currentVertex++] = _glyphsPointer[0]->bottonLeft;
+        vertices[currentVertex++] = _glyphsPointer[0]->bottonRight;
+        vertices[currentVertex++] = _glyphsPointer[0]->bottonRight;
+        vertices[currentVertex++] = _glyphsPointer[0]->topRight;
+        vertices[currentVertex++] = _glyphsPointer[0]->topLeft;
         
         offset += 6;
 
         // Add all the rest of the glyphs
-        for(unsigned int currentGlyph = 1; currentGlyph < _glyphs.size(); currentGlyph++)
+        for(unsigned int currentGlyph = 1; currentGlyph < _glyphsPointer.size(); currentGlyph++)
         {
             // Check if the current glyph can be part of the current batch
-            if(_glyphs[currentGlyph]->texture != _glyphs[currentGlyph - 1]->texture)
+            if(_glyphsPointer[currentGlyph]->texture != _glyphsPointer[currentGlyph - 1]->texture)
             {
                 // Create a new batch
-                _renderBatches.emplace_back(offset, 6, _glyphs[currentGlyph]->texture);
+                _renderBatches.emplace_back(offset, 6, _glyphsPointer[currentGlyph]->texture);
             }
             else
             {
@@ -122,12 +125,12 @@ namespace GangerEngine
                 _renderBatches.back().numVertices += 6;
             }
 
-            vertices[currentVertex++] = _glyphs[currentGlyph]->topLeft;
-            vertices[currentVertex++] = _glyphs[currentGlyph]->bottonLeft;
-            vertices[currentVertex++] = _glyphs[currentGlyph]->bottonRight;
-            vertices[currentVertex++] = _glyphs[currentGlyph]->bottonRight;
-            vertices[currentVertex++] = _glyphs[currentGlyph]->topRight;
-            vertices[currentVertex++] = _glyphs[currentGlyph]->topLeft;
+            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->topLeft;
+            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->bottonLeft;
+            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->bottonRight;
+            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->bottonRight;
+            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->topRight;
+            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->topLeft;
 
             offset += 6;
         }
@@ -182,13 +185,13 @@ namespace GangerEngine
         switch(_glyphSortType)
         {
             case GlyphSortType::BACK_TO_FRONT:
-                std::stable_sort(_glyphs.begin(), _glyphs.end(), CompareBackToFront);
+                std::stable_sort(_glyphsPointer.begin(), _glyphsPointer.end(), CompareBackToFront);
                 break;
             case GlyphSortType::FRONT_TO_FRONT:
-                std::stable_sort(_glyphs.begin(), _glyphs.end(), CompareFrontToBack);
+                std::stable_sort(_glyphsPointer.begin(), _glyphsPointer.end(), CompareFrontToBack);
                 break;
             case GlyphSortType::TEXTURE:
-                std::stable_sort(_glyphs.begin(), _glyphs.end(), CompareTexture);
+                std::stable_sort(_glyphsPointer.begin(), _glyphsPointer.end(), CompareTexture);
                 break;
             default:
                 break;

@@ -40,7 +40,7 @@ namespace GangerEngine
         glBindTexture (GL_TEXTURE_2D, texture.id);
 
         // Upload the pixels to the texture
-        glTexImage2D (GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+        glTexImage2D (GL_TEXTURE_2D, 0, GL_RGBA, (int)width, (int)height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
             &(out[0]));
 
         // Set texture parameters
@@ -56,8 +56,8 @@ namespace GangerEngine
         glBindTexture (GL_TEXTURE_2D, 0);
 
         // Apply width and height to the texture
-        texture.width = width;
-        texture.height = height;
+        texture.width = (int)width;
+        texture.height = (int)height;
 
         // Return a copy of the texture data
         return texture;
