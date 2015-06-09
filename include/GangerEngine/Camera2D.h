@@ -1,8 +1,8 @@
 
 #pragma once
 
-#include <GLM\glm.hpp>
-#include <GLM\gtc\matrix_transform.hpp>
+#include <GLM/glm.hpp>
+#include <GLM/gtc/matrix_transform.hpp>
 
 namespace GangerEngine
 {
@@ -15,6 +15,10 @@ namespace GangerEngine
         void Init(int screenWith, int screenHeight);
 
         void Update();
+        
+        bool IsBoxInView(const glm::vec2& position, const glm::vec2 dimension);
+
+        glm::vec2 ConvertScreenToWorld(glm::vec2 screenCoords);
 
         // Setters
         //! Set the position of the camera

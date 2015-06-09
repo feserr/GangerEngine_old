@@ -4,7 +4,7 @@
 #include <GangerEngine/Vertex.h>
 #include <GangerEngine/GLTexture.h>
 
-#include <GL\glew.h>
+#include <GL/glew.h>
 #include <string>
 
 namespace GangerEngine

@@ -20,6 +20,12 @@ namespace GangerEngine
         flags |= (currentFlags & INVISIBLE ? SDL_WINDOW_HIDDEN : 0x0);
         flags |= (currentFlags & FULLSCREEN ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0x0);
         flags |= (currentFlags & BORDERLESS ? SDL_WINDOW_BORDERLESS : 0x0);
+        
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+        
+        
 
         _sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, flags);
@@ -41,15 +47,26 @@ namespace GangerEngine
         {
             FatalError("GLEW: Could not be initialized");
         }
+        
+        // Init glew for OSX systems
+#if __APPLE__
+            glewExperimental = GL_TRUE;
+            glewInit();
+#endif
 
         // Check the OpenGL version
         printf("***  OpenGL version %s  ***\n", glGetString(GL_VERSION));
-
+        printf("***  Supported GLSL version is %s  ***\n", (char *)glGetString(GL_SHADING_LANGUAGE_VERSION));
+        
         // Set up the background color
         glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 
         // Set VSYNC
         SDL_GL_SetSwapInterval(1);
+
+        // Enable alpha blending
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         return 1;
     }

@@ -1,10 +1,10 @@
 
 #pragma once
 
-#include <GangerEngine\Vertex.h>
+#include <GangerEngine/Vertex.h>
 
-#include <GL\glew.h>
-#include <GLM\glm.hpp>
+#include <GL/glew.h>
+#include <GLM/glm.hpp>
 
 #include <vector>
 
@@ -18,8 +18,13 @@ namespace GangerEngine
         TEXTURE
     };
 
-    struct Glyph
+    class Glyph
     {
+    public:
+        Glyph() {}
+        Glyph(const glm::vec4& destRect, const glm::vec4& uvRect,
+              const GLuint& Texture, const float& Depth, const ColorRGBA8& color);
+        
         GLuint texture;
         float depth;
 
@@ -52,7 +57,7 @@ namespace GangerEngine
         void End();
 
         void Draw(const glm::vec4& destRect, const glm::vec4& uvRect, const GLuint& texture,
-            const float& depth, const Color& color);
+            const float& depth, const ColorRGBA8& color);
 
         void RenderBatch(); 
 
@@ -69,8 +74,9 @@ namespace GangerEngine
         GLuint _vao;
 
         GlyphSortType _glyphSortType;
-
-        std::vector<Glyph*> _glyphs;
+        
+        std::vector<Glyph*> _glyphsPointer; ///< This is for sorting
+        std::vector<Glyph> _glyphs; ///< This is the actual glyphs
         std::vector<GangerEngine::RenderBatch> _renderBatches;
     };
 }

@@ -13,3 +13,5 @@ GangerEngine/Release/
 *.sln
 *.suo
 *.vcxproj*
+*.xcodeproj*
+.DS_Store
