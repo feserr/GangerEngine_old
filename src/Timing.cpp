@@ -16,21 +16,21 @@ namespace GangerEngine
 
     void FpsLimiter::Begin()
     {
-        _startTicks = SDL_GetTicks();
+        m_startTicks = SDL_GetTicks();
     }
 
     float FpsLimiter::End()
     {
         CalculateFPS();
 
-        Uint32 frameTicks = SDL_GetTicks() - _startTicks;
+        Uint32 frameTicks = SDL_GetTicks() - m_startTicks;
         // Limit the FPS to the max FPS
-        if(1000.0f / _maxFPS > frameTicks)
+        if(1000.0f / m_maxFPS > frameTicks)
         {
-            SDL_Delay((Uint32)(1000.0f / _maxFPS - frameTicks));
+            SDL_Delay((Uint32)(1000.0f / m_maxFPS - frameTicks));
         }
 
-        return _fps;
+        return m_fps;
     }
 
     void FpsLimiter::CalculateFPS() {
@@ -47,8 +47,8 @@ namespace GangerEngine
         Uint32 currentTicks = SDL_GetTicks();
 
         //Calculate the number of ticks (ms) for this frame
-        _frameTime = (float)(currentTicks - prevTicks);
-        frameTimes[currentFrame % NUM_SAMPLES] = _frameTime;
+        m_frameTime = (float)(currentTicks - prevTicks);
+        frameTimes[currentFrame % NUM_SAMPLES] = m_frameTime;
 
         //current ticks is now previous ticks
         prevTicks = currentTicks;
@@ -73,10 +73,10 @@ namespace GangerEngine
 
         //Calculate FPS
         if(frameTimeAverage > 0) {
-            _fps = 1000.0f / frameTimeAverage;
+            m_fps = 1000.0f / frameTimeAverage;
         }
         else {
-            _fps = 60.0f;
+            m_fps = 60.0f;
         }
     }
 }

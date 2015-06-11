@@ -1,6 +1,6 @@
 
-#include <SpriteFont.h>
-#include <SpriteBatch.h>
+#include <GangerEngine/SpriteFont.h>
+#include <GangerEngine/SpriteBatch.h>
 
 #include <SDL/SDL.h>
 
@@ -30,13 +30,13 @@ namespace GangerEngine
             fflush(stderr);
             throw 281;
         }
-        _fontHeight = TTF_FontHeight(f);
+        m_fontHeight = TTF_FontHeight(f);
         _regStart = cs;
-        _regLength = ce - cs + 1;
+        m_regLength = ce - cs + 1;
         int padding = size / 8;
 
         // First neasure all the regions
-        glm::ivec4* glyphRects = new glm::ivec4[_regLength];
+        glm::ivec4* glyphRects = new glm::ivec4[m_regLength];
         int i = 0, advance;
         for (char c = cs; c <= ce; c++) {
             TTF_GlyphMetrics(f, c, &glyphRects[i].x, &glyphRects[i].z, &glyphRects[i].y, &glyphRects[i].w, &advance);
@@ -50,9 +50,9 @@ namespace GangerEngine
         // Find best partitioning of glyphs
         int rows = 1, w, h, bestWidth = 0, bestHeight = 0, area = MAX_TEXTURE_RES * MAX_TEXTURE_RES, bestRows = 0;
         std::vector<int>* bestPartition = nullptr;
-        while (rows <= _regLength) {
-            h = rows * (padding + _fontHeight) + padding;
-            auto gr = createRows(glyphRects, _regLength, rows, padding, w);
+        while (rows <= m_regLength) {
+            h = rows * (padding + m_fontHeight) + padding;
+            auto gr = createRows(glyphRects, m_regLength, rows, padding, w);
 
             // Desire a power of 2 texture
             w = closestPow2(w);
@@ -87,8 +87,8 @@ namespace GangerEngine
             throw 282;
         }
         // Create the texture
-        glGenTextures(1, &_texID);
-        glBindTexture(GL_TEXTURE_2D, _texID);
+        glGenTextures(1, &m_texID);
+        glBindTexture(GL_TEXTURE_2D, m_texID);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, bestWidth, bestHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
         // Now draw all the glyphs
@@ -123,7 +123,7 @@ namespace GangerEngine
 
                 lx += glyphRects[gi].z + padding;
             }
-            ly += _fontHeight + padding;
+            ly += m_fontHeight + padding;
         }
 
         // Draw the unsupported glyph
@@ -141,20 +141,20 @@ namespace GangerEngine
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
         // Create spriteBatch glyphs
-        _glyphs = new CharGlyph[_regLength + 1];
-        for (i = 0; i < _regLength; i++) {
-            _glyphs[i].character = (char)(cs + i);
-            _glyphs[i].size = glm::vec2(glyphRects[i].z, glyphRects[i].w);
-            _glyphs[i].uvRect = glm::vec4(
+        m_glyphs = new CharGlyph[m_regLength + 1];
+        for (i = 0; i < m_regLength; i++) {
+            m_glyphs[i].character = (char)(cs + i);
+            m_glyphs[i].size = glm::vec2(glyphRects[i].z, glyphRects[i].w);
+            m_glyphs[i].uvRect = glm::vec4(
                 (float)glyphRects[i].x / (float)bestWidth,
                 (float)glyphRects[i].y / (float)bestHeight,
                 (float)glyphRects[i].z / (float)bestWidth,
                 (float)glyphRects[i].w / (float)bestHeight
                 );
         }
-        _glyphs[_regLength].character = ' ';
-        _glyphs[_regLength].size = _glyphs[0].size;
-        _glyphs[_regLength].uvRect = glm::vec4(0, 0, (float)rs / (float)bestWidth, (float)rs / (float)bestHeight);
+        m_glyphs[m_regLength].character = ' ';
+        m_glyphs[m_regLength].size = m_glyphs[0].size;
+        m_glyphs[m_regLength].uvRect = glm::vec4(0, 0, (float)rs / (float)bestWidth, (float)rs / (float)bestHeight);
 
         glBindTexture(GL_TEXTURE_2D, 0);
         delete[] glyphRects;
@@ -162,13 +162,13 @@ namespace GangerEngine
         TTF_CloseFont(f);
     }
     void SpriteFont::dispose() {
-        if (_texID != 0) {
-            glDeleteTextures(1, &_texID);
-            _texID = 0;
+        if (m_texID != 0) {
+            glDeleteTextures(1, &m_texID);
+            m_texID = 0;
         }
-        if (_glyphs) {
-            delete[] _glyphs;
-            _glyphs = nullptr;
+        if (m_glyphs) {
+            delete[] m_glyphs;
+            m_glyphs = nullptr;
         }
     }
 
@@ -204,21 +204,21 @@ namespace GangerEngine
     }
 
     glm::vec2 SpriteFont::measure(const char* s) {
-        glm::vec2 size(0, _fontHeight);
+        glm::vec2 size(0, m_fontHeight);
         float cw = 0;
         for (int si = 0; s[si] != 0; si++) {
             char c = s[si];
             if (s[si] == '\n') {
-                size.y += _fontHeight;
+                size.y += m_fontHeight;
                 if (size.x < cw)
                     size.x = cw;
                 cw = 0;
             } else {
                 // Check for correct glyph
                 int gi = c - _regStart;
-                if (gi < 0 || gi >= _regLength)
-                    gi = _regLength;
-                cw += _glyphs[gi].size.x;
+                if (gi < 0 || gi >= m_regLength)
+                    gi = m_regLength;
+                cw += m_glyphs[gi].size.x;
             }
         }
         if (size.x < cw)
@@ -226,7 +226,7 @@ namespace GangerEngine
         return size;
     }
 
-    void SpriteFont::draw(SpriteBatch& batch, const char* s, glm::vec2 position, glm::vec2 scaling, 
+    void SpriteFont::draw(SpriteBatch& batch, const char* s, glm::vec2 position, glm::vec2 scaling,
                           float depth, ColorRGBA8 tint, Justification just /* = Justification::LEFT */) {
         glm::vec2 tp = position;
         // Apply justification
@@ -238,16 +238,16 @@ namespace GangerEngine
         for (int si = 0; s[si] != 0; si++) {
             char c = s[si];
             if (s[si] == '\n') {
-                tp.y += _fontHeight * scaling.y;
+                tp.y += m_fontHeight * scaling.y;
                 tp.x = position.x;
             } else {
                 // Check for correct glyph
                 int gi = c - _regStart;
-                if (gi < 0 || gi >= _regLength)
-                    gi = _regLength;
-                glm::vec4 destRect(tp, _glyphs[gi].size * scaling);
-                batch.Draw(destRect, _glyphs[gi].uvRect, _texID, depth, tint);
-                tp.x += _glyphs[gi].size.x * scaling.x;
+                if (gi < 0 || gi >= m_regLength)
+                    gi = m_regLength;
+                glm::vec4 destRect(tp, m_glyphs[gi].size * scaling);
+                batch.Draw(destRect, m_glyphs[gi].uvRect, m_texID, depth, tint);
+                tp.x += m_glyphs[gi].size.x * scaling.x;
             }
         }
     }

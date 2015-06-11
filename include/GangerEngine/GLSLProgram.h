@@ -25,10 +25,10 @@ namespace GangerEngine
     private:
         void CompileShader (const std::string& filePath, GLuint& id);
 
-        GLuint _programID;
-        GLuint _vertexShaderID;
-        GLuint _fragmentShaderID;
+        GLuint m_programID;
+        GLuint m_vertexShaderID;
+        GLuint m_fragmentShaderID;
 
-        int _numAttribute;
+        int m_numAttribute;
     };
 }

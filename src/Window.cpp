@@ -1,6 +1,6 @@
 
 #include <GangerEngine/Window.h>
-#include <GangerEngine/Errors.h>
+#include <GangerEngine/GangerErrors.h>
 
 namespace GangerEngine
 {
@@ -20,22 +20,22 @@ namespace GangerEngine
         flags |= (currentFlags & INVISIBLE ? SDL_WINDOW_HIDDEN : 0x0);
         flags |= (currentFlags & FULLSCREEN ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0x0);
         flags |= (currentFlags & BORDERLESS ? SDL_WINDOW_BORDERLESS : 0x0);
-        
+
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-        
-        
 
-        _sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED,
+
+
+        m_sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, flags);
-        if(_sdlWindow == nullptr)
+        if(m_sdlWindow == nullptr)
         {
             FatalError("SDL window: Could not be created");
         }
 
         // Set up our OpenGL context
-        SDL_GLContext glContext = SDL_GL_CreateContext(_sdlWindow);
+        SDL_GLContext glContext = SDL_GL_CreateContext(m_sdlWindow);
         if(glContext == nullptr)
         {
             FatalError("SDL_GLContext: Could not be created");
@@ -47,7 +47,7 @@ namespace GangerEngine
         {
             FatalError("GLEW: Could not be initialized");
         }
-        
+
         // Init glew for OSX systems
 #if __APPLE__
             glewExperimental = GL_TRUE;
@@ -57,7 +57,7 @@ namespace GangerEngine
         // Check the OpenGL version
         printf("***  OpenGL version %s  ***\n", glGetString(GL_VERSION));
         printf("***  Supported GLSL version is %s  ***\n", (char *)glGetString(GL_SHADING_LANGUAGE_VERSION));
-        
+
         // Set up the background color
         glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 
@@ -74,6 +74,6 @@ namespace GangerEngine
     void Window::Swap()
     {
         // Swap our buffer and draw everything to the screen
-        SDL_GL_SwapWindow(_sdlWindow);
+        SDL_GL_SwapWindow(m_sdlWindow);
     }
 }

@@ -8,38 +8,38 @@
 
 namespace GangerEngine
 {
-    Sprite::Sprite () : _vboID (0)
+    Sprite::Sprite () : m_vboID (0)
     {
     }
 
     Sprite::~Sprite ()
     {
-        if (_vboID != 0)
+        if (m_vboID != 0)
         {
-            glDeleteBuffers (1, &_vboID);
+            glDeleteBuffers (1, &m_vboID);
         }
     }
 
     void Sprite::Init (float x, float y, float width, float height, std::string texturePath)
     {
-        _x = x;
-        _y = y;
-        _width = width;
-        _height = height;
-        _texture = ResourceManager::GetTexture (texturePath);
+        m_x = x;
+        m_y = y;
+        m_width = width;
+        m_height = height;
+        m_texture = ResourceManager::GetTexture (texturePath);
 
-        if (_vboID == 0)
+        if (m_vboID == 0)
         {
-            glGenBuffers (1, &_vboID);
+            glGenBuffers (1, &m_vboID);
         }
 
         Vertex vertexData[6];
-        SetSpriteCords (_x, _y, _width, _height, vertexData);
+        SetSpriteCords (m_x, m_y, m_width, m_height, vertexData);
         int vertexLength = GetArrLength (vertexData);
         SetColor (vertexData, &vertexLength);
 
         // Tell OpenGL to bind our vertex buffer object
-        glBindBuffer (GL_ARRAY_BUFFER, _vboID);
+        glBindBuffer (GL_ARRAY_BUFFER, m_vboID);
 
         // Upload the data to the GPU
         glBufferData (GL_ARRAY_BUFFER, sizeof (vertexData), vertexData, GL_STATIC_DRAW);
@@ -50,10 +50,10 @@ namespace GangerEngine
 
     void Sprite::Draw ()
     {
-        glBindTexture (GL_TEXTURE_2D, _texture.id);
+        glBindTexture (GL_TEXTURE_2D, m_texture.id);
 
         // Bind the buffer object
-        glBindBuffer (GL_ARRAY_BUFFER, _vboID);
+        glBindBuffer (GL_ARRAY_BUFFER, m_vboID);
 
         /* Tell OpenGL that we want to use the first
          * attribute array. We only need one array right

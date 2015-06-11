@@ -27,7 +27,7 @@ namespace GangerEngine
     }
     
     
-    SpriteBatch::SpriteBatch() : _vbo(0), _vao(0)
+    SpriteBatch::SpriteBatch() : m_vbo(0), m_vao(0)
     {
     }
 
@@ -43,19 +43,19 @@ namespace GangerEngine
 
     void SpriteBatch::Begin(GlyphSortType glyphSortType /* GlyphShortType::TEXTURE*/)
     {
-        _glyphSortType = glyphSortType;
-        _renderBatches.clear();
+        m_glyphSortType = glyphSortType;
+        m_renderBatches.clear();
 
-        _glyphs.clear();
+        m_glyphs.clear();
     }
     
     void SpriteBatch::End()
     {
         // Set up all pointer for fast sorting
-        _glyphsPointer.resize(_glyphs.size());
-        for(int i = 0; i < _glyphs.size(); i++)
+        m_glyphsPointer.resize(m_glyphs.size());
+        for(int i = 0; i < m_glyphs.size(); i++)
         {
-            _glyphsPointer[i] = &_glyphs[i];
+            m_glyphsPointer[i] = &m_glyphs[i];
         }
         
         SortGlyphs();
@@ -65,19 +65,19 @@ namespace GangerEngine
     void SpriteBatch::Draw(const glm::vec4& destRect, const glm::vec4& uvRect,
         const GLuint& texture, const float& depth, const ColorRGBA8& color)
     {
-        _glyphs.emplace_back(destRect, uvRect, texture, depth, color);
+        m_glyphs.emplace_back(destRect, uvRect, texture, depth, color);
     }
 
     void SpriteBatch::RenderBatch()
     {
         // Bind our VAO. This sets up the OpenGL state we need, including the 
         // vertex attribute pointers and it binds the VBO
-        glBindVertexArray(_vao);
+        glBindVertexArray(m_vao);
 
-        for(unsigned int i = 0; i < _renderBatches.size(); i++) {
-            glBindTexture(GL_TEXTURE_2D, _renderBatches[i].texture);
+        for(unsigned int i = 0; i < m_renderBatches.size(); i++) {
+            glBindTexture(GL_TEXTURE_2D, m_renderBatches[i].texture);
 
-            glDrawArrays(GL_TRIANGLES, _renderBatches[i].offset, _renderBatches[i].numVertices);
+            glDrawArrays(GL_TRIANGLES, m_renderBatches[i].offset, m_renderBatches[i].numVertices);
         }
 
         glBindVertexArray(0);
@@ -85,58 +85,58 @@ namespace GangerEngine
 
     void SpriteBatch::CreateRenderBatches()
     {
-        if(_glyphsPointer.empty())
+        if(m_glyphsPointer.empty())
             return;
 
         // This will store all the vertices's that we need to upload
         std::vector<Vertex> vertices;
 
         // Allocate all the memory we need for the vertices's we will add
-        vertices.resize(_glyphsPointer.size() * 6);
+        vertices.resize(m_glyphsPointer.size() * 6);
 
         int offset = 0;
         int currentVertex = 0;
 
         // Create a new object and push it back
-        _renderBatches.emplace_back(offset, 6, _glyphsPointer[0]->texture);
+        m_renderBatches.emplace_back(offset, 6, m_glyphsPointer[0]->texture);
 
         // Add the first batch
-        vertices[currentVertex++] = _glyphsPointer[0]->topLeft;
-        vertices[currentVertex++] = _glyphsPointer[0]->bottonLeft;
-        vertices[currentVertex++] = _glyphsPointer[0]->bottonRight;
-        vertices[currentVertex++] = _glyphsPointer[0]->bottonRight;
-        vertices[currentVertex++] = _glyphsPointer[0]->topRight;
-        vertices[currentVertex++] = _glyphsPointer[0]->topLeft;
+        vertices[currentVertex++] = m_glyphsPointer[0]->topLeft;
+        vertices[currentVertex++] = m_glyphsPointer[0]->bottonLeft;
+        vertices[currentVertex++] = m_glyphsPointer[0]->bottonRight;
+        vertices[currentVertex++] = m_glyphsPointer[0]->bottonRight;
+        vertices[currentVertex++] = m_glyphsPointer[0]->topRight;
+        vertices[currentVertex++] = m_glyphsPointer[0]->topLeft;
         
         offset += 6;
 
         // Add all the rest of the glyphs
-        for(unsigned int currentGlyph = 1; currentGlyph < _glyphsPointer.size(); currentGlyph++)
+        for(unsigned int currentGlyph = 1; currentGlyph < m_glyphsPointer.size(); currentGlyph++)
         {
             // Check if the current glyph can be part of the current batch
-            if(_glyphsPointer[currentGlyph]->texture != _glyphsPointer[currentGlyph - 1]->texture)
+            if(m_glyphsPointer[currentGlyph]->texture != m_glyphsPointer[currentGlyph - 1]->texture)
             {
                 // Create a new batch
-                _renderBatches.emplace_back(offset, 6, _glyphsPointer[currentGlyph]->texture);
+                m_renderBatches.emplace_back(offset, 6, m_glyphsPointer[currentGlyph]->texture);
             }
             else
             {
                 // If it is part of the current batch then increase the numVertices
-                _renderBatches.back().numVertices += 6;
+                m_renderBatches.back().numVertices += 6;
             }
 
-            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->topLeft;
-            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->bottonLeft;
-            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->bottonRight;
-            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->bottonRight;
-            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->topRight;
-            vertices[currentVertex++] = _glyphsPointer[currentGlyph]->topLeft;
+            vertices[currentVertex++] = m_glyphsPointer[currentGlyph]->topLeft;
+            vertices[currentVertex++] = m_glyphsPointer[currentGlyph]->bottonLeft;
+            vertices[currentVertex++] = m_glyphsPointer[currentGlyph]->bottonRight;
+            vertices[currentVertex++] = m_glyphsPointer[currentGlyph]->bottonRight;
+            vertices[currentVertex++] = m_glyphsPointer[currentGlyph]->topRight;
+            vertices[currentVertex++] = m_glyphsPointer[currentGlyph]->topLeft;
 
             offset += 6;
         }
 
         // Bind our VBO
-        glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
         // Orphan the buffer (for speed) because it overwrite the current data
         glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), nullptr, GL_DYNAMIC_DRAW);
         // Upload the data
@@ -149,14 +149,14 @@ namespace GangerEngine
     void SpriteBatch::CreateVertexArray()
     {
         // Generate the vertex array object 
-        if(_vao == 0)
-            glGenVertexArrays(1, &_vao);
-        glBindVertexArray(_vao);
+        if(m_vao == 0)
+            glGenVertexArrays(1, &m_vao);
+        glBindVertexArray(m_vao);
 
         // Generate the vertex buffer object
-        if(_vbo == 0)
-            glGenBuffers(1, &_vbo);
-        glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+        if(m_vbo == 0)
+            glGenBuffers(1, &m_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
         /* Tell OpenGL that we want to use the first
         * attribute array. We only need one array right
@@ -182,16 +182,16 @@ namespace GangerEngine
 
     void SpriteBatch::SortGlyphs()
     {
-        switch(_glyphSortType)
+        switch(m_glyphSortType)
         {
             case GlyphSortType::BACK_TO_FRONT:
-                std::stable_sort(_glyphsPointer.begin(), _glyphsPointer.end(), CompareBackToFront);
+                std::stable_sort(m_glyphsPointer.begin(), m_glyphsPointer.end(), CompareBackToFront);
                 break;
             case GlyphSortType::FRONT_TO_FRONT:
-                std::stable_sort(_glyphsPointer.begin(), _glyphsPointer.end(), CompareFrontToBack);
+                std::stable_sort(m_glyphsPointer.begin(), m_glyphsPointer.end(), CompareFrontToBack);
                 break;
             case GlyphSortType::TEXTURE:
-                std::stable_sort(_glyphsPointer.begin(), _glyphsPointer.end(), CompareTexture);
+                std::stable_sort(m_glyphsPointer.begin(), m_glyphsPointer.end(), CompareTexture);
                 break;
             default:
                 break;

@@ -25,8 +25,8 @@ namespace GangerEngine
         template<typename T, int size>
         int GetArrLength (T (&)[size]){ return size; }
 
-        float _x, _y, _width, _height;
-        GLuint _vboID;
-        GLTexture _texture;
+        float m_x, m_y, m_width, m_height;
+        GLuint m_vboID;
+        GLTexture m_texture;
     };
 }

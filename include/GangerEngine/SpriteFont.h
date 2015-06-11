@@ -1,4 +1,4 @@
-/* 
+/*
     This is a modified version of the SpriteFont class from the
     Seed Of Andromeda source code.
     Use it for any of your projects, commercial or otherwise,
@@ -61,22 +61,22 @@ namespace GangerEngine
         void dispose();
 
         int getFontHeight() const {
-            return _fontHeight;
+            return m_fontHeight;
         }
 
         /// Measures the dimensions of the text
         glm::vec2 measure(const char* s);
 
         /// Draws using a spritebatch
-        void draw(SpriteBatch& batch, const char* s, glm::vec2 position, glm::vec2 scaling, 
+        void draw(SpriteBatch& batch, const char* s, glm::vec2 position, glm::vec2 scaling,
                   float depth, ColorRGBA8 tint, Justification just = Justification::LEFT);
     private:
         static std::vector<int>* createRows(glm::ivec4* rects, int rectsLength, int r, int padding, int& w);
 
-        int _regStart, _regLength;
-        CharGlyph* _glyphs;
-        int _fontHeight;
+        int _regStart, m_regLength;
+        CharGlyph* m_glyphs;
+        int m_fontHeight;
 
-        unsigned int _texID;
+        unsigned int m_texID;
     };
 }
