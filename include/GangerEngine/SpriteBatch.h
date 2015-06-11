@@ -24,7 +24,7 @@ namespace GangerEngine
         Glyph() {}
         Glyph(const glm::vec4& destRect, const glm::vec4& uvRect,
               const GLuint& Texture, const float& Depth, const ColorRGBA8& color);
-        
+
         GLuint texture;
         float depth;
 
@@ -59,7 +59,7 @@ namespace GangerEngine
         void Draw(const glm::vec4& destRect, const glm::vec4& uvRect, const GLuint& texture,
             const float& depth, const ColorRGBA8& color);
 
-        void RenderBatch(); 
+        void RenderBatch();
 
     private:
         void CreateVertexArray();
@@ -70,13 +70,13 @@ namespace GangerEngine
         static bool CompareFrontToBack(Glyph* a, Glyph* b);
         static bool CompareTexture(Glyph* a, Glyph* b);
 
-        GLuint _vbo;
-        GLuint _vao;
+        GLuint m_vbo;
+        GLuint m_vao;
 
-        GlyphSortType _glyphSortType;
-        
-        std::vector<Glyph*> _glyphsPointer; ///< This is for sorting
-        std::vector<Glyph> _glyphs; ///< This is the actual glyphs
-        std::vector<GangerEngine::RenderBatch> _renderBatches;
+        GlyphSortType m_glyphSortType;
+
+        std::vector<Glyph*> m_glyphsPointer; ///< This is for sorting
+        std::vector<Glyph> m_glyphs; ///< This is the actual glyphs
+        std::vector<GangerEngine::RenderBatch> m_renderBatches;
     };
 }

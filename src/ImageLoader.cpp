@@ -2,7 +2,7 @@
 #include <GangerEngine/ImageLoader.h>
 #include <GangerEngine/PicoPNG.h>
 #include <GangerEngine/IOManager.h>
-#include <GangerEngine/Errors.h>
+#include <GangerEngine/GangerErrors.h>
 
 #include <vector>
 

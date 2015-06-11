@@ -3,64 +3,64 @@
 
 namespace GangerEngine
 {
-    InputManager::InputManager() : _mouseCoords(0,0)
+    InputManager::InputManager() : m_mouseCoords(0,0)
     {
     }
 
     InputManager::~InputManager()
     {
     }
-    
+
     void InputManager::Update()
     {
-        for(auto& it : _keyMap)
+        for(auto& it : m_keyMap)
         {
-            _previousKeyMap[it.first] = it.second;
+            m_previousKeyMap[it.first] = it.second;
         }
     }
 
     void InputManager::PressKey(unsigned int keyID)
     {
-        _keyMap[keyID] = true;
+        m_keyMap[keyID] = true;
     }
 
     void InputManager::ReleaseKey(unsigned int keyID)
     {
-        _keyMap[keyID] = false;
+        m_keyMap[keyID] = false;
     }
 
     void InputManager::SetMouseCoords(float x, float y)
     {
-        _mouseCoords.x = x;
-        _mouseCoords.y = y;
+        m_mouseCoords.x = x;
+        m_mouseCoords.y = y;
     }
 
     bool InputManager::isKeyDown(unsigned int keyID)
     {
-        auto it = _keyMap.find(keyID);
+        auto it = m_keyMap.find(keyID);
 
-        if(it != _keyMap.end())
+        if(it != m_keyMap.end())
             return it->second;
 
         return false;
     }
-    
+
     bool InputManager::isKeyPressed(unsigned int keyID)
     {
-        // Check if the key is press at this moment 
+        // Check if the key is press at this moment
         if (isKeyDown(keyID) && !wasKeyDown(keyID))
             return true;
-        
+
         return false;
     }
-    
+
     bool InputManager::wasKeyDown(unsigned int keyID)
     {
-        auto it = _previousKeyMap.find(keyID);
-        
-        if(it != _previousKeyMap .end())
+        auto it = m_previousKeyMap.find(keyID);
+
+        if(it != m_previousKeyMap .end())
             return it->second;
-        
+
         return false;
     }
 }

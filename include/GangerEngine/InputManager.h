@@ -11,7 +11,7 @@ namespace GangerEngine
     public:
         InputManager();
         ~InputManager();
-        
+
         //! Updates the previous keys pressed
         void Update();
 
@@ -22,18 +22,18 @@ namespace GangerEngine
 
         //! Returns the status of the key
         bool isKeyDown(unsigned int keyID);
-        
+
         //! Check if the key has been pressed
         bool isKeyPressed(unsigned int keyID);
 
         // Getters
-        glm::vec2 GetMouseCoords() const { return _mouseCoords; }
+        glm::vec2 GetMouseCoords() const { return m_mouseCoords; }
 
     private:
         bool wasKeyDown(unsigned int keyID);
-        
-        std::unordered_map<unsigned int, bool> _keyMap;
-        std::unordered_map<unsigned int, bool> _previousKeyMap;
-        glm::vec2 _mouseCoords;
+
+        std::unordered_map<unsigned int, bool> m_keyMap;
+        std::unordered_map<unsigned int, bool> m_previousKeyMap;
+        glm::vec2 m_mouseCoords;
     };
 }

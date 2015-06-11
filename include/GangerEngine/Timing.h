@@ -7,10 +7,10 @@ namespace GangerEngine
     {
     public:
         FpsLimiter();
-        
+
         void Init(float maxFPS);
 
-        void SetTargetFPS(float maxFPS) { _maxFPS = maxFPS; }
+        void SetTargetFPS(float maxFPS) { m_maxFPS = maxFPS; }
 
         void Begin();
         float End();
@@ -18,9 +18,9 @@ namespace GangerEngine
     private:
         void CalculateFPS();
 
-        float _fps;
-        float _maxFPS;
-        float _frameTime;
-        unsigned int _startTicks;
+        float m_fps;
+        float m_maxFPS;
+        float m_frameTime;
+        unsigned int m_startTicks;
     };
 }
