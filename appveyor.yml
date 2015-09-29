@@ -25,7 +25,7 @@ build_script:
   - md build
   - cd build
   - cmake -G "Visual Studio 12" ..
-  - msbuild /m /p:VisualStudioVersion=12.0 /p:Configuration=Release /p:Platform="Win32" 'Ganger Engine.sln'
+  - msbuild /m /p:VisualStudioVersion=12.0 /p:Configuration=Release /p:Platform="Win32" "Ganger Engine.sln"
 
 #after_build:
 
