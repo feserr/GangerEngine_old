@@ -1,6 +1,8 @@
 GangerEngine
 =======
 
+[![Build status](https://ci.appveyor.com/api/projects/status/pta0jukudrmqkwt7/branch/master?svg=true)](https://ci.appveyor.com/project/Reisor/gangerengine/branch/master)
+
 # Index
 
 - [About](#about)
