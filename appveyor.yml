@@ -1,0 +1,46 @@
+version: 1.0.{build}
+
+branches:
+  only:
+  - master
+
+clone_folder: c:\dev\lib-gangerengine-cmake
+
+install:
+  # to install downloader do: "cinst wget -x86"
+  # the format is: "wget -q URL -O c:\path-to-file\file_name"
+  # special format is: "wget -q --no-check-certificate URL -O c:\path-to-file\file_name"
+  # that accounts for downloading from e.g. https://googledrive.com/host/$HASH
+  # -
+  # to install unzipper do: "cinst 7zip.commandline -x86"
+  # the format is: "7z x c:\path-to-archive\archive.zip -oc:\path-where-unzip -y > nul"
+  - cd c:\dev
+  - ps: Start-FileDownload 'https://github.com/robotology/ycm/releases/download/v0.1.0/YCM-0.1.0-win32.msi'
+
+  - cmd: c:\dev\YCM-0.1.0-win32.msi
+
+build:
+
+build_script:
+  - cd c:\dev\lib-gangerengine-cmake
+  - md libs
+  - cd libs
+  - md SDL
+  - cd SDL
+  - ps: Start-FileDownload 'https://github.com/kimonline/SDL2/tree/master/include/*'
+  - md build
+  - cd build
+  - cmake -G "Visual Studio 12" ..
+  - msbuild /m /p:VisualStudioVersion=12.0 /p:Configuration=Release /p:Platform="Win32" '.\Ganger Engine.sln'
+
+#after_build:
+
+#test_script:
+
+notifications:
+  - provider: Email
+    to:
+      - gangergamesstudio@gmail.com
+    on_build_success: false
+    on_build_failure: false
+    on_build_status_changed: true
