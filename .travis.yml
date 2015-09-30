@@ -2,6 +2,8 @@ language: cpp
 
 sudo: required
 
+before_install: chmod +x setup-travis.sh
 install: ./setup-travis.sh
 
+before_script: chmod +x BuildLinux.sh
 script: ./BuildLinux.sh
