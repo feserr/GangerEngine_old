@@ -2,6 +2,7 @@
 
 if ( test "`uname -s`" = "Darwin")
 then
+  echo "no"
 else
   echo "yes" | sudo add-apt-repository ppa:kalakris:cmake
   sudo apt-get update -qq
