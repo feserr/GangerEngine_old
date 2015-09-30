@@ -2,7 +2,7 @@
 #pragma once
 
 #include <string>
-#include <GL\glew.h>
+#include <GL/glew.h>
 
 class GLSLProgram
 {
@@ -11,7 +11,7 @@ public:
     ~GLSLProgram();
 
     void CompileShaders(const std::string& vertexShaderFile,
-        const std::string& fragmentShaderFile);    
+        const std::string& fragmentShaderFile);
     void LinkShaders();
     void AddAttribute(const std::string& attributeName);
 
@@ -29,4 +29,3 @@ private:
 
     int _numAttribute;
 };
-

@@ -4,7 +4,7 @@
 #include <Vertex.h>
 #include <GLTexture.h>
 
-#include <GL\glew.h>
+#include <GL/glew.h>
 #include <string>
 
 class Sprite
@@ -27,4 +27,3 @@ private:
     GLuint _vboID;
     GLTexture _texture;
 };
-

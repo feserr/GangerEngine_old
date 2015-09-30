@@ -241,3 +241,10 @@ xcuserdata
 *.xccheckout
 *.moved-aside
 *.xcuserstate
+
+
+# Unix
+#
+
+## Other
+.history*
