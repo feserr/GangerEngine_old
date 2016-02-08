@@ -27,7 +27,7 @@ set(SOURCES
   src/ResourceManager.cpp
   src/Sprite.cpp
   src/SpriteBatch.cpp
-  src/SprteFont.cpp
+  src/SpriteFont.cpp
   src/TextureCache.cpp
   src/Timing.cpp
   src/Window.cpp)
