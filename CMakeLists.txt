@@ -13,14 +13,24 @@ endif()
 
 set(SDL_HEADERS ${CMAKE_SOURCE_DIR}/libs)
 set(SOURCES
-  src/Errors.cpp
+  src/AudioEngine.cpp
+  src/Camera2D.cpp
+  src/GangerEngine.cpp
+  src/GangerErrors.cpp
   src/GLSLProgram.cpp
   src/ImageLoader.cpp
+  src/InputManager.cpp
   src/IOManager.cpp
+  src/ParticleBatch2D.cpp
+  src/ParticleEngine2D.cpp
   src/PicoPNG.cpp
   src/ResourceManager.cpp
   src/Sprite.cpp
-  src/TextureCache.cpp)
+  src/SpriteBatch.cpp
+  src/SprteFont.cpp
+  src/TextureCache.cpp
+  src/Timing.cpp
+  src/Window.cpp)
 
 #Bring the headers into the project
 include_directories(${CMAKE_SOURCE_DIR}/libs ${CMAKE_SOURCE_DIR}/include)

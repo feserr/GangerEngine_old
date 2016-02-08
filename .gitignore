@@ -242,7 +242,7 @@ xcuserdata
 *.xccheckout
 *.moved-aside
 *.xcuserstate
-
+*.xcodeproj
 
 # Unix
 #
