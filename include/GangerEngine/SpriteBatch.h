@@ -25,6 +25,9 @@ namespace GangerEngine
         Glyph(const glm::vec4& destRect, const glm::vec4& uvRect,
               const GLuint& Texture, const float& Depth, const ColorRGBA8& color);
 
+        Glyph(const glm::vec4& destRect, const glm::vec4& uvRect,
+              const GLuint& Texture, const float& Depth, const ColorRGBA8& color, float angle);
+
         GLuint texture;
         float depth;
 
@@ -32,6 +35,9 @@ namespace GangerEngine
         Vertex bottonLeft;
         Vertex topRight;
         Vertex bottonRight;
+
+    private:
+        glm::vec2 RotatePoint(glm::vec2 pos, float angle);
     };
 
     class RenderBatch
@@ -56,8 +62,17 @@ namespace GangerEngine
         void Begin(GlyphSortType glyphSortType = TEXTURE);
         void End();
 
-        void Draw(const glm::vec4& destRect, const glm::vec4& uvRect, const GLuint& texture,
+        void Draw(const glm::vec4& destRect, const glm::vec4& uvRect,
+                  const GLuint& texture,
             const float& depth, const ColorRGBA8& color);
+
+        void Draw(const glm::vec4& destRect, const glm::vec4& uvRect,
+                  const GLuint& texture, const float& depth, const ColorRGBA8& color,
+                  float angle);
+
+        void Draw(const glm::vec4& destRect, const glm::vec4& uvRect,
+                  const GLuint& texture, const float& depth, const ColorRGBA8& color,
+                  glm::vec2& dir);
 
         void RenderBatch();
 

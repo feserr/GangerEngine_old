@@ -25,8 +25,52 @@ namespace GangerEngine
         topRight.SetUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
         topRight.color = color;
     }
-    
-    
+
+    Glyph::Glyph(const glm::vec4& destRect, const glm::vec4& uvRect,
+                 const GLuint& Texture, const float& Depth, const ColorRGBA8& color, float angle) :
+    texture(Texture), depth(Depth)
+    {
+        glm::vec2 halfDims(destRect.z / 2.0f, destRect.w / 2.0f);
+
+        // Get points centered at origin
+        glm::vec2 tl(-halfDims.x, halfDims.y);
+        glm::vec2 bl(-halfDims.x, -halfDims.y);
+        glm::vec2 br(halfDims.x, -halfDims.y);
+        glm::vec2 tr(halfDims.x, halfDims.y);
+
+        // Roteta the points
+        tl = RotatePoint(tl, angle) + halfDims;
+        bl = RotatePoint(bl, angle) + halfDims;
+        tr = RotatePoint(tr, angle) + halfDims;
+        br = RotatePoint(br, angle) + halfDims;
+
+        topLeft.SetPosition(destRect.x + tl.x, destRect.y + tl.y);
+        topLeft.SetUV(uvRect.x, uvRect.y + uvRect.w);
+        topLeft.color = color;
+
+        bottonLeft.SetPosition(destRect.x + bl.x, destRect.y + bl.y);
+        bottonLeft.SetUV(uvRect.x, uvRect.y);
+        bottonLeft.color = color;
+
+        bottonRight.SetPosition(destRect.x + br.x, destRect.y + br.y);
+        bottonRight.SetUV(uvRect.x + uvRect.z, uvRect.y);
+        bottonRight.color = color;
+
+        topRight.SetPosition(destRect.x + tr.x, destRect.y + tr.y);
+        topRight.SetUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
+        topRight.color = color;
+    }
+
+    glm::vec2 Glyph::RotatePoint(glm::vec2 pos, float angle)
+    {
+        glm::vec2 newv;
+        newv.x = pos.x * cosf(angle) - pos.y * sinf(angle);
+        newv.y = pos.x * sinf(angle) + pos.y * cosf(angle);
+
+        return newv;
+    }
+
+
     SpriteBatch::SpriteBatch() : m_vbo(0), m_vao(0)
     {
     }
@@ -66,6 +110,26 @@ namespace GangerEngine
         const GLuint& texture, const float& depth, const ColorRGBA8& color)
     {
         m_glyphs.emplace_back(destRect, uvRect, texture, depth, color);
+    }
+
+    void SpriteBatch::Draw(const glm::vec4& destRect, const glm::vec4& uvRect,
+                           const GLuint& texture, const float& depth, const ColorRGBA8& color,
+                           float angle)
+    {
+        m_glyphs.emplace_back(destRect, uvRect, texture, depth, color, angle);
+    }
+
+    void SpriteBatch::Draw(const glm::vec4& destRect, const glm::vec4& uvRect,
+                           const GLuint& texture, const float& depth, const ColorRGBA8& color,
+                           glm::vec2& dir)
+    {
+        const glm::vec2 right(1.0f, 0.0f);
+        float angle = acosf(glm::dot(right, dir));
+
+        if (dir.y < 0.0f)
+            angle = -angle;
+        
+        m_glyphs.emplace_back(destRect, uvRect, texture, depth, color, angle);
     }
 
     void SpriteBatch::RenderBatch()
