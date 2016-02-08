@@ -40,7 +40,7 @@ namespace GangerEngine
 
     bool Camera2D::IsBoxInView(const glm::vec2& position, const glm::vec2 dimension)
     {
-        glm::vec2 scaledScreenDimension = glm::vec2(m_screenWidth, m_screenHeight) / (m_scale * 2.0f);
+        glm::vec2 scaledScreenDimension = glm::vec2(m_screenWidth, m_screenHeight) / (m_scale);
 
         // The minimum distance before a collision occurs
         const float MIN_DISTANCE_X = dimension.x / 2.0f + scaledScreenDimension.x / 2.0f;

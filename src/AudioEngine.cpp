@@ -39,11 +39,29 @@ namespace GangerEngine
     
     AudioEngine::~AudioEngine()
     {
-        Destroy();
+        if(m_isInitialized)
+        {
+            m_isInitialized = false;
+
+            for(auto& it : m_effectMap)
+                Mix_FreeChunk(it.second);
+
+            for(auto& it : m_musicMap)
+                Mix_FreeMusic(it.second);
+
+            m_effectMap.clear();
+            m_musicMap.clear();
+
+            Mix_CloseAudio();
+            Mix_Quit();
+        }
     }
     
     void AudioEngine::Init()
     {
+        if(m_isInitialized)
+            FatalError("Tried to initilize the audio engine twice.");
+
         if(Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) == -1)
             FatalError("Mix_init error: " + std::string(Mix_GetError()));
         
