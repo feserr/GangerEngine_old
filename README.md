@@ -1,9 +1,6 @@
 GangerEngine
 =======
 
-- Windows [![Build status](https://ci.appveyor.com/api/projects/status/pta0jukudrmqkwt7/branch/master?svg=true)](https://ci.appveyor.com/project/Reisor/gangerengine/branch/master)
-- Linux and OSX [![Build Status](https://travis-ci.org/Reisor/GangerEngine.svg)](https://travis-ci.org/Reisor/GangerEngine)
-
 # Index
 
 - [About](#about)

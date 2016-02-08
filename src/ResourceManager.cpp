@@ -1,10 +1,13 @@
 
-#include <ResourceManager.h>
+#include <GangerEngine/ResourceManager.h>
 
-// Declare the static variable
-TextureCache ResourceManager::_textureCache;
-
-GLTexture ResourceManager::GetTexture (std::string texturePath)
+namespace GangerEngine
 {
-    return _textureCache.GetTexture (texturePath);
+    // Declare the static variable
+    TextureCache ResourceManager::m_textureCache;
+
+    GLTexture ResourceManager::GetTexture (std::string texturePath)
+    {
+        return m_textureCache.GetTexture (texturePath);
+    }
 }

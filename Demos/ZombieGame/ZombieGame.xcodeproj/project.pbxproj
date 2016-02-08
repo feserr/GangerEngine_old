@@ -1,0 +1,372 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7A0B96131B16478D00F05361 /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B960B1B16478D00F05361 /* Agent.cpp */; };
+		7A0B96141B16478D00F05361 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B960C1B16478D00F05361 /* Bullet.cpp */; };
+		7A0B96151B16478D00F05361 /* Gun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B960D1B16478D00F05361 /* Gun.cpp */; };
+		7A0B96161B16478D00F05361 /* Human.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B960E1B16478D00F05361 /* Human.cpp */; };
+		7A0B96171B16478D00F05361 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B960F1B16478D00F05361 /* Level.cpp */; };
+		7A0B96181B16478D00F05361 /* MainGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B96101B16478D00F05361 /* MainGame.cpp */; };
+		7A0B96191B16478D00F05361 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B96111B16478D00F05361 /* Player.cpp */; };
+		7A0B961A1B16478D00F05361 /* Zombie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B96121B16478D00F05361 /* Zombie.cpp */; };
+		7A0B961E1B1647A200F05361 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0B961D1B1647A200F05361 /* OpenGL.framework */; };
+		7A0B96251B164B4700F05361 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B96241B164B4700F05361 /* main.cpp */; };
+		7A9CBEF91B79231E000A850E /* libGangerEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0B961B1B16479C00F05361 /* libGangerEngine.a */; };
+		7AAE64A21B79DA6300B724E3 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAE649F1B79DA6300B724E3 /* SDL2_mixer.framework */; };
+		7AAE64A31B79DA6300B724E3 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAE64A01B79DA6300B724E3 /* SDL2_ttf.framework */; };
+		7AAE64A41B79DA6300B724E3 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AAE64A11B79DA6300B724E3 /* SDL2.framework */; };
+		7ACD720A1C67A661008945B7 /* libGLEW.1.13.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACD72091C67A661008945B7 /* libGLEW.1.13.0.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7ABC025F1B16403C00D21FEC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		7A0B96031B16478100F05361 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
+		7A0B96041B16478100F05361 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		7A0B96051B16478100F05361 /* Gun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gun.h; sourceTree = "<group>"; };
+		7A0B96061B16478100F05361 /* Human.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Human.h; sourceTree = "<group>"; };
+		7A0B96071B16478100F05361 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		7A0B96081B16478100F05361 /* MainGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGame.h; sourceTree = "<group>"; };
+		7A0B96091B16478100F05361 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		7A0B960A1B16478100F05361 /* Zombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zombie.h; sourceTree = "<group>"; };
+		7A0B960B1B16478D00F05361 /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent.cpp; sourceTree = "<group>"; };
+		7A0B960C1B16478D00F05361 /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		7A0B960D1B16478D00F05361 /* Gun.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gun.cpp; sourceTree = "<group>"; };
+		7A0B960E1B16478D00F05361 /* Human.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Human.cpp; sourceTree = "<group>"; };
+		7A0B960F1B16478D00F05361 /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Level.cpp; sourceTree = "<group>"; };
+		7A0B96101B16478D00F05361 /* MainGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainGame.cpp; sourceTree = "<group>"; };
+		7A0B96111B16478D00F05361 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		7A0B96121B16478D00F05361 /* Zombie.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Zombie.cpp; sourceTree = "<group>"; };
+		7A0B961B1B16479C00F05361 /* libGangerEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGangerEngine.a; path = ../Build/Products/Debug/libGangerEngine.a; sourceTree = "<group>"; };
+		7A0B961D1B1647A200F05361 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		7A0B96241B164B4700F05361 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		7AAE649F1B79DA6300B724E3 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = /Library/Frameworks/SDL2_mixer.framework; sourceTree = "<absolute>"; };
+		7AAE64A01B79DA6300B724E3 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = /Library/Frameworks/SDL2_ttf.framework; sourceTree = "<absolute>"; };
+		7AAE64A11B79DA6300B724E3 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<absolute>"; };
+		7ABC02611B16403C00D21FEC /* ZombieGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ZombieGame; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ACD72091C67A661008945B7 /* libGLEW.1.13.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.1.13.0.dylib; path = /usr/local/Cellar/glew/1.13.0/lib/libGLEW.1.13.0.dylib; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7ABC025E1B16403C00D21FEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AAE64A21B79DA6300B724E3 /* SDL2_mixer.framework in Frameworks */,
+				7AAE64A31B79DA6300B724E3 /* SDL2_ttf.framework in Frameworks */,
+				7AAE64A41B79DA6300B724E3 /* SDL2.framework in Frameworks */,
+				7ACD720A1C67A661008945B7 /* libGLEW.1.13.0.dylib in Frameworks */,
+				7A0B961E1B1647A200F05361 /* OpenGL.framework in Frameworks */,
+				7A9CBEF91B79231E000A850E /* libGangerEngine.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7A0B96011B16476700F05361 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				7A0B96241B164B4700F05361 /* main.cpp */,
+				7A0B960B1B16478D00F05361 /* Agent.cpp */,
+				7A0B960C1B16478D00F05361 /* Bullet.cpp */,
+				7A0B960D1B16478D00F05361 /* Gun.cpp */,
+				7A0B960E1B16478D00F05361 /* Human.cpp */,
+				7A0B960F1B16478D00F05361 /* Level.cpp */,
+				7A0B96101B16478D00F05361 /* MainGame.cpp */,
+				7A0B96111B16478D00F05361 /* Player.cpp */,
+				7A0B96121B16478D00F05361 /* Zombie.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		7A0B96021B16476C00F05361 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				7A0B96031B16478100F05361 /* Agent.h */,
+				7A0B96041B16478100F05361 /* Bullet.h */,
+				7A0B96051B16478100F05361 /* Gun.h */,
+				7A0B96061B16478100F05361 /* Human.h */,
+				7A0B96071B16478100F05361 /* Level.h */,
+				7A0B96081B16478100F05361 /* MainGame.h */,
+				7A0B96091B16478100F05361 /* Player.h */,
+				7A0B960A1B16478100F05361 /* Zombie.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		7A0B96231B164AD200F05361 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7ACD72091C67A661008945B7 /* libGLEW.1.13.0.dylib */,
+				7AAE649F1B79DA6300B724E3 /* SDL2_mixer.framework */,
+				7AAE64A01B79DA6300B724E3 /* SDL2_ttf.framework */,
+				7AAE64A11B79DA6300B724E3 /* SDL2.framework */,
+				7A0B961D1B1647A200F05361 /* OpenGL.framework */,
+				7A0B961B1B16479C00F05361 /* libGangerEngine.a */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		7ABC02581B16403C00D21FEC = {
+			isa = PBXGroup;
+			children = (
+				7A0B96231B164AD200F05361 /* lib */,
+				7A0B96021B16476C00F05361 /* include */,
+				7A0B96011B16476700F05361 /* src */,
+				7ABC02621B16403C00D21FEC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7ABC02621B16403C00D21FEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7ABC02611B16403C00D21FEC /* ZombieGame */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7ABC02601B16403C00D21FEC /* ZombieGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7ABC02681B16403C00D21FEC /* Build configuration list for PBXNativeTarget "ZombieGame" */;
+			buildPhases = (
+				7ABC025D1B16403C00D21FEC /* Sources */,
+				7ABC025E1B16403C00D21FEC /* Frameworks */,
+				7ABC025F1B16403C00D21FEC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZombieGame;
+			productName = ZombieGame;
+			productReference = 7ABC02611B16403C00D21FEC /* ZombieGame */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7ABC02591B16403C00D21FEC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Ganger Games";
+				TargetAttributes = {
+					7ABC02601B16403C00D21FEC = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
+			};
+			buildConfigurationList = 7ABC025C1B16403C00D21FEC /* Build configuration list for PBXProject "ZombieGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7ABC02581B16403C00D21FEC;
+			productRefGroup = 7ABC02621B16403C00D21FEC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7ABC02601B16403C00D21FEC /* ZombieGame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7ABC025D1B16403C00D21FEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A0B96181B16478D00F05361 /* MainGame.cpp in Sources */,
+				7A0B961A1B16478D00F05361 /* Zombie.cpp in Sources */,
+				7A0B96251B164B4700F05361 /* main.cpp in Sources */,
+				7A0B96191B16478D00F05361 /* Player.cpp in Sources */,
+				7A0B96151B16478D00F05361 /* Gun.cpp in Sources */,
+				7A0B96171B16478D00F05361 /* Level.cpp in Sources */,
+				7A0B96131B16478D00F05361 /* Agent.cpp in Sources */,
+				7A0B96141B16478D00F05361 /* Bullet.cpp in Sources */,
+				7A0B96161B16478D00F05361 /* Human.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7ABC02661B16403C00D21FEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7ABC02671B16403C00D21FEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		7ABC02691B16403C00D21FEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../deps/lib/SDL,
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../deps/include/,
+					../../include/,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/Build/Products/Debug,
+					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/SDL,
+					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/glew,
+					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/freetype,
+					/usr/local/Cellar/glew/1.13.0/lib,
+				);
+				OTHER_LDFLAGS = "-lGLEW";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7ABC026A1B16403C00D21FEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../deps/lib/SDL,
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../deps/include/,
+					../../include/,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/Build/Products/Debug,
+					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/SDL,
+					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/glew,
+					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/freetype,
+					/usr/local/Cellar/glew/1.13.0/lib,
+				);
+				OTHER_LDFLAGS = "-lGLEW";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7ABC025C1B16403C00D21FEC /* Build configuration list for PBXProject "ZombieGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ABC02661B16403C00D21FEC /* Debug */,
+				7ABC02671B16403C00D21FEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7ABC02681B16403C00D21FEC /* Build configuration list for PBXNativeTarget "ZombieGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ABC02691B16403C00D21FEC /* Debug */,
+				7ABC026A1B16403C00D21FEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7ABC02591B16403C00D21FEC /* Project object */;
+}
