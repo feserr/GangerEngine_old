@@ -6,33 +6,33 @@
 
 namespace GangerEngine
 {
-    TextureCache::TextureCache ()
+    TextureCache::TextureCache()
     {
     }
 
 
-    TextureCache::~TextureCache ()
+    TextureCache::~TextureCache()
     {
     }
 
-    GLTexture TextureCache::GetTexture (std::string texturePath)
+    GLTexture TextureCache::GetTexture(std::string texturePath)
     {
         // Look up the texture in the map
-        auto mit = m_textureMap.find (texturePath);
+        auto mit = m_textureMap.find(texturePath);
 
-        if (mit == m_textureMap.end ()) // Check if it is not in the map
+        if (mit == m_textureMap.end()) // Check if it is not in the map
         {
             // Load the texture
-            GLTexture newTexture = ImageLoader::LoadPNG (texturePath);
+            GLTexture newTexture = ImageLoader::LoadPNG(texturePath);
 
             // Insert it to the map
-            m_textureMap.insert (std::make_pair (texturePath, newTexture));
+            m_textureMap.insert (std::make_pair(texturePath, newTexture));
 
-            printf ("Loaded texture.\n");
+            printf("Loaded texture.\n");
             return newTexture;
         }
 
-        printf ("Used cached texture.\n");
+        printf("Used cached texture.\n");
         return mit->second;
     }
 }

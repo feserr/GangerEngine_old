@@ -73,7 +73,7 @@ namespace GangerEngine
     private:
         static std::vector<int>* createRows(glm::ivec4* rects, int rectsLength, int r, int padding, int& w);
 
-        int _regStart, m_regLength;
+        int m_regStart, m_regLength;
         CharGlyph* m_glyphs;
         int m_fontHeight;
 

@@ -31,7 +31,7 @@ namespace GangerEngine
             throw 281;
         }
         m_fontHeight = TTF_FontHeight(f);
-        _regStart = cs;
+        m_regStart = cs;
         m_regLength = ce - cs + 1;
         int padding = size / 8;
 
@@ -215,7 +215,7 @@ namespace GangerEngine
                 cw = 0;
             } else {
                 // Check for correct glyph
-                int gi = c - _regStart;
+                int gi = c - m_regStart;
                 if (gi < 0 || gi >= m_regLength)
                     gi = m_regLength;
                 cw += m_glyphs[gi].size.x;
@@ -242,7 +242,7 @@ namespace GangerEngine
                 tp.x = position.x;
             } else {
                 // Check for correct glyph
-                int gi = c - _regStart;
+                int gi = c - m_regStart;
                 if (gi < 0 || gi >= m_regLength)
                     gi = m_regLength;
                 glm::vec4 destRect(tp, m_glyphs[gi].size * scaling);
