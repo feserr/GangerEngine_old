@@ -1,0 +1,1 @@
+Add freetype library.
