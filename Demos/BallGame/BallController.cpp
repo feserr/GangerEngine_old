@@ -1,6 +1,10 @@
 #include "BallController.h"
 
-void BallController::updateBalls(std::vector <Ball>& balls, float deltaTime, int maxX, int maxY) {  
+#include "Grid.h"
+
+void BallController::updateBalls(std::vector <Ball>& balls, Grid *grid, float deltaTime,
+    int maxX, int maxY)
+{
     const float FRICTION = 0.001f;
     // Update our grabbed balls velocity
     if (m_grabbedBall != -1) {
@@ -28,26 +32,37 @@ void BallController::updateBalls(std::vector <Ball>& balls, float deltaTime, int
             ball.velocity += gravity * deltaTime;
         }
         // Check wall collision
-        if (ball.position.x < 0) {
-            ball.position.x = 0;
+        if (ball.position.x < ball.radius) {
+            ball.position.x = ball.radius;
             if (ball.velocity.x < 0) ball.velocity.x *= -1;
-        } else if (ball.position.x + ball.radius * 2.0f >= maxX) {
-            ball.position.x = maxX - ball.radius * 2.0f - 1;
+        } else if (ball.position.x + ball.radius >= maxX) {
+            ball.position.x = maxX - ball.radius - 1;
             if (ball.velocity.x > 0) ball.velocity.x *= -1;
         }
-        if (ball.position.y < 0) {
-            ball.position.y = 0;
+        if (ball.position.y < ball.radius) {
+            ball.position.y = ball.radius;
             if (ball.velocity.y < 0) ball.velocity.y *= -1;
-        } else if (ball.position.y + ball.radius * 2.0f >= maxY) {
-            ball.position.y = maxY - ball.radius * 2.0f - 1;
+        } else if (ball.position.y + ball.radius >= maxY) {
+            ball.position.y = maxY - ball.radius - 1;
             if (ball.velocity.y > 0) ball.velocity.y *= -1;
         }
 
-        // Check collisions
-        for (size_t j = i + 1; j < balls.size(); j++) {
-            checkCollision(ball, balls[j]);
+        // Check to see if the ball moved
+        Cell* newCell = grid->GetCell(ball.position);
+        if(newCell != ball.ownerCell)
+        {
+            // Need to shift the ball
+            grid->RemoveBallFromCell(&balls[i]);
+            grid->AddBall(&balls[i], newCell);
         }
     }
+
+    // Check collisions
+    //for(size_t j = i + 1; j < balls.size(); j++)
+    //{
+    //    checkCollision(ball, balls[j]);
+    //}
+
     // Update our grabbed ball
     if (m_grabbedBall != -1) {
         // Update the velocity again, in case it got changed by collision
@@ -80,6 +95,11 @@ void BallController::onMouseMove(std::vector <Ball>& balls, float mouseX, float 
     if (m_grabbedBall != -1) {
         balls[m_grabbedBall].position = glm::vec2(mouseX, mouseY) - m_grabOffset;
     }
+}
+
+void BallController::UpdateCollision(Grid *grid)
+{
+    
 }
 
 void BallController::checkCollision(Ball& b1, Ball& b2) {

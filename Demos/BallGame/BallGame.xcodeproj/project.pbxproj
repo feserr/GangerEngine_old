@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A227FA61C78DA0700BE563E /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A227FA41C78DA0700BE563E /* Grid.cpp */; };
 		7A5FA31E1B83D23C006DD1A8 /* libGangerEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5FA30F1B83D14C006DD1A8 /* libGangerEngine.a */; };
 		7A5FA31F1B83D241006DD1A8 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5FA3191B83D196006DD1A8 /* OpenGL.framework */; };
 		7A5FA3211B83D259006DD1A8 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5FA3111B83D175006DD1A8 /* SDL2_mixer.framework */; };
@@ -33,6 +34,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7A227FA41C78DA0700BE563E /* Grid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Grid.cpp; sourceTree = "<group>"; };
+		7A227FA51C78DA0700BE563E /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		7A5FA30F1B83D14C006DD1A8 /* libGangerEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGangerEngine.a; path = ../Build/Products/Debug/libGangerEngine.a; sourceTree = "<group>"; };
 		7A5FA3111B83D175006DD1A8 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../deps/lib/SDL/SDL2_mixer.framework; sourceTree = "<group>"; };
 		7A5FA3121B83D175006DD1A8 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../deps/lib/SDL/SDL2_ttf.framework; sourceTree = "<group>"; };
@@ -87,6 +90,7 @@
 				7A5FA32E1B83D29D006DD1A8 /* Ball.h */,
 				7A5FA32F1B83D29D006DD1A8 /* BallController.h */,
 				7A5FA3301B83D29D006DD1A8 /* BallRenderer.h */,
+				7A227FA51C78DA0700BE563E /* Grid.h */,
 				7A5FA3311B83D29D006DD1A8 /* MainGame.h */,
 			);
 			name = include;
@@ -98,6 +102,7 @@
 				7A5FA3241B83D284006DD1A8 /* Ball.cpp */,
 				7A5FA3251B83D284006DD1A8 /* BallController.cpp */,
 				7A5FA3261B83D284006DD1A8 /* BallRenderer.cpp */,
+				7A227FA41C78DA0700BE563E /* Grid.cpp */,
 				7A5FA3271B83D284006DD1A8 /* Main.cpp */,
 				7A5FA3281B83D284006DD1A8 /* MainGame.cpp */,
 			);
@@ -181,6 +186,7 @@
 				7A5FA3291B83D284006DD1A8 /* Ball.cpp in Sources */,
 				7A5FA32A1B83D284006DD1A8 /* BallController.cpp in Sources */,
 				7A5FA32B1B83D284006DD1A8 /* BallRenderer.cpp in Sources */,
+				7A227FA61C78DA0700BE563E /* Grid.cpp in Sources */,
 				7A5FA32C1B83D284006DD1A8 /* Main.cpp in Sources */,
 				7A5FA32D1B83D284006DD1A8 /* MainGame.cpp in Sources */,
 			);

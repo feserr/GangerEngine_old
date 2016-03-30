@@ -3,6 +3,8 @@
 #include <glm/glm.hpp>
 #include <GangerEngine/Vertex.h>
 
+struct Cell;
+
 // POD
 struct Ball {
     Ball(float radius, float mass, const glm::vec2& pos,
@@ -15,4 +17,6 @@ struct Ball {
     glm::vec2 position;
     unsigned int textureId = 0;
     GangerEngine::ColorRGBA8 color;
+    Cell *ownerCell = nullptr;
+    int cellVectorIndex = -1;
 };

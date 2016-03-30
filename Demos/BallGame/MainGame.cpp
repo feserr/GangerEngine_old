@@ -17,6 +17,9 @@ const float MS_PER_SECOND = 1000; // Number of milliseconds in a second
 const float DESIRED_FRAMETIME = MS_PER_SECOND / DESIRED_FPS; // The desired frame time per frame
 const float MAX_DELTA_TIME = 1.0f; // Maximum size of deltaTime
 
+MainGame::~MainGame()
+{}
+
 void MainGame::run() {
     init();
     initBalls();
@@ -85,7 +88,8 @@ void MainGame::init() {
     
 }
 
-struct BallSpawn {
+struct BallSpawn
+{
     BallSpawn(const GangerEngine::ColorRGBA8& colr,
               float rad, float m, float minSpeed,
               float maxSpeed, float prob) :
@@ -103,7 +107,10 @@ struct BallSpawn {
     std::uniform_real_distribution<float> randSpeed;
 };
 
-void MainGame::initBalls() {
+void MainGame::initBalls()
+{
+    // Initialize the grid
+    m_grid = std::make_unique<Grid>(m_screenWidth, m_screenHeight, CELL_SIZE);
 
 #define ADD_BALL(p, ...) \
     totalProbability += p; \
@@ -165,11 +172,15 @@ void MainGame::initBalls() {
         m_balls.emplace_back(ballToSpawn->radius, ballToSpawn->mass, pos, direction * ballToSpawn->randSpeed(randomEngine),
                              GangerEngine::ResourceManager::GetTexture("Textures/circle.png").id,
                              ballToSpawn->color);
+        // Add te ball to the grid. IF YOU EVER CALL EMPLACE BACK AFTER INIT BALLS,
+        // m_grid will have DANGLING POINTERS
+        m_grid->AddBall(&m_balls.back());
     }
 }
 
 void MainGame::update(float deltaTime) {
-    m_ballController.updateBalls(m_balls, deltaTime, m_screenWidth, m_screenHeight);
+    m_ballController.updateBalls(m_balls, m_grid.get(), deltaTime, m_screenWidth,
+        m_screenHeight);
 }
 
 void MainGame::draw() {
