@@ -15,7 +15,7 @@
 
 enum class GameState { RUNNING, EXIT };
 
-const int CELL_SIZE = 128;
+const int CELL_SIZE = 12;
 
 class MainGame {
 public:

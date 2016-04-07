@@ -117,7 +117,7 @@ void MainGame::initBalls()
     possibleBalls.emplace_back(__VA_ARGS__);
 
     // Number of balls to spawn
-    const int NUM_BALLS = 100;
+    const int NUM_BALLS = 10000;
 
     // Random engine stuff
     std::mt19937 randomEngine((unsigned int)time(nullptr));
@@ -130,12 +130,12 @@ void MainGame::initBalls()
     float totalProbability = 0.0f;
 
     // Adds the balls using a macro
-    ADD_BALL(20.0f, GangerEngine::ColorRGBA8(255, 255, 255, 255),
-             20.0f, 1.0f, 0.1f, 7.0f, totalProbability);
+    ADD_BALL(1.0f, GangerEngine::ColorRGBA8(255, 255, 255, 255),
+             1.0f, 1.0f, 0.1f, 7.0f, totalProbability);
     ADD_BALL(10.0f, GangerEngine::ColorRGBA8(0, 0, 255, 255),
-             30.0f, 2.0f, 0.1f, 3.0f, totalProbability);
+             2.0f, 2.0f, 0.1f, 3.0f, totalProbability);
     ADD_BALL(1.0f, GangerEngine::ColorRGBA8(255, 0, 0, 255),
-             50.0f, 4.0f, 0.0f, 0.0f, totalProbability)
+             3.0f, 4.0f, 0.0f, 0.0f, totalProbability)
 
     // Random probability for ball spawn
     std::uniform_real_distribution<float> spawn(0.0f, totalProbability);
@@ -150,9 +150,9 @@ void MainGame::initBalls()
         // Get the ball spawn roll
         float spawnVal = spawn(randomEngine);
         // Figure out which ball we picked
-        for (size_t i = 0; i < possibleBalls.size(); i++) {
-            if (spawnVal <= possibleBalls[i].probability) {
-                ballToSpawn = &possibleBalls[i];
+        for (size_t j = 0; j < possibleBalls.size(); j++) {
+            if (spawnVal <= possibleBalls[j].probability) {
+                ballToSpawn = &possibleBalls[j];
                 break;
             }
         }
@@ -174,7 +174,7 @@ void MainGame::initBalls()
                              ballToSpawn->color);
         // Add te ball to the grid. IF YOU EVER CALL EMPLACE BACK AFTER INIT BALLS,
         // m_grid will have DANGLING POINTERS
-        m_grid->AddBall(&m_balls.back());
+        m_grid->addBall(&m_balls.back());
     }
 }
 

@@ -2,9 +2,7 @@
 
 #include "Grid.h"
 
-void BallController::updateBalls(std::vector <Ball>& balls, Grid *grid, float deltaTime,
-    int maxX, int maxY)
-{
+void BallController::updateBalls(std::vector <Ball>& balls, Grid* grid, float deltaTime, int maxX, int maxY) {
     const float FRICTION = 0.001f;
     // Update our grabbed balls velocity
     if (m_grabbedBall != -1) {
@@ -48,20 +46,14 @@ void BallController::updateBalls(std::vector <Ball>& balls, Grid *grid, float de
         }
 
         // Check to see if the ball moved
-        Cell* newCell = grid->GetCell(ball.position);
-        if(newCell != ball.ownerCell)
-        {
-            // Need to shift the ball
-            grid->RemoveBallFromCell(&balls[i]);
-            grid->AddBall(&balls[i], newCell);
+        Cell* newCell = grid->getCell(ball.position);
+        if (newCell != ball.ownerCell) {
+            grid->removeBallFromCell(&balls[i]);
+            grid->addBall(&balls[i], newCell);
         }
     }
-
-    // Check collisions
-    //for(size_t j = i + 1; j < balls.size(); j++)
-    //{
-    //    checkCollision(ball, balls[j]);
-    //}
+    // Updates all collisions using the spatial partitioning
+    updateCollision(grid);
 
     // Update our grabbed ball
     if (m_grabbedBall != -1) {
@@ -72,7 +64,7 @@ void BallController::updateBalls(std::vector <Ball>& balls, Grid *grid, float de
 }
 
 void BallController::onMouseDown(std::vector <Ball>& balls, float mouseX, float mouseY) {
-    for (auto i = 0; i < balls.size(); i++) {
+    for (size_t i = 0; i < balls.size(); i++) {
         // Check if the mouse is hovering over a ball
         if (isMouseOnBall(balls[i], mouseX, mouseY)) {
             m_grabbedBall = i; // BE AWARE, if you change the order of the balls in the vector, this becomes invalid!
@@ -97,9 +89,45 @@ void BallController::onMouseMove(std::vector <Ball>& balls, float mouseX, float 
     }
 }
 
-void BallController::UpdateCollision(Grid *grid)
-{
-    
+void BallController::updateCollision(Grid* grid) {
+    for (int i = 0; i < grid->m_cells.size(); i++) {
+
+        int x = i % grid->m_numXCells;
+        int y = i / grid->m_numXCells;
+
+        Cell& cell = grid->m_cells[i];
+
+        // Loop through all balls in a cell
+        for (int j = 0; j < cell.balls.size(); j++) {
+            Ball* ball = cell.balls[j];
+            /// Update with the residing cell
+            checkCollision(ball, cell.balls, j + 1);
+
+            /// Update collision with neighbor cells
+            if (x > 0) {
+                // Left
+                checkCollision(ball, grid->getCell(x - 1, y)->balls, 0);
+                if (y > 0) {
+                    /// Top left
+                    checkCollision(ball, grid->getCell(x - 1, y - 1)->balls, 0);
+                }
+                if (y < grid->m_numYCells - 1) {
+                    // Bottom left
+                    checkCollision(ball, grid->getCell(x - 1, y + 1)->balls, 0);
+                }
+            }
+            // Up cell
+            if (y > 0) {
+                checkCollision(ball, grid->getCell(x, y - 1)->balls, 0);
+            }
+        }
+    }
+}
+
+void BallController::checkCollision(Ball* ball, std::vector<Ball*>& ballsToCheck, int startingIndex) {
+    for (int i = startingIndex; i < ballsToCheck.size(); i++) {
+        checkCollision(*ball, *ballsToCheck[i]);
+    }
 }
 
 void BallController::checkCollision(Ball& b1, Ball& b2) {
@@ -121,11 +149,12 @@ void BallController::checkCollision(Ball& b1, Ball& b2) {
         }
 
         // Calculate deflection. http://stackoverflow.com/a/345863
-        float aci = glm::dot(b1.velocity, distDir) / b2.mass;
-        float bci = glm::dot(b2.velocity, distDir) / b1.mass;
+        // Fixed thanks to youtube user Sketchy502
+        float aci = glm::dot(b1.velocity, distDir);
+        float bci = glm::dot(b2.velocity, distDir);
 
         float acf = (aci * (b1.mass - b2.mass) + 2 * b2.mass * bci) / (b1.mass + b2.mass);
-        float bcf = (bci * (b2.mass - b1.mass) + 2 * b1.mass * aci) / (b2.mass + b1.mass);
+        float bcf = (bci * (b2.mass - b1.mass) + 2 * b1.mass * aci) / (b1.mass + b2.mass);
 
         b1.velocity += (acf - aci) * distDir;
         b2.velocity += (bcf - bci) * distDir;

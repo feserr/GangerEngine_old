@@ -1,39 +1,34 @@
-// Grid.h
-
 #pragma once
 
+#include "Ball.h"
 #include <vector>
 
-#include "Ball.h"
-
-struct Cell
-{
+struct Cell {
     std::vector<Ball*> balls;
 };
 
-class Grid
-{
+class Grid {
+    friend class BallController;
 public:
     Grid(int width, int height, int cellSize);
     ~Grid();
 
     /// Adds a ball and determines which cell it belongs to
-    void AddBall(Ball *ball);
+    void addBall(Ball* ball);
     /// Adds a ball to the specified cell
-    void AddBall(Ball *ball, Cell *cell);
-    /// Get cell based on cell coordinates
-    Cell* GetCell(int x, int y);
-    /// Get cell based on window coordinates
-    Cell* GetCell(const glm::vec2 &pos);
+    void addBall(Ball* ball, Cell* cell);
+    /// Gets cell based on cell coordinates
+    Cell* getCell(int x, int y);
+    /// Gets cell based on window coordinates
+    Cell* getCell(const glm::vec2& pos);
 
-    void RemoveBallFromCell(Ball *ball);
+    void removeBallFromCell(Ball* ball);
 
 private:
     std::vector<Cell> m_cells;
-
+    int m_cellSize;
     int m_width;
     int m_height;
-    int m_cellSize;
-    int m_numXcells;
-    int m_numYcells;
+    int m_numXCells;
+    int m_numYCells;
 };

@@ -11,16 +11,15 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     add_definitions(-DEFGE_USE_STD_RANDOMENGINE)
 endif()
 
-set(SDL_HEADERS ${CMAKE_SOURCE_DIR}/libs)
 set(SOURCES
   src/AudioEngine.cpp
   src/Camera2D.cpp
+  src/GLSLProgram.cpp
   src/GangerEngine.cpp
   src/GangerErrors.cpp
-  src/GLSLProgram.cpp
+  src/IOManager.cpp
   src/ImageLoader.cpp
   src/InputManager.cpp
-  src/IOManager.cpp
   src/ParticleBatch2D.cpp
   src/ParticleEngine2D.cpp
   src/PicoPNG.cpp
@@ -33,9 +32,9 @@ set(SOURCES
   src/Window.cpp)
 
 #Bring the headers into the project
-include_directories(${CMAKE_SOURCE_DIR}/libs ${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/deps/include ${CMAKE_SOURCE_DIR}/include)
 
 #However, the file(GLOB...) allows for wildcard additions:
 #file(GLOB SOURCES "src/*.cpp" ${SDL_HEADERS})
 
-add_library(GangerEngine ${SOURCES} ${SDL_HEADERS})
+add_library(GangerEngine ${SOURCES})

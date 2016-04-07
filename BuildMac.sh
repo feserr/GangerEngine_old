@@ -2,4 +2,5 @@
 
 mkdir -p build
 cd build
-cmake -G ""
+cmake -G "Xcode" ..
+xcodebuild

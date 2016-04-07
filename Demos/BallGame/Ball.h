@@ -17,6 +17,6 @@ struct Ball {
     glm::vec2 position;
     unsigned int textureId = 0;
     GangerEngine::ColorRGBA8 color;
-    Cell *ownerCell = nullptr;
+    Cell* ownerCell = nullptr;
     int cellVectorIndex = -1;
 };
