@@ -22,7 +22,7 @@
 #pragma once
 
 #include <SDL/SDL_ttf.h>
-#include <glm/glm.hpp>
+#include <GLM/glm.hpp>
 #include <map>
 #include <vector>
 

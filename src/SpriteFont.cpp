@@ -1,8 +1,10 @@
 
 #include <GangerEngine/SpriteFont.h>
-#include <GangerEngine/SpriteBatch.h>
 
 #include <SDL/SDL.h>
+#include <string.h>
+
+#include <GangerEngine/SpriteBatch.h>
 
 int closestPow2(int i) {
     i--;

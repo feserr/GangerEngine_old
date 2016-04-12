@@ -1,7 +1,7 @@
 
 #include <GangerEngine/ParticleEngine2D.h>
 
-#include <GangerEngine/ParticleBatch2d.h>
+#include <GangerEngine/ParticleBatch2D.h>
 #include <GangerEngine/SpriteBatch.h>
 
 namespace GangerEngine
