@@ -11,46 +11,60 @@ GangerEngine
 - [Change Log](#change-log)
 - [How to Build](#how-to-build)
 - [Requirements](#requirements)
+- [Future features](#future)
 - [Contributing](#contributing)
 - [Bugs?](#bugs)
 - [License](#license)
 
 <a name="about"></a>
-# GangerEngine 0.0.2
+# GangerEngine 0.0.3
 
-GangerEngine is an open source game framework for making desktop games.
+GangerEngine is an open source game framework for desktop games.
 
-Version: 0.0.2 - Released: 04th May 2015
+Version: 0.0.3 - Released: 14th April 2016
 
 <a name="whats-new"></a>
-## What's new in 0.0.2?
+## What's new in 0.0.3?
 
-The library has arrive!!! A minimal game engine (at this time) is live.
+Particles has landed in this version.
+New benchmark demo that test the engine.
 
-This version has all that the [tutorial](https://www.youtube.com/playlist?list=PLSPw4ASQYyymu3PfG9gxywSPghnSMiOAW) by Benjamin Arnold till video number 18.
+This version has all that the [tutorial](https://www.youtube.com/playlist?list=PLSPw4ASQYyymu3PfG9gxywSPghnSMiOAW), by Benjamin Arnold, till video number 42.
 
 <a name="change-log"></a>
 ## Change Log
 
-Version: 0.0.2 - Released: 04th May 2015
+Version: 0.0.3 - Released: 14th April 2016
 
 ### New features
 
-* Sprites
-* FPS limit
-* Resource and texture cache
+* Timesteps
+* Camera culling
+* Particles
+* Spatial partition
 
 <a name="how-to-build"></a>
 ## How to Build
 
-We provide a fully compiled version of GangerEngine in the `Binary` folder.
+You need to install [cmake](https://cmake.org/) version 2.8 or above.
 
-You can also compile all the project and get those files.
+Then launch one of the following scripts depending in with SO you are using:
+* BuildLinux.sh for Linux.
+* BuildMac.sh for MacOSX.
+
+Windows scripts will be come soon, but you can see what I have done in the `appveyor.yml` file.
 
 <a name="requirements"></a>
 ## Requirements
 
-Games created with GangerEngine require a graphic card compatible with OpenGL 3.0 or newer.
+Games created with GangerEngine require a graphic card compatible with OpenGL 3.3 or newer.
+
+<a name="future"></a>
+## Future features
+
+* Windows build script.
+* CMake build script for the demos.
+* Collision system inside the engine.
 
 <a name="contributing"></a>
 ## Contributing
@@ -59,7 +73,7 @@ Games created with GangerEngine require a graphic card compatible with OpenGL 3.
 
 - If you have a feature request, or have written a game or demo that shows GangerEngine in use, then please get in touch. We'd love to hear from you!
 
-- If you issue a Pull Request for GangerEngine, please only do so against the `dev` branch and *not* against the `master` branch.
+- If you issue a Pull Request for GangerEngine, please only do so against the `dev` branch and **not** against the `master` branch.
 
 <a name="bugs"></a>
 ## Bugs?
