@@ -17,11 +17,11 @@ GangerEngine
 - [License](#license)
 
 <a name="about"></a>
-# GangerEngine 0.0.3
+# GangerEngine 0.0.3.1
 
 GangerEngine is an open source game framework for desktop games.
 
-Version: 0.0.3 - Released: 14th April 2016
+Version: 0.0.3.1 - Released: 19th April 2016
 
 <a name="whats-new"></a>
 ## What's new in 0.0.3?
@@ -34,7 +34,7 @@ This version has all that the [tutorial](https://www.youtube.com/playlist?list=P
 <a name="change-log"></a>
 ## Change Log
 
-Version: 0.0.3 - Released: 14th April 2016
+Version: 0.0.3.1 - Released: 19th April 2016
 
 ### New features
 
@@ -51,6 +51,7 @@ You need to install [cmake](https://cmake.org/) version 2.8 or above.
 Then launch one of the following scripts depending in with SO you are using:
 * BuildLinux.sh for Linux.
 * BuildMac.sh for MacOSX.
+* BuildVisualStudio for Windows with Visual Studio.
 
 Windows scripts will be come soon, but you can see what I have done in the `appveyor.yml` file.
 
@@ -62,7 +63,6 @@ Games created with GangerEngine require a graphic card compatible with OpenGL 3.
 <a name="future"></a>
 ## Future features
 
-* Windows build script.
 * CMake build script for the demos.
 * Collision system inside the engine.
 
