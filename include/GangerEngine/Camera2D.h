@@ -22,7 +22,7 @@ namespace GangerEngine
 
         // Setters
         //! Set the position of the camera
-        void SetPosition(glm::vec2& position) { m_position = position; m_matrixUpdate = true; }
+        void SetPosition(const glm::vec2& position) { m_position = position; m_matrixUpdate = true; }
         //! Set the scale of the camera
         void SetScale(float scale) { m_scale = scale; m_matrixUpdate = true; }
 

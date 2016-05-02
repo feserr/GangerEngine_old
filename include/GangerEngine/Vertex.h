@@ -38,7 +38,7 @@ namespace GangerEngine
         Vertex(Position p, UV u, ColorRGBA8 c) : position(p), uv(u), color(c) {}
 
         //! Set the position of the vertex
-        void SetPosition (float x, float y)
+        void SetPosition(float x, float y)
         {
             position.x = x;
             position.y = y;

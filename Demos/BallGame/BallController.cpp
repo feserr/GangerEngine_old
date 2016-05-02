@@ -3,7 +3,7 @@
 #include "Grid.h"
 
 void BallController::updateBalls(std::vector <Ball>& balls, Grid* grid, float deltaTime, int maxX, int maxY) {
-    const float FRICTION = 0.001f;
+    const float FRICTION = 0.01f;
     // Update our grabbed balls velocity
     if (m_grabbedBall != -1) {
         balls[m_grabbedBall].velocity = balls[m_grabbedBall].position - m_prevPos;
@@ -55,7 +55,7 @@ void BallController::updateBalls(std::vector <Ball>& balls, Grid* grid, float de
     // Updates all collisions using the spatial partitioning
     updateCollision(grid);
 
-    // Update our grabbed ball
+    //// Update our grabbed ball
     if (m_grabbedBall != -1) {
         // Update the velocity again, in case it got changed by collision
         balls[m_grabbedBall].velocity = balls[m_grabbedBall].position - m_prevPos;
@@ -167,7 +167,7 @@ bool BallController::isMouseOnBall(Ball&b, float mouseX, float mouseY) {
 }
 
 glm::vec2 BallController::getGravityAccel() {
-    const float GRAVITY_FORCE = 0.1f;
+    const float GRAVITY_FORCE = 0.02f;
     glm::vec2 gravity;
 
     switch (m_gravityDirection) {

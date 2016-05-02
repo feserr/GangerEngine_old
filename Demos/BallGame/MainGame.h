@@ -13,6 +13,11 @@
 #include "BallRenderer.h"
 #include "Grid.h"
 
+// TODO:
+// Visualize momentum with color
+// Visualize velocity with color
+// Visualize position with color
+
 enum class GameState { RUNNING, EXIT };
 
 const int CELL_SIZE = 12;
@@ -22,8 +27,10 @@ public:
     ~MainGame();
     void run();
 
+
 private:
     void init();
+    void initRenderers();
     void initBalls();
     void update(float deltaTime);
     void draw();
@@ -36,8 +43,10 @@ private:
     std::vector<Ball> m_balls; ///< All the balls
     std::unique_ptr<Grid> m_grid; ///< Grid for spatial partitioning for collision
 
+    int m_currentRenderer = 0;
+    std::vector<BallRenderer*> m_ballRenderers;
+
     BallController m_ballController; ///< Controls balls
-    BallRenderer m_ballRenderer; ///< Renders balls
 
     GangerEngine::Window m_window; ///< The main window
     GangerEngine::SpriteBatch m_spriteBatch; ///< Renders all the balls

@@ -36,9 +36,9 @@ void Grid::addBall(Ball* ball, Cell* cell) {
 
 Cell* Grid::getCell(int x, int y) {
     if (x < 0) x = 0;
-    if (x >= m_numXCells) x = m_numXCells;
+    if (x >= m_numXCells) x = m_numXCells - 1;
     if (y < 0) y = 0;
-    if (y >= m_numYCells) y = m_numYCells;
+    if (y >= m_numYCells) y = m_numYCells - 1;
 
     return &m_cells[y * m_numXCells + x];
 }

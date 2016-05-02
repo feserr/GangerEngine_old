@@ -290,8 +290,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/Build/Products/Debug,
-					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/glew,
 					/usr/local/Cellar/glew/1.13.0/lib,
 				);
 				OTHER_LDFLAGS = "-lGLEW";
@@ -316,8 +314,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/Build/Products/Debug,
-					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/glew,
 					/usr/local/Cellar/glew/1.13.0/lib,
 				);
 				OTHER_LDFLAGS = "-lGLEW";
