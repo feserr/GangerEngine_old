@@ -1,3 +1,4 @@
+// TextureCache.h
 
 #pragma once
 
@@ -8,13 +9,14 @@
 
 namespace GangerEngine
 {
+    //This caches the textures so that multiple sprites can use the same textures
     class TextureCache
     {
     public:
         TextureCache();
         ~TextureCache();
 
-        //! Returns the existing texture or create a new one
+        /// Returns the existing texture or create a new one
         GLTexture GetTexture(std::string filePath);
 
     private:

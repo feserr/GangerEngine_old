@@ -34,6 +34,8 @@ namespace GangerEngine
 
         const float GetFps() const { return m_fps; }
 
+        InputManager m_inputManager;
+
     protected:
         // Custom update function
         virtual void Update();
@@ -48,7 +50,6 @@ namespace GangerEngine
         bool m_isRunning = false;
         float m_fps = 0.0f;
         Window m_window;
-        InputManager m_inputManager;
     };
 
 }

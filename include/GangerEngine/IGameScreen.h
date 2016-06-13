@@ -26,8 +26,9 @@ namespace GangerEngine
 
         virtual ~IGameScreen() {}
 
-        // Return the index of the next or previous screen when changing screens
+        /// Return the index of the next screen when changing screens
         virtual int GetNextScreenIndex() const = 0;
+        /// Return the index of the previous screen when changing screens
         virtual int GetPreviousScreenIndex() const = 0;
 
         // Called at beginning and end of application

@@ -1,3 +1,4 @@
+// Camera2D.cpp
 
 #include <GangerEngine/Camera2D.h>
 
@@ -23,6 +24,7 @@ namespace GangerEngine
 
     void Camera2D::Update()
     {
+        // Only update if our position or scale have changed
         if(m_matrixUpdate)
         {
             // Translate the camera
@@ -58,7 +60,7 @@ namespace GangerEngine
         float yDepth = MIN_DISTANCE_Y - abs((int)distVec.y);
 
         // If either the depths are > 0, then we collided
-        if (xDepth > 0 && yDepth > 0)
+        if(xDepth > 0 && yDepth > 0)
             return true; // There was a collision
 
         return false;

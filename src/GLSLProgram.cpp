@@ -1,3 +1,4 @@
+// GLSLProgram.cpp
 
 #include <GangerEngine/GLSLProgram.h>
 #include <GangerEngine/GangerErrors.h>
@@ -137,7 +138,7 @@ namespace GangerEngine
         glBindAttribLocation(m_programID, m_numAttribute++, attributeName.c_str());
     }
 
-    GLint GLSLProgram::getUniformLocation(const std::string& uniformName)
+    GLint GLSLProgram::GetUniformLocation(const std::string& uniformName)
     {
         GLuint location = glGetUniformLocation(m_programID, uniformName.c_str());
 
@@ -149,7 +150,7 @@ namespace GangerEngine
         return location;
     }
 
-    void GLSLProgram::use()
+    void GLSLProgram::Use()
     {
         glUseProgram(m_programID);
         for(int i = 0; i < m_numAttribute; i++)
@@ -158,12 +159,18 @@ namespace GangerEngine
         }
     }
 
-    void GLSLProgram::unuse()
+    void GLSLProgram::Unuse()
     {
         glUseProgram(0);
         for(int i = 0; i < m_numAttribute; i++)
         {
             glDisableVertexAttribArray(i);
         }
+    }
+
+    void GLSLProgram::Dispose()
+    {
+        if(m_programID)
+            glDeleteProgram(m_programID);
     }
 }

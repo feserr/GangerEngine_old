@@ -21,6 +21,7 @@ namespace GangerEngine {
         float width = 0.0f;
     };
 
+    /// Default function pointer
     inline  void DefaultParticle2DUpdate(Particle2D& particle, const float deltaTime)
     {
         particle.position += particle.velocity * deltaTime ;
@@ -45,6 +46,7 @@ namespace GangerEngine {
     private:
         int FindFreeParticle();
 
+        /// Function pointer for custom updates
         std::function<void(Particle2D&, const float)> m_updateFunc;
 
         float m_decayRate = 0.1f;

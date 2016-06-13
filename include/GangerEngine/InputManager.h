@@ -1,3 +1,4 @@
+// InputManager.h
 
 #pragma once
 
@@ -6,6 +7,9 @@
 
 namespace GangerEngine
 {
+    // Input manager stores a key map that maps SDL_Keys to booleans.
+    // If the value in the key map is true, then the key is pressed.
+    // Otherwise, it is released.
     class InputManager
     {
     public:
@@ -20,10 +24,10 @@ namespace GangerEngine
 
         void SetMouseCoords(float x, float y);
 
-        //! Returns the status of the key
+        /// Returns the status of the key
         bool isKeyDown(unsigned int keyID);
 
-        //! Check if the key has been pressed
+        /// Check if the key has been pressed
         bool isKeyPressed(unsigned int keyID);
 
         // Getters

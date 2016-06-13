@@ -1,14 +1,16 @@
+// Sprite.h
 
 #pragma once
+
+#include <string>
+#include <GL/glew.h>
 
 #include <GangerEngine/Vertex.h>
 #include <GangerEngine/GLTexture.h>
 
-#include <GL/glew.h>
-#include <string>
-
 namespace GangerEngine
 {
+    /// A 2D quad that can be rendered to the screen
     class Sprite
     {
     public:

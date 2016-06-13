@@ -14,16 +14,20 @@ endif()
 set(SOURCES
   src/AudioEngine.cpp
   src/Camera2D.cpp
-  src/GLSLProgram.cpp
+  src/DebugRenderer.cpp
   src/GangerEngine.cpp
   src/GangerErrors.cpp
+  src/GLSLProgram.cpp
+  src/GUI.cpp
   src/IOManager.cpp
   src/ImageLoader.cpp
+  src/IMainGame.cpp
   src/InputManager.cpp
   src/ParticleBatch2D.cpp
   src/ParticleEngine2D.cpp
   src/PicoPNG.cpp
   src/ResourceManager.cpp
+  src/ScreenList.cpp
   src/Sprite.cpp
   src/SpriteBatch.cpp
   src/SpriteFont.cpp

@@ -1,8 +1,8 @@
 // ScreenList.cpp
 
-#include "ScreenList.h"
+#include <GangerEngine/ScreenList.h>
 
-#include "IGameScreen.h"
+#include <GangerEngine/IGameScreen.h>
 
 namespace GangerEngine
 {

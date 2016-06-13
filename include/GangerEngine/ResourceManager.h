@@ -1,3 +1,4 @@
+// ResourceManager.h
 
 #pragma once
 
@@ -7,11 +8,13 @@
 
 namespace GangerEngine
 {
+    // This is a way for us to access all our resources, such as
+    // Models or textures.
     class ResourceManager
     {
     public:
-        //! Wrapper GetTexture of TextureCache
-        static GLTexture GetTexture (std::string texturePath);
+        /// Wrapper GetTexture of TextureCache
+        static GLTexture GetTexture(std::string texturePath);
 
     private:
         static TextureCache m_textureCache;

@@ -1,3 +1,4 @@
+// GLSLProgram.h
 
 #pragma once
 
@@ -6,24 +7,28 @@
 
 namespace GangerEngine
 {
+    //This class handles the compilation, linking, and usage of a GLSL shader program.
+    //Reference: http://www.opengl.org/wiki/Shader_Compilation
     class GLSLProgram
     {
     public:
-        GLSLProgram ();
-        ~GLSLProgram ();
+        GLSLProgram();
+        ~GLSLProgram();
 
-        void CompileShaders (const std::string& vertexShaderFile,
+        void CompileShaders(const std::string& vertexShaderFile,
             const std::string& fragmentShaderFile);
-        void LinkShaders ();
-        void AddAttribute (const std::string& attributeName);
+        void LinkShaders();
+        void AddAttribute(const std::string& attributeName);
 
-        GLint getUniformLocation (const std::string& uniformName);
+        GLint GetUniformLocation(const std::string& uniformName);
 
-        void use ();
-        void unuse ();
+        void Use();
+        void Unuse();
+
+        void Dispose();
 
     private:
-        void CompileShader (const std::string& filePath, GLuint& id);
+        void CompileShader(const std::string& filePath, GLuint& id);
 
         GLuint m_programID;
         GLuint m_vertexShaderID;

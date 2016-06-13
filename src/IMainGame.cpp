@@ -1,10 +1,10 @@
 // IMainGame.cpp
 
-#include "IMainGame.h"
+#include <GangerEngine/IMainGame.h>
 
-#include "Timing.h"
-#include "ScreenList.h"
-#include "IGameScreen.h"
+#include <GangerEngine/Timing.h>
+#include <GangerEngine/ScreenList.h>
+#include <GangerEngine/IGameScreen.h>
 
 namespace GangerEngine
 {

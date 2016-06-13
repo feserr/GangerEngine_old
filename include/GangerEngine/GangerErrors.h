@@ -1,3 +1,4 @@
+// GangerError.h
 
 #pragma once
 
@@ -5,5 +6,5 @@
 
 namespace GangerEngine
 {
-    extern void FatalError (std::string errorString);
+    extern void FatalError(std::string errorString);
 }

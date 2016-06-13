@@ -1,3 +1,4 @@
+// ParticleEngine2D.h
 
 #pragma once
 
@@ -14,6 +15,8 @@ namespace GangerEngine
         ParticleEngine2D();
         ~ParticleEngine2D();
 
+        // After adding a particle batch, the ParticleEngine2D becomes
+        // responsible for deallocation.
         void AddParticleBatch(ParticleBatch2D* particleBatch);
 
         void Update(const float deltaTime);

@@ -1,3 +1,4 @@
+// ImageLoader.h
 
 #pragma once
 
@@ -7,9 +8,10 @@
 
 namespace GangerEngine
 {
+    /// Loads images into GLTextures
     class ImageLoader
     {
     public:
-        static GLTexture LoadPNG (std::string filePath);
+        static GLTexture LoadPNG(std::string filePath);
     };
 }
