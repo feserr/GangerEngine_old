@@ -5,9 +5,9 @@ project("Ganger Engine")
 SET (LIB_TYPE SHARED)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CSS_FLAGS} -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CSS_FLAGS} -std=c++14")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -stdlib=libc++")
     add_definitions(-DEFGE_USE_STD_RANDOMENGINE)
 endif()
 
