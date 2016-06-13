@@ -3,7 +3,7 @@
 #pragma once
 
 #include <vector>
-#include <glm/glm.hpp>
+#include <GLM/glm.hpp>
 
 #include "GLSLProgram.h"
 #include "Vertex.h"

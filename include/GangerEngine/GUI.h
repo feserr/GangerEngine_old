@@ -4,7 +4,7 @@
 
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/OpenGL/GL3Renderer.h>
-#include <glm/glm.hpp>
+#include <GLM/glm.hpp>
 #include <SDL/SDL_events.h>
 
 namespace GangerEngine
