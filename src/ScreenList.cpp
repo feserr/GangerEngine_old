@@ -2,6 +2,8 @@
 
 #include <GangerEngine/ScreenList.h>
 
+#include <cstdio>
+
 #include <GangerEngine/IGameScreen.h>
 
 namespace GangerEngine
