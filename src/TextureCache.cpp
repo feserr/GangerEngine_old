@@ -1,38 +1,46 @@
+/*
+    Copyright [2016] [Ganger Games]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
 
 #include <GangerEngine/TextureCache.h>
 #include <GangerEngine/ImageLoader.h>
 
-#include <stdio.h>
+#include <string>
+#include <iostream>
 
-namespace GangerEngine
-{
-    TextureCache::TextureCache()
-    {
+namespace GangerEngine {
+    TextureCache::TextureCache() {
     }
 
-
-    TextureCache::~TextureCache()
-    {
+    TextureCache::~TextureCache() {
     }
 
-    GLTexture TextureCache::GetTexture(std::string texturePath)
-    {
-        // Look up the texture in the map
+    GLTexture TextureCache::GetTexture(std::string texturePath) {
+        // Lookup the texture and see if its in the map
         auto mit = m_textureMap.find(texturePath);
 
-        if (mit == m_textureMap.end()) // Check if it is not in the map
-        {
+        // Check if its not in the map
+        if (mit == m_textureMap.end()) {
             // Load the texture
             GLTexture newTexture = ImageLoader::LoadPNG(texturePath);
 
-            // Insert it to the map
-            m_textureMap.insert (std::make_pair(texturePath, newTexture));
+            // Insert it into the map
+            m_textureMap.insert(make_pair(texturePath, newTexture));
 
-            printf("Loaded texture.\n");
             return newTexture;
         }
-
-        printf("Used cached texture.\n");
         return mit->second;
     }
-}
+}  // namespace GangerEngine

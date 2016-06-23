@@ -1,39 +1,61 @@
-// GLSLProgram.h
+/*
+    Copyright [2016] [Ganger Games]
 
-#pragma once
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-#include <string>
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
+
+#ifndef _GLSLPROGRAM_H_
+#define _GLSLPROGRAM_H_
+
 #include <GL/glew.h>
+#include <string>
 
-namespace GangerEngine
-{
-    //This class handles the compilation, linking, and usage of a GLSL shader program.
-    //Reference: http://www.opengl.org/wiki/Shader_Compilation
-    class GLSLProgram
-    {
-    public:
-        GLSLProgram();
-        ~GLSLProgram();
+namespace GangerEngine {
+    // This class handles the compilation, linking, and usage of a GLSL shader
+    // program. Reference: http://www.opengl.org/wiki/Shader_Compilation
+class GLSLProgram {
+ public:
+    GLSLProgram();
+    ~GLSLProgram();
 
-        void CompileShaders(const std::string& vertexShaderFile,
-            const std::string& fragmentShaderFile);
-        void LinkShaders();
-        void AddAttribute(const std::string& attributeName);
+    void CompileShaders(const std::string& vertexShaderFilePath,
+        const std::string& fragmentShaderFilePath);
 
-        GLint GetUniformLocation(const std::string& uniformName);
+    void CompileShadersFromSource(const char* vertexSource,
+        const char* fragmentSource);
 
-        void Use();
-        void Unuse();
+    void LinkShaders();
 
-        void Dispose();
+    void AddAttribute(const std::string& attributeName);
 
-    private:
-        void CompileShader(const std::string& filePath, GLuint& id);
+    GLint GetUniformLocation(const std::string& uniformName);
 
-        GLuint m_programID;
-        GLuint m_vertexShaderID;
-        GLuint m_fragmentShaderID;
+    void Use();
+    void Unuse();
 
-        int m_numAttribute;
-    };
-}
+    void Dispose();
+
+ private:
+    int m_numAttributes;
+
+    void CompileShader(const char* source, const std::string& name,
+        GLuint id);
+
+    GLuint m_programID;
+
+    GLuint m_vertexShaderID;
+    GLuint m_fragmentShaderID;
+};
+}  // namespace GangerEngine
+
+#endif  // _GLSLPROGRAM_H_

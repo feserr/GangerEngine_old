@@ -1,59 +1,72 @@
-// ParticleBatch2D.h
+/*
+    Copyright [2016] [Ganger Games]
 
-#pragma once
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-#include <functional>
-#include <GLM/glm.hpp>
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
+
+#ifndef _PARTICLEBATCH2D_H_
+#define _PARTICLEBATCH2D_H_
+
 #include <GangerEngine/Vertex.h>
 #include <GangerEngine/SpriteBatch.h>
 #include <GangerEngine/GLTexture.h>
 
+#include <glm/glm.hpp>
+#include <functional>
+
 namespace GangerEngine {
-    class Particle2D
-    {
-    public:
-        glm::vec4 GetDestRect() const;
+class Particle2D {
+ public:
+    glm::vec2 position = glm::vec2(0.0f);
+    glm::vec2 velocity = glm::vec2(0.0f);
+    ColorRGBA8 color;
+    float life = 0.0f;
+    float width = 0.0f;
+};
 
-        glm::vec2 position = glm::vec2(0.0f);
-        glm::vec2 velocity = glm::vec2(0.0f);
-        ColorRGBA8 color;
-        float life = 0.0f;
-        float width = 0.0f;
-    };
-
-    /// Default function pointer
-    inline  void DefaultParticle2DUpdate(Particle2D& particle, const float deltaTime)
-    {
-        particle.position += particle.velocity * deltaTime ;
-    }
-
-    class ParticleBatch2D
-    {
-    public:
-        ParticleBatch2D();
-        ~ParticleBatch2D();
-
-        void Init(const int maxParticles, const float decayRate,
-                  const GLTexture texture,
-                  std::function<void(Particle2D&, const float)> updateFunc = DefaultParticle2DUpdate);
-
-        void AddParticle(const glm::vec2& position, const glm::vec2& velocity,
-                         const ColorRGBA8& color, const float width);
-
-        void Update(const float deltaTime);
-        void Draw(SpriteBatch* spriteBatch);
-
-    private:
-        int FindFreeParticle();
-
-        /// Function pointer for custom updates
-        std::function<void(Particle2D&, const float)> m_updateFunc;
-
-        float m_decayRate = 0.1f;
-        Particle2D* m_particles = nullptr;
-        int m_maxParticles = 0;
-        int m_lastFreeParticle = 0;
-
-        GLTexture m_texture;
-    };
+// Default function pointer
+inline void defaultParticleUpdate(Particle2D* particle, float deltaTime) {
+    particle->position += particle->velocity * deltaTime;
 }
+
+class ParticleBatch2D {
+ public:
+    ParticleBatch2D();
+    ~ParticleBatch2D();
+
+    void Init(int maxParticles, float decayRate, GLTexture texture,
+        std::function<void(Particle2D*, float)> updateFunc =
+        defaultParticleUpdate);
+
+    void Update(float deltaTime);
+
+    void Draw(SpriteBatch* spriteBatch);
+
+    void AddParticle(const glm::vec2& position, const glm::vec2& velocity,
+        const ColorRGBA8& color, float width);
+
+ private:
+    int FindFreeParticle();
+
+    /// Function pointer for custom updates
+    std::function<void(Particle2D*, float)> m_updateFunc;
+
+    float m_decayRate = 0.1f;
+    Particle2D* m_particles = nullptr;
+    int m_maxParticles = 0;
+    int m_lastFreeParticle = 0;
+    GLTexture m_texture;
+};
+}  // namespace GangerEngine
+
+#endif  // _PARTICLEBATCH2D_H_

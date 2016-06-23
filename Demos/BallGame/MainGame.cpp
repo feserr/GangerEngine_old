@@ -86,7 +86,7 @@ void MainGame::init() {
     m_textureProgram.AddAttribute("vertexColor");
     m_textureProgram.LinkShaders();
 
-    m_fpsLimiter.SetTargetFPS(60.0f);
+    m_fpsLimiter.SetMaxFPS(60.0f);
 
     initRenderers();
     
@@ -219,20 +219,20 @@ void MainGame::draw() {
 
     m_ballRenderers[m_currentRenderer]->renderBalls(m_spriteBatch, m_balls, projectionMatrix);
 
-    m_textureProgram.use();
+    m_textureProgram.Use();
 
     // Make sure the shader uses texture 0
-    GLint textureUniform = m_textureProgram.getUniformLocation("mySampler");
+    GLint textureUniform = m_textureProgram.GetUniformLocation("mySampler");
     glUniform1i(textureUniform, 0);
 
-    GLint pUniform = m_textureProgram.getUniformLocation("P");
+    GLint pUniform = m_textureProgram.GetUniformLocation("P");
     glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
     drawHud();
 
-    m_textureProgram.unuse();
+    m_textureProgram.Unuse();
 
-    m_window.Swap();
+    m_window.SwapBuffer();
 }
 
 void MainGame::drawHud() {
@@ -242,7 +242,7 @@ void MainGame::drawHud() {
     sprintf(buffer, "%.1f", m_fps);
 
     m_spriteBatch.Begin();
-    m_spriteFont->draw(m_spriteBatch, buffer, glm::vec2(0.0f, m_screenHeight - 32.0f),
+    m_spriteFont->Draw(m_spriteBatch, buffer, glm::vec2(0.0f, m_screenHeight - 32.0f),
                        glm::vec2(1.0f), 0.0f, fontColor);
     m_spriteBatch.End();
     m_spriteBatch.RenderBatch();
@@ -280,24 +280,24 @@ void MainGame::processInput() {
         }
     }
 
-    if (m_inputManager.isKeyPressed(SDLK_ESCAPE)) {
+    if (m_inputManager.IsKeyPressed(SDLK_ESCAPE)) {
         m_gameState = GameState::EXIT;
     }
     // Handle gravity changes
-    if (m_inputManager.isKeyPressed(SDLK_LEFT)) {
+    if (m_inputManager.IsKeyPressed(SDLK_LEFT)) {
         m_ballController.setGravityDirection(GravityDirection::LEFT);
-    } else if (m_inputManager.isKeyPressed(SDLK_RIGHT)) {
+    } else if (m_inputManager.IsKeyPressed(SDLK_RIGHT)) {
         m_ballController.setGravityDirection(GravityDirection::RIGHT);
-    } else if (m_inputManager.isKeyPressed(SDLK_UP)) {
+    } else if (m_inputManager.IsKeyPressed(SDLK_UP)) {
         m_ballController.setGravityDirection(GravityDirection::UP);
-    } else if (m_inputManager.isKeyPressed(SDLK_DOWN)) {
+    } else if (m_inputManager.IsKeyPressed(SDLK_DOWN)) {
         m_ballController.setGravityDirection(GravityDirection::DOWN);
-    } else if (m_inputManager.isKeyPressed(SDLK_SPACE)) {
+    } else if (m_inputManager.IsKeyPressed(SDLK_SPACE)) {
         m_ballController.setGravityDirection(GravityDirection::NONE);
     }
 
     // Switch renderers
-    if (m_inputManager.isKeyPressed(SDLK_1)) {
+    if (m_inputManager.IsKeyPressed(SDLK_1)) {
         m_currentRenderer++;
         if (m_currentRenderer >= m_ballRenderers.size()) {
             m_currentRenderer = 0;

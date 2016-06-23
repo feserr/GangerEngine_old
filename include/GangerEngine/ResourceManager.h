@@ -1,22 +1,37 @@
-// ResourceManager.h
+/*
+    Copyright [2016] [Ganger Games]
 
-#pragma once
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-#include <GangerEngine/TextureCache.h>
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
+
+#ifndef _RESOURCEMANAGER_H_
+#define _RESOURCEMANAGER_H_
 
 #include <string>
 
-namespace GangerEngine
-{
-    // This is a way for us to access all our resources, such as
-    // Models or textures.
-    class ResourceManager
-    {
-    public:
-        /// Wrapper GetTexture of TextureCache
-        static GLTexture GetTexture(std::string texturePath);
+#include <GangerEngine/TextureCache.h>
 
-    private:
-        static TextureCache m_textureCache;
-    };
-}
+namespace GangerEngine {
+// This is a way for us to access all our resources, such as
+// models or textures.
+class ResourceManager {
+ public:
+    static GLTexture GetTexture(std::string texturePath);
+
+ private:
+    static TextureCache m_textureCache;
+};
+}  // namespace GangerEngine
+
+#endif  // _RESOURCEMANAGER_H_
+

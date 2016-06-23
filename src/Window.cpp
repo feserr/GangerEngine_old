@@ -1,77 +1,97 @@
+/*
+    Copyright [2016] [Ganger Games]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
 
 #include <GangerEngine/Window.h>
 #include <GangerEngine/GangerErrors.h>
 
-namespace GangerEngine
-{
-    Window::Window()
-    {
+#include <string>
+
+namespace GangerEngine {
+    Window::Window() {
     }
 
-    Window::~Window()
-    {
+    Window::~Window() {
     }
 
-    int Window::Create(std::string windowName, int screenWidth, int screenHeight,
-        unsigned int currentFlags)
-    {
+    int Window::Create(std::string windowName, int screenWidth,
+        int screenHeight, unsigned int currentFlags) {
         Uint32 flags = SDL_WINDOW_OPENGL;
+        m_screenWidth = screenWidth;
+        m_screenHeight = screenHeight;
 
-        flags |= (currentFlags & INVISIBLE ? SDL_WINDOW_HIDDEN : 0x0);
-        flags |= (currentFlags & FULLSCREEN ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0x0);
-        flags |= (currentFlags & BORDERLESS ? SDL_WINDOW_BORDERLESS : 0x0);
+        if (currentFlags & INVISIBLE) {
+            flags |= SDL_WINDOW_HIDDEN;
+        }
+        if (currentFlags & FULLSCREEN) {
+            flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+        }
+        if (currentFlags & BORDERLESS) {
+            flags |= SDL_WINDOW_BORDERLESS;
+        }
 
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-        m_sdlWindow = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED,
-            SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, flags);
-        if(m_sdlWindow == nullptr)
-        {
-            FatalError("SDL window: Could not be created");
+        // Open an SDL window
+        m_sdlWindow = SDL_CreateWindow(windowName.c_str(),
+            SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth,
+            screenHeight, flags);
+        if (m_sdlWindow == nullptr) {
+            FatalError("SDL Window could not be created!");
         }
 
         // Set up our OpenGL context
         SDL_GLContext glContext = SDL_GL_CreateContext(m_sdlWindow);
-        if(glContext == nullptr)
-        {
-            FatalError("SDL_GLContext: Could not be created");
+        if (glContext == nullptr) {
+            FatalError("SDL_GL context could not be created!");
         }
 
-        // Set up GLEW (optional but recommended)
+        // Set up glew (optional but recommended)
         GLenum error = glewInit();
-        if(error != GLEW_OK)
-        {
-            FatalError("GLEW: Could not be initialized");
+        if (error != GLEW_OK) {
+            FatalError("Could not initialize glew!");
         }
 
         // Init glew for OSX systems
 #if __APPLE__
-            glewExperimental = GL_TRUE;
-            glewInit();
+        glewExperimental = GL_TRUE;
+        glewInit();
 #endif
 
         // Check the OpenGL version
         printf("***  OpenGL version %s  ***\n", glGetString(GL_VERSION));
-        printf("***  Supported GLSL version is %s  ***\n", (char *)glGetString(GL_SHADING_LANGUAGE_VERSION));
+        printf("***  Supported GLSL version is %s  ***\n",
+            reinterpret_cast<char*>(const_cast<GLubyte*>(
+                glGetString(GL_SHADING_LANGUAGE_VERSION))));
 
-        // Set up the background color
+        // Set the background color to blue
         glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 
         // Set VSYNC
-        SDL_GL_SetSwapInterval(1);
+        SDL_GL_SetSwapInterval(0);
 
-        // Enable alpha blending
+        // Enable alpha blend
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        return 1;
+        return 0;
     }
 
-    void Window::Swap()
-    {
-        // Swap our buffer and draw everything to the screen
+    void Window::SwapBuffer() {
         SDL_GL_SwapWindow(m_sdlWindow);
     }
-}
+}  // namespace GangerEngine

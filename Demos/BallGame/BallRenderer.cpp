@@ -12,17 +12,17 @@ void BallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, const std
         m_program->AddAttribute("vertexColor");
         m_program->LinkShaders();
     }
-    m_program->use();
+    m_program->Use();
 
     spriteBatch.Begin();
 
     // Make sure the shader uses texture 0
     glActiveTexture(GL_TEXTURE0);
-    GLint textureUniform = m_program->getUniformLocation("mySampler");
+    GLint textureUniform = m_program->GetUniformLocation("mySampler");
     glUniform1i(textureUniform, 0);
 
     // Grab the camera matrix
-    GLint pUniform = m_program->getUniformLocation("P");
+    GLint pUniform = m_program->GetUniformLocation("P");
     glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
     // Render all the balls
@@ -36,7 +36,7 @@ void BallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, const std
     spriteBatch.End();
     spriteBatch.RenderBatch();
 
-    m_program->unuse();
+    m_program->Unuse();
 }
 
 void MomentumBallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, const std::vector<Ball>& balls,
@@ -53,17 +53,17 @@ void MomentumBallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, c
         m_program->AddAttribute("vertexColor");
         m_program->LinkShaders();
     }
-    m_program->use();
+    m_program->Use();
 
     spriteBatch.Begin();
 
     // Make sure the shader uses texture 0
     glActiveTexture(GL_TEXTURE0);
-    GLint textureUniform = m_program->getUniformLocation("mySampler");
+    GLint textureUniform = m_program->GetUniformLocation("mySampler");
     glUniform1i(textureUniform, 0);
 
     // Grab the camera matrix
-    GLint pUniform = m_program->getUniformLocation("P");
+    GLint pUniform = m_program->GetUniformLocation("P");
     glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
     // Render all the balls
@@ -83,7 +83,7 @@ void MomentumBallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, c
     spriteBatch.End();
     spriteBatch.RenderBatch();
 
-    m_program->unuse();
+    m_program->Unuse();
 }
 
 VelocityBallRenderer::VelocityBallRenderer(int screenWidth, int screenHeight) :
@@ -106,17 +106,17 @@ void VelocityBallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, c
         m_program->AddAttribute("vertexColor");
         m_program->LinkShaders();
     }
-    m_program->use();
+    m_program->Use();
 
     spriteBatch.Begin();
 
     // Make sure the shader uses texture 0
     glActiveTexture(GL_TEXTURE0);
-    GLint textureUniform = m_program->getUniformLocation("mySampler");
+    GLint textureUniform = m_program->GetUniformLocation("mySampler");
     glUniform1i(textureUniform, 0);
 
     // Grab the camera matrix
-    GLint pUniform = m_program->getUniformLocation("P");
+    GLint pUniform = m_program->GetUniformLocation("P");
     glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
     // Render all the balls
@@ -138,7 +138,7 @@ void VelocityBallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, c
     spriteBatch.End();
     spriteBatch.RenderBatch();
 
-    m_program->unuse();
+    m_program->Unuse();
 }
 
 TrippyBallRenderer::TrippyBallRenderer(int screenWidth, int screenHeight) :
@@ -159,17 +159,17 @@ void TrippyBallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, con
         m_program->AddAttribute("vertexColor");
         m_program->LinkShaders();
     }
-    m_program->use();
+    m_program->Use();
 
     spriteBatch.Begin();
 
     // Make sure the shader uses texture 0
     glActiveTexture(GL_TEXTURE0);
-    GLint textureUniform = m_program->getUniformLocation("mySampler");
+    GLint textureUniform = m_program->GetUniformLocation("mySampler");
     glUniform1i(textureUniform, 0);
 
     // Grab the camera matrix
-    GLint pUniform = m_program->getUniformLocation("P");
+    GLint pUniform = m_program->GetUniformLocation("P");
     glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
     // Change these constants to get cool stuff
@@ -207,5 +207,5 @@ void TrippyBallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, con
     spriteBatch.End();
     spriteBatch.RenderBatch();
 
-    m_program->unuse();
+    m_program->Unuse();
 }

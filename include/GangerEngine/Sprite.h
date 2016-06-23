@@ -1,34 +1,47 @@
-// Sprite.h
+/*
+    Copyright [2016] [Ganger Games]
 
-#pragma once
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-#include <string>
-#include <GL/glew.h>
+    http://www.apache.org/licenses/LICENSE-2.0
 
-#include <GangerEngine/Vertex.h>
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
+
+#ifndef _SPRITE_H_
+#define _SPRITE_H_
+
 #include <GangerEngine/GLTexture.h>
 
-namespace GangerEngine
-{
-    /// A 2D quad that can be rendered to the screen
-    class Sprite
-    {
-    public:
-        Sprite ();
-        ~Sprite ();
+#include <GL/glew.h>
+#include <string>
 
-        void Init (float x, float y, float width, float height, std::string texturePath);
-        void Draw ();
+namespace GangerEngine {
+/// A 2D quad that can be rendered to the screen
+class Sprite {
+ public:
+    Sprite();
+    ~Sprite();
 
-    private:
-        void SetSpriteCords (float x, float y, float width, float height, Vertex* vertex);
-        void SetColor (Vertex* vertex, int* length);
+    void Init(float x, float y, float width, float height,
+        std::string texturePath);
 
-        template<typename T, int size>
-        int GetArrLength (T (&)[size]){ return size; }
+    void Draw();
 
-        float m_x, m_y, m_width, m_height;
-        GLuint m_vboID;
-        GLTexture m_texture;
-    };
-}
+    // private:
+    float m_x;
+    float m_y;
+    float m_width;
+    float m_height;
+    GLuint m_vboID;
+    GLTexture m_texture;
+};
+}  // namespace GangerEngine
+
+#endif  // _SPRITE_H_

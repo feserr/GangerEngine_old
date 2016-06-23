@@ -1,74 +1,76 @@
-// Vertex.h
+/*
+    Copyright [2016] [Ganger Games]
 
-#pragma once
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
+
+#ifndef _VERTEX_H_
+#define _VERTEX_H_
 
 #include <GL/glew.h>
 
-namespace GangerEngine
-{
-    struct Position
-    {
-        Position() : x(0.0f), y(0.0f) {}
-        Position(float X, float Y) : x(X), y(Y) {}
-        float x;
-        float y;
-    };
+namespace GangerEngine {
+struct Position {
+    float x;
+    float y;
+};
 
-    struct ColorRGBA8
-    {
-        ColorRGBA8() : r(0), g(0), b(0), a(0) {}
-        ColorRGBA8(GLubyte R, GLubyte G, GLubyte B, GLubyte A) :
-            r(R), g(G), b(B), a(A) {}
-        GLubyte r;
-        GLubyte g;
-        GLubyte b;
-        GLubyte a;
-    };
+struct ColorRGBA8 {
+    ColorRGBA8() : r(0), g(0), b(0), a(0) { }
+    ColorRGBA8(GLubyte R, GLubyte G, GLubyte B, GLubyte A) :
+        r(R), g(G), b(B), a(A) { }
+    GLubyte r;
+    GLubyte g;
+    GLubyte b;
+    GLubyte a;
+};
 
-    struct UV
-    {
-        UV() : u(0), v(0) {}
-        UV(float U, float V) : u(U), v(V) {}
-        float u;
-        float v;
-    };
+struct UV {
+    float u;
+    float v;
+};
 
-    /// Vertex definition
-    struct Vertex
-    {
-        Vertex() : position(0,0), uv(0,0), color(0,0,0,0) {}
-        Vertex(Position p, UV u, ColorRGBA8 c) : position(p), uv(u), color(c) {}
+// The vertex definition
+struct Vertex {
+    // This is the position struct. When you store a struct or class
+    // inside of another struct or class, it is called composition. This is
+    // layed out exactly the same in memory as if we had a float position[2],
+    // but doing it this way makes more sense.
+    Position position;
 
-        /// Set the position of the vertex
-        void SetPosition(float x, float y)
-        {
-            position.x = x;
-            position.y = y;
-        }
+    // 4 bytes for r g b a color.
+    ColorRGBA8 color;
 
-        /// Set the UV coordinates
-        void SetUV(float u, float v)
-        {
-            uv.u = u;
-            uv.v = v;
-        }
+    // UV texture coordinates.
+    UV uv;
 
-        /// Set the color
-        void SetColor(GLubyte r, GLubyte g, GLubyte b, GLubyte a)
-        {
-            color.r = r;
-            color.g = g;
-            color.b = b;
-            color.a = a;
-        }
+    void SetPosition(float x, float y) {
+        position.x = x;
+        position.y = y;
+    }
 
-        //! Position of the vertex.
-        Position position;
+    void SetColor(GLubyte r, GLubyte g, GLubyte b, GLubyte a) {
+        color.r = r;
+        color.g = g;
+        color.b = b;
+        color.a = a;
+    }
 
-        //! UV texture coordinates.
-        UV uv;
+    void SetUV(float u, float v) {
+        uv.u = u;
+        uv.v = v;
+    }
+};
+}  // namespace GangerEngine
 
-        //! 4 bytes of RGBA color.
-        ColorRGBA8 color;
-    };
-}
+#endif  // _VERTEX_H_

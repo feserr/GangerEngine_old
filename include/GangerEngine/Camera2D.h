@@ -1,51 +1,80 @@
-// Camera2D.h
+/*
+    Copyright [2016] [Ganger Games]
 
-#pragma once
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-#include <GLM/glm.hpp>
-#include <GLM/gtc/matrix_transform.hpp>
+    http://www.apache.org/licenses/LICENSE-2.0
 
-namespace GangerEngine
-{
-    /// Camera class for 2D games
-    class Camera2D
-    {
-    public:
-        Camera2D();
-        ~Camera2D();
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
 
-        /// Sets up the orthographic matrix and screen dimensions
-        void Init(int screenWith, int screenHeight);
+#ifndef _CAMERA2D_H_
+#define _CAMERA2D_H_
 
-        /// Updates the camera matrix
-        void Update();
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
-        bool IsBoxInView(const glm::vec2& position, const glm::vec2 dimension);
+namespace GangerEngine {
+// Camera class for 2D games
+class Camera2D {
+ public:
+    Camera2D();
+    ~Camera2D();
 
-        glm::vec2 ConvertScreenToWorld(glm::vec2 screenCoords);
+    /// Sets up the orthographic matrix and screen dimensions
+    void Init(int screenWidth, int screenHeight);
 
-        // Setters
-        /// Set the position of the camera
-        void SetPosition(const glm::vec2& position) { m_position = position; m_matrixUpdate = true; }
-        /// Set the scale of the camera
-        void SetScale(float scale) { m_scale = scale; m_matrixUpdate = true; }
+    /// Updates the camera matrix if needed
+    void Update();
 
-        // Getters
-        /// Return the position of the camera
-        glm::vec2 GetPosition() { return m_position; }
-        /// Return the scale of the camera
-        float GetScale() { return m_scale; }
-        /// Return the camera matrix
-        glm::mat4 GetCameraMatrix() { return m_cameraMatrix; }
+    glm::vec2 ConvertScreenToWorld(glm::vec2 screenCoords);
 
-    private:
-        glm::vec2 m_position;
-        glm::mat4 m_cameraMatrix;
-        glm::mat4 m_orthoMatrix;
-        float m_scale;
+    bool IsBoxInView(const glm::vec2& position, const glm::vec2& dimensions);
 
-        int m_screenWidth, m_screenHeight;
+    void OffsetPosition(const glm::vec2& offset) {
+        m_position += offset;
+        m_needsMatrixUpdate = true;
+    }
+    void OffsetScale(float offset) {
+        m_scale += offset;
+        if (m_scale < 0.001f)
+            m_scale = 0.001f;
+        m_needsMatrixUpdate = true;
+    }
 
-        bool m_matrixUpdate;
-    };
-}
+    // Setters
+    void SetPosition(const glm::vec2& newPosition) {
+        m_position = newPosition;
+        m_needsMatrixUpdate = true;
+    }
+    void SetScale(float newScale) {
+        m_scale = newScale;
+    m_needsMatrixUpdate = true;
+    }
+
+    // Getters
+    const glm::vec2& GetPosition() const { return m_position; }
+    float GetScale() const { return m_scale; }
+    const glm::mat4& GetCameraMatrix() const { return m_cameraMatrix; }
+    float GetAspectRatio() const {
+        return static_cast<float>(m_screenWidth) /
+            static_cast<float>(m_screenHeight);
+    }
+
+ private:
+    int m_screenWidth, m_screenHeight;
+    bool m_needsMatrixUpdate;
+    float m_scale;
+    glm::vec2 m_position;
+    glm::mat4 m_cameraMatrix;
+    glm::mat4 m_orthoMatrix;
+};
+}  // namespace GangerEngine
+
+#endif  // _CAMERA2D_H_

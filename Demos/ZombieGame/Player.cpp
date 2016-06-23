@@ -43,22 +43,22 @@ void Player::update(const std::vector<std::string>& levelData,
                     std::vector<Zombie*>& zombies,
                     float deltaTime) {
 
-    if (_inputManager->isKeyDown(SDLK_w)) {
+    if (_inputManager->IsKeyDown(SDLK_w)) {
         _position.y += _speed * deltaTime;
-    } else if (_inputManager->isKeyDown(SDLK_s)) {
+    } else if (_inputManager->IsKeyDown(SDLK_s)) {
         _position.y -= _speed * deltaTime;
     }
-    if (_inputManager->isKeyDown(SDLK_a)) {
+    if (_inputManager->IsKeyDown(SDLK_a)) {
         _position.x -= _speed * deltaTime;
-    } else if (_inputManager->isKeyDown(SDLK_d)) {
+    } else if (_inputManager->IsKeyDown(SDLK_d)) {
         _position.x += _speed * deltaTime;
     }
 
-    if (_inputManager->isKeyDown(SDLK_1) && _guns.size() >= 0) {
+    if (_inputManager->IsKeyDown(SDLK_1) && _guns.size() >= 0) {
         _currentGunIndex = 0;
-    } else if (_inputManager->isKeyDown(SDLK_2) && _guns.size() >= 1) {
+    } else if (_inputManager->IsKeyDown(SDLK_2) && _guns.size() >= 1) {
         _currentGunIndex = 1;
-    } else if (_inputManager->isKeyDown(SDLK_3) && _guns.size() >= 2) {
+    } else if (_inputManager->IsKeyDown(SDLK_3) && _guns.size() >= 2) {
         _currentGunIndex = 2;
     }
 
@@ -70,7 +70,7 @@ void Player::update(const std::vector<std::string>& levelData,
     m_direction = glm::normalize(mouseCoords - centerPosition);
 
     if (_currentGunIndex != -1) {
-        _guns[_currentGunIndex]->update(_inputManager->isKeyDown(SDL_BUTTON_LEFT),
+        _guns[_currentGunIndex]->update(_inputManager->IsKeyDown(SDL_BUTTON_LEFT),
                                         centerPosition,
                                         m_direction,
                                         *_bullets,

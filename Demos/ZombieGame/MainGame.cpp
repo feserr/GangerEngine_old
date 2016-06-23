@@ -154,7 +154,7 @@ void MainGame::initShaders() {
 void MainGame::gameLoop() {
     
     GangerEngine::FpsLimiter fpsLimiter;
-    fpsLimiter.SetTargetFPS(60.0f);
+    fpsLimiter.SetMaxFPS(60.0f);
     
     float CAMERA_SCALE = 1.0f / 3.0f;
     _camera.SetScale(CAMERA_SCALE);
@@ -391,18 +391,18 @@ void MainGame::drawGame() {
     // Clear the color and depth buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    _textureProgram.use();
+    _textureProgram.Use();
 
     // Draw code goes here
     glActiveTexture(GL_TEXTURE0);
 
     // Make sure the shader uses texture 0
-    GLint textureUniform = _textureProgram.getUniformLocation("mySampler");
+    GLint textureUniform = _textureProgram.GetUniformLocation("mySampler");
     glUniform1i(textureUniform, 0);
 
     // Grab the camera matrix
     glm::mat4 projectionMatrix = _camera.GetCameraMatrix();
-    GLint pUniform = _textureProgram.getUniformLocation("P");
+    GLint pUniform = _textureProgram.GetUniformLocation("P");
     glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
     // Draw the level
@@ -444,10 +444,10 @@ void MainGame::drawGame() {
     DrawHub();
     
     // Unbind the program
-    _textureProgram.unuse();
+    _textureProgram.Unuse();
 
     // Swap our buffer and draw everything to the screen!
-    _window.Swap();
+    _window.SwapBuffer();
 }
 
 void MainGame::DrawHub()
@@ -456,17 +456,17 @@ void MainGame::DrawHub()
     
     // Grab the camera matrix
     glm::mat4 projectionMatrix = _hubCamera.GetCameraMatrix();
-    GLint pUniform = _textureProgram.getUniformLocation("P");
+    GLint pUniform = _textureProgram.GetUniformLocation("P");
     glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
     
     _hubSpriteBatch.Begin();
     
     std::sprintf(buffer, "Num. humans: %lu", _humans.size());
-    _spriteFont->draw(_hubSpriteBatch, buffer, glm::vec2(6, 0), glm::vec2(0.5f), 0.0f,
+    _spriteFont->Draw(_hubSpriteBatch, buffer, glm::vec2(6, 0), glm::vec2(0.5f), 0.0f,
                       GangerEngine::ColorRGBA8(255, 255, 255, 255));
 
     std::sprintf(buffer, "Num. zombies: %lu", _zombies.size());
-    _spriteFont->draw(_hubSpriteBatch, buffer, glm::vec2(6, 36), glm::vec2(0.5f), 0.0f,
+    _spriteFont->Draw(_hubSpriteBatch, buffer, glm::vec2(6, 36), glm::vec2(0.5f), 0.0f,
                       GangerEngine::ColorRGBA8(255, 255, 255, 255));
 
     

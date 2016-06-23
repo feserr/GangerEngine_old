@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A0034371D1C840000C13EF3 /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0034351D1C840000C13EF3 /* libboost_filesystem.dylib */; };
+		7A0034381D1C840000C13EF3 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0034361D1C840000C13EF3 /* libboost_system.dylib */; };
 		7A0B96131B16478D00F05361 /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B960B1B16478D00F05361 /* Agent.cpp */; };
 		7A0B96141B16478D00F05361 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B960C1B16478D00F05361 /* Bullet.cpp */; };
 		7A0B96151B16478D00F05361 /* Gun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0B960D1B16478D00F05361 /* Gun.cpp */; };
@@ -37,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7A0034351D1C840000C13EF3 /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = ../../../../../../../../usr/local/Cellar/boost/1.60.0_2/lib/libboost_filesystem.dylib; sourceTree = "<group>"; };
+		7A0034361D1C840000C13EF3 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../../../usr/local/Cellar/boost/1.60.0_2/lib/libboost_system.dylib; sourceTree = "<group>"; };
 		7A0B96031B16478100F05361 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
 		7A0B96041B16478100F05361 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		7A0B96051B16478100F05361 /* Gun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gun.h; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A0034371D1C840000C13EF3 /* libboost_filesystem.dylib in Frameworks */,
+				7A0034381D1C840000C13EF3 /* libboost_system.dylib in Frameworks */,
 				7AAE64A21B79DA6300B724E3 /* SDL2_mixer.framework in Frameworks */,
 				7AAE64A31B79DA6300B724E3 /* SDL2_ttf.framework in Frameworks */,
 				7AAE64A41B79DA6300B724E3 /* SDL2.framework in Frameworks */,
@@ -127,6 +133,8 @@
 		7ABC02581B16403C00D21FEC = {
 			isa = PBXGroup;
 			children = (
+				7A0034351D1C840000C13EF3 /* libboost_filesystem.dylib */,
+				7A0034361D1C840000C13EF3 /* libboost_system.dylib */,
 				7A0B96231B164AD200F05361 /* lib */,
 				7A0B96021B16476C00F05361 /* include */,
 				7A0B96011B16476700F05361 /* src */,
@@ -312,6 +320,7 @@
 					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/glew,
 					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/freetype,
 					/usr/local/Cellar/glew/1.13.0/lib,
+					/usr/local/Cellar/boost/1.60.0_2/lib,
 				);
 				OTHER_LDFLAGS = "-lGLEW";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -339,6 +348,7 @@
 					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/glew,
 					/Users/Reisor/Dropbox/Mac/OSX/GangerEngine/deps/lib/freetype,
 					/usr/local/Cellar/glew/1.13.0/lib,
+					/usr/local/Cellar/boost/1.60.0_2/lib,
 				);
 				OTHER_LDFLAGS = "-lGLEW";
 				PRODUCT_NAME = "$(TARGET_NAME)";

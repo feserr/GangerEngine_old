@@ -16,67 +16,74 @@
 
     November 28 2014
     Original Author: Cristian Zaloj
-    Modified By: Benjamin Arnold
+    Modified By: Benjamin Arnold and GangerGames
 */
 
-#pragma once
-
-#include <SDL/SDL_ttf.h>
-#include <GLM/glm.hpp>
-#include <map>
-#include <vector>
+#ifndef _SPRITEFONT_H_
+#define _SPRITEFONT_H_
 
 #include <GangerEngine/Vertex.h>
 
-namespace GangerEngine
-{
+#include <SDL/SDL_ttf.h>
+#include <glm/glm.hpp>
+#include <map>
+#include <vector>
 
-    class GLTexture;
-    class SpriteBatch;
+namespace GangerEngine {
+struct GLTexture;
+class SpriteBatch;
 
-    struct CharGlyph {
-    public:
-        char character;
-        glm::vec4 uvRect;
-        glm::vec2 size;
-    };
+struct CharGlyph {
+public:
+    char character;
+    glm::vec4 uvRect;
+    glm::vec2 size;
+};
 
 #define FIRST_PRINTABLE_CHAR ((char)32)
 #define LAST_PRINTABLE_CHAR ((char)126)
 
-    /// For text justification
-    enum class Justification
+/// For text justification
+enum class Justification {
+    LEFT, MIDDLE, RIGHT
+};
+
+class SpriteFont {
+ public:
+    SpriteFont() {};
+    SpriteFont(const char* font, int size, char cs, char ce);
+    SpriteFont(const char* font, int size) :
+        SpriteFont(font, size, FIRST_PRINTABLE_CHAR, LAST_PRINTABLE_CHAR)
     {
-        LEFT, MIDDLE, RIGHT
-    };
+        // Empty
+    }
 
-    class SpriteFont
-    {
-    public:
-        SpriteFont(const char* font, int size, char cs, char ce);
-        SpriteFont(const char* font, int size) :
-            SpriteFont(font, size, FIRST_PRINTABLE_CHAR, LAST_PRINTABLE_CHAR) {
-        }
-        /// Destroys the font resources
-        void dispose();
+    void Init(const char* font, int size);
+    void Init(const char* font, int size, char cs, char ce);
 
-        int getFontHeight() const {
-            return m_fontHeight;
-        }
+    /// Destroys the font resources
+    void Dispose();
 
-        /// Measures the dimensions of the text
-        glm::vec2 measure(const char* s);
+    int GetFontHeight() const { return m_fontHeight; }
 
-        /// Draws using a spritebatch
-        void draw(SpriteBatch& batch, const char* s, glm::vec2 position, glm::vec2 scaling,
-                  float depth, ColorRGBA8 tint, Justification just = Justification::LEFT);
-    private:
-        static std::vector<int>* createRows(glm::ivec4* rects, int rectsLength, int r, int padding, int& w);
+    /// Measures the dimensions of the text
+    glm::vec2 Measure(const char* s);
 
-        int m_regStart, m_regLength;
-        CharGlyph* m_glyphs;
-        int m_fontHeight;
+    /// Draws using a spritebatch
+    void Draw(SpriteBatch& batch, const char* s, glm::vec2 position,
+        glm::vec2 scaling, float depth, ColorRGBA8 tint,
+        Justification just = Justification::LEFT);
 
-        unsigned int m_texID;
-    };
-}
+ private:
+    static std::vector<int>* CreateRows(glm::ivec4* rects, int rectsLength,
+        int r, int padding, int& w);
+
+    int m_regStart, m_regLength;
+    CharGlyph* m_glyphs;
+    int m_fontHeight;
+
+    unsigned int m_texID;
+};
+}  // namespace GangerEngine
+
+#endif  // _SPRITEFONT_H_

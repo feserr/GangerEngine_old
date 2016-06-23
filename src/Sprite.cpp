@@ -1,122 +1,134 @@
+/*
+    Copyright [2016] [Ganger Games]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
 
 #include <GangerEngine/Sprite.h>
-#include <GangerEngine/ImageLoader.h>
+#include <GangerEngine/Vertex.h>
 #include <GangerEngine/ResourceManager.h>
 
+#include <string>
 #include <cstddef>
-#include <stdio.h>
 
-namespace GangerEngine
-{
-    Sprite::Sprite () : m_vboID (0)
-    {
+namespace GangerEngine {
+    Sprite::Sprite() {
+        m_vboID = 0;
     }
 
-    Sprite::~Sprite ()
-    {
-        if (m_vboID != 0)
-        {
-            glDeleteBuffers (1, &m_vboID);
+
+    Sprite::~Sprite() {
+        // Always remember to delete your buffers when
+        // you are done!
+        if (m_vboID != 0) {
+            glDeleteBuffers(1, &m_vboID);
         }
     }
 
-    void Sprite::Init (float x, float y, float width, float height, std::string texturePath)
-    {
+    // Initializes the sprite VBO. x, y, width, and height are
+    // in the normalized device coordinate space. so, [-1, 1]
+    void Sprite::Init(float x, float y, float width, float height,
+        std::string texturePath) {
+        // Set up our private vars
         m_x = x;
         m_y = y;
         m_width = width;
         m_height = height;
-        m_texture = ResourceManager::GetTexture (texturePath);
 
-        if (m_vboID == 0)
-        {
-            glGenBuffers (1, &m_vboID);
+        m_texture = ResourceManager::GetTexture(texturePath);
+
+        // Generate the buffer if it hasn't already been generated
+        if (m_vboID == 0) {
+            glGenBuffers(1, &m_vboID);
         }
 
+        // This array will hold our vertex data.
+        // We need 6 vertices, and each vertex has 2
+        // floats for X and Y
         Vertex vertexData[6];
-        SetSpriteCords (m_x, m_y, m_width, m_height, vertexData);
-        int vertexLength = GetArrLength (vertexData);
-        SetColor (vertexData, &vertexLength);
 
-        // Tell OpenGL to bind our vertex buffer object
-        glBindBuffer (GL_ARRAY_BUFFER, m_vboID);
+        // First Triangle
+        vertexData[0].SetPosition(x + width, y + height);
+        vertexData[0].SetUV(1.0f, 1.0f);
 
+        vertexData[1].SetPosition(x, y + height);
+        vertexData[1].SetUV(0.0f, 1.0f);
+
+        vertexData[2].SetPosition(x, y);
+        vertexData[2].SetUV(0.0f, 0.0f);
+
+        // Second Triangle
+        vertexData[3].SetPosition(x, y);
+        vertexData[3].SetUV(0.0f, 0.0f);
+
+        vertexData[4].SetPosition(x + width, y);
+        vertexData[4].SetUV(1.0f, 0.0f);
+
+        vertexData[5].SetPosition(x + width, y + height);
+        vertexData[5].SetUV(1.0f, 1.0f);
+
+        // Set all vertex colors to magenta
+        for (int i = 0; i < 6; i++) {
+            vertexData[4].SetColor(255, 0, 255, 255);
+        }
+
+        vertexData[4].SetColor(0, 0, 255, 255);
+
+        vertexData[4].SetColor(0, 255, 0, 255);
+
+
+        // Tell opengl to bind our vertex buffer object
+        glBindBuffer(GL_ARRAY_BUFFER, m_vboID);
         // Upload the data to the GPU
-        glBufferData (GL_ARRAY_BUFFER, sizeof (vertexData), vertexData, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData,
+            GL_STATIC_DRAW);
 
         // Unbind the buffer (optional)
-        glBindBuffer (GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 
-    void Sprite::Draw ()
-    {
-        glBindTexture (GL_TEXTURE_2D, m_texture.id);
+    // Draws the sprite to the screen
+    void Sprite::Draw() {
+        glBindTexture(GL_TEXTURE_2D, m_texture.id);
 
         // Bind the buffer object
-        glBindBuffer (GL_ARRAY_BUFFER, m_vboID);
+        glBindBuffer(GL_ARRAY_BUFFER, m_vboID);
 
-        /* Tell OpenGL that we want to use the first
-         * attribute array. We only need one array right
-         * now since we are only using position */
+        // Tell opengl what attribute arrays we need
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
         glEnableVertexAttribArray(2);
 
         // This is the position attribute pointer
-        glVertexAttribPointer (0, 2, GL_FLOAT, GL_FALSE, sizeof (Vertex),
-            (void*)offsetof (Vertex, position));
-
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+            reinterpret_cast<void*>(offsetof(Vertex, position)));
         // This is the UV attribute pointer
-        glVertexAttribPointer (1, 2, GL_FLOAT, GL_FALSE, sizeof (Vertex),
-            (void*)offsetof (Vertex, uv));
-
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+            reinterpret_cast<void*>(offsetof(Vertex, uv)));
         // This is the color attribute pointer
-        glVertexAttribPointer (2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof (Vertex),
-            (void*)offsetof (Vertex, color));
+        glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex),
+            reinterpret_cast<void*>(offsetof(Vertex, color)));
 
-        // Draw the 6 vertices's to the screen
-        glDrawArrays (GL_TRIANGLES, 0, 6);
 
-        // Disable the vertex attribute array
-        glDisableVertexAttribArray (0);
+        // Draw the 6 vertices to the screen
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+        // Disable the vertex attrib arrays. This is not optional.
+        glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
+        glDisableVertexAttribArray(2);
 
         // Unbind the VBO
-        glBindBuffer (GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
-
-    void Sprite::SetSpriteCords (float x, float y, float width, float height, Vertex* vertex)
-    {
-        // first triangle
-        vertex[0].SetPosition (x + width, y + height);
-        vertex[0].SetUV (1.0f, 1.0f);
-
-        vertex[1].SetPosition (x, y + height);
-        vertex[1].SetUV (0.0f, 1.0f);
-
-        vertex[2].SetPosition (x, y);
-        vertex[2].SetUV (0.0f, 0.0f);
-
-        // second triangle
-        vertex[3].SetPosition (x, y);
-        vertex[3].SetUV (0.0f, 0.0f);
-
-        vertex[4].SetPosition (x + width, y);
-        vertex[4].SetUV (1.0f, 0.0f);
-
-        vertex[5].SetPosition (x + width, y + height);
-        vertex[5].SetUV (1.0f, 1.0f);
-    }
-
-    void Sprite::SetColor (Vertex* vertex, int* length)
-    {
-        for (int i = 0; i < *length; i++)
-        {
-            vertex[i].SetColor (255, 255, 255, 255);
-        }
-
-        // Extra colors
-        //vertex[1].SetColor (0, 0, 255, 255);
-
-        //vertex[4].SetColor (0, 255, 0, 255);
-    }
-}
+}  // namespace GangerEngine
