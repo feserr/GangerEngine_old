@@ -19,6 +19,7 @@
 
 #include <SDL/SDL.h>
 #include <vector>
+#include <cstdio>
 
 int closestPow2(int i) {
     i--;

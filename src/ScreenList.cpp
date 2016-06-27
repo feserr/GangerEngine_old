@@ -17,6 +17,8 @@
 #include <GangerEngine/ScreenList.h>
 #include <GangerEngine/IGameScreen.h>
 
+#include <cstdio>
+
 namespace GangerEngine {
     ScreenList::ScreenList(IMainGame* game) :
         m_game(game) {

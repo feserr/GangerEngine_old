@@ -18,6 +18,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <cstdio>
 
 namespace GangerEngine {
     Glyph::Glyph(const glm::vec4& destRect, const glm::vec4& uvRect,
