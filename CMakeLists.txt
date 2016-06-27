@@ -19,10 +19,10 @@ set(SOURCES
   src/GangerErrors.cpp
   src/GLSLProgram.cpp
   src/GUI.cpp
-  src/IOManager.cpp
   src/ImageLoader.cpp
   src/IMainGame.cpp
   src/InputManager.cpp
+  src/IOManager.cpp
   src/ParticleBatch2D.cpp
   src/ParticleEngine2D.cpp
   src/PicoPNG.cpp
