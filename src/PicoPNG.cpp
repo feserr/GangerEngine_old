@@ -15,6 +15,7 @@
 */
 
 #include <vector>
+#include <cstdio>
 
 namespace GangerEngine {
     /*
