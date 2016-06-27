@@ -20,6 +20,7 @@
 #include <SDL/SDL.h>
 #include <vector>
 #include <cstdio>
+#include <cstring>
 
 int closestPow2(int i) {
     i--;
@@ -161,7 +162,7 @@ namespace GangerEngine {
         // Draw the unsupported glyph
         int rs = padding - 1;
         int* pureWhiteSquare = new int[rs * rs];
-        memset(pureWhiteSquare, 0xffffffff, rs * rs * sizeof(int));
+        std::memset(pureWhiteSquare, 0xffffffff, rs * rs * sizeof(int));
         glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, rs, rs,
             GL_RGBA, GL_UNSIGNED_BYTE, pureWhiteSquare);
         delete[] pureWhiteSquare;
