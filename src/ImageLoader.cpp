@@ -15,7 +15,7 @@
 */
 
 #include <GangerEngine/ImageLoader.h>
-#include <GangerEngine/picoPNG.h>
+#include <GangerEngine/PicoPNG.h>
 #include <GangerEngine/IOManager.h>
 #include <GangerEngine/GangerErrors.h>
 
