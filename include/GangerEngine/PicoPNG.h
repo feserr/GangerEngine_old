@@ -18,6 +18,7 @@
 #define _PICOPNG_H_
 
 #include <vector>
+#include <cstdio>
 
 namespace GangerEngine {
     extern int DecodePNG(std::vector<unsigned char>& out_image,
