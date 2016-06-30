@@ -55,7 +55,7 @@ namespace GangerEngine {
 
 
     void AudioEngine::Init() {
-        if (m_isInitialized) {
+        if (m_isInitialized) {  // If it is already initialize
             FatalError("Tried to initialize Audio Engine twice!\n");
         }
 
@@ -74,14 +74,14 @@ namespace GangerEngine {
     }
 
     void AudioEngine::Destroy() {
-        if (m_isInitialized) {
+        if (m_isInitialized) {  // If it is initialized
             m_isInitialized = false;
 
-            for (auto& it : m_effectMap) {
+            for (auto& it : m_effectMap) {  // Iterate all the effects
                 Mix_FreeChunk(it.second);
             }
 
-            for (auto& it : m_musicMap) {
+            for (auto& it : m_musicMap) {  // Iterate all the musics
                 Mix_FreeMusic(it.second);
             }
 

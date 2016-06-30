@@ -22,26 +22,34 @@
 #include <map>
 
 namespace GangerEngine {
+/// Control a audio file
 class SoundEffect {
  public:
     friend class AudioEngine;
 
-    /// Plays the effect file
-    /// @param loops: If loops == -1, loop forever,
-    /// otherwise play it loops+1 times
+    /**
+     * \brief      Plays the effect file.
+     *
+     * \param[in]  loops  If loops == -1, loops forever
+     *                    otherwise play it loops+1 times
+     */
     void Play(int loops = 0);
 
  private:
     Mix_Chunk* m_chunk = nullptr;
 };
 
+/// Control a song file
 class Music {
  public:
     friend class AudioEngine;
 
-    /// Plays the music file
-    /// @param loops: If loops == -1, loop forever,
-    /// otherwise play it loops times
+    /**
+     * \brief      Play the music file
+     *
+     * \param[in]  loops  If loops == -1, loops forever
+     *                    otherwise play it loops times
+     */
     void Play(int loops = 1);
 
     /// Pauses whatever song is currently playing
@@ -55,15 +63,35 @@ class Music {
     Mix_Music* m_music = nullptr;
 };
 
+/// Create and load a song or sound file
 class AudioEngine {
  public:
+    /// Default constructor
     AudioEngine();
+    /// Default destructor
     ~AudioEngine();
 
+    /// Initialize the audio engine
     void Init();
+    /// Destroy the audio engine
     void Destroy();
-
+    
+    /**
+     * \brief      Loads and map a sound file
+     *
+     * \param[in]  filePath  The file path
+     *
+     * \return     A SoundEffect object
+     */
     SoundEffect LoadSoundEffect(const std::string& filePath);
+
+    /**
+     * \brief      Loads a music.
+     *
+     * \param[in]  filePath  The file path
+     *
+     * \return     A Music object
+     */
     Music LoadMusic(const std::string& filePath);
 
  private:
