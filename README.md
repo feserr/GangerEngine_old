@@ -8,40 +8,29 @@ GangerEngine
 
 - [About](#about)
 - [What's New?](#whats-new)
-- [Change Log](#change-log)
 - [How to Build](#how-to-build)
 - [Requirements](#requirements)
+- [Dependencies](#dependencies)
 - [Future features](#future)
 - [Contributing](#contributing)
 - [Bugs?](#bugs)
 - [License](#license)
 
 <a name="about"></a>
-# GangerEngine 0.0.3.1
+# GangerEngine 0.0.4
 
-GangerEngine is an open source game framework for desktop games.
+GangerEngine is an open source game framework for desktop games. It is based in a fork of  [Bengine](https://github.com/Barnold1953/GraphicsTutorials), by Benjamin Arnold.
 
-Version: 0.0.3.1 - Released: 19th April 2016
+Version: 0.0.4 - Released: 04th July 2016
 
 <a name="whats-new"></a>
-## What's new in 0.0.3?
+## What's new in 0.0.4?
 
-Particles has landed in this version.
-New benchmark demo that test the engine.
-
-This version has all that the [tutorial](https://www.youtube.com/playlist?list=PLSPw4ASQYyymu3PfG9gxywSPghnSMiOAW), by Benjamin Arnold, till video number 42.
-
-<a name="change-log"></a>
-## Change Log
-
-Version: 0.0.3.1 - Released: 19th April 2016
-
-### New features
-
-* Timesteps
-* Camera culling
-* Particles
-* Spatial partition
+* Added class interface for common classes.
+* Added a debug renderer.
+* Added GUI system based in [CEGUI](http://cegui.org.uk/).
+* Added a screen list class to manage different rooms.
+* A 2D side-scrolling with level editor demo.
 
 <a name="how-to-build"></a>
 ## How to Build
@@ -53,12 +42,21 @@ Then launch one of the following scripts depending in with SO you are using:
 * BuildMac.sh for MacOSX.
 * BuildVisualStudio for Windows with Visual Studio.
 
-Windows scripts will be come soon, but you can see what I have done in the `appveyor.yml` file.
-
 <a name="requirements"></a>
 ## Requirements
 
 Games created with GangerEngine require a graphic card compatible with OpenGL 3.3 or newer.
+
+<a name="dependencies"></a>
+## Dependencies
+
+* [Boost 1.61](http://www.boost.org/)
+* [CEGUI 0.87](http://cegui.org.uk/)
+* [SDL2](https://www.libsdl.org/index.php)
+* [GLEW](http://glew.sourceforge.net/)
+* [GLM](http://glm.g-truc.net/0.9.7/index.html)
+* [UTF8-CPP](http://utfcpp.sourceforge.net/)
+* [Box2D](http://box2d.org/) (only for the ninja demo).
 
 <a name="future"></a>
 ## Future features
@@ -85,4 +83,4 @@ Please add them to the [Issue Tracker][issues] with as much info as possible, es
 
 GangerEngine is released under the [Apache v2 license](http://www.apache.org/licenses/LICENSE-2.0.html).
 
-[issues]: https://github.com/Reisor/JavelJS/issues
+[issues]: https://github.com/Reisor/GangerEngine/issues
