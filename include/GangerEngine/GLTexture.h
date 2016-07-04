@@ -21,11 +21,12 @@
 #include <string>
 
 namespace GangerEngine {
+/// An OpenGL texture info.
 struct GLTexture {
-    std::string filePath = "";
-    GLuint id;
-    int width;
-    int height;
+    std::string filePath = "";  ///< The filepath to the texture
+    GLuint id;  ///< The ID
+    int width;  ///< The width
+    int height;  ///< The height
 };
 }  // namespace GangerEngine
 

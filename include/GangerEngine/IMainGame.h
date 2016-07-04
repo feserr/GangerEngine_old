@@ -27,9 +27,13 @@ namespace GangerEngine {
 class ScreenList;
 class IGameScreen;
 
+/// Main game interface.
 class IMainGame {
  public:
+    /// Default constructor.
     IMainGame();
+
+    /// Default destructor.
     virtual ~IMainGame();
 
     /// Runs and initializes the game
@@ -44,18 +48,34 @@ class IMainGame {
     /// Called when exiting
     virtual void OnExit() = 0;
 
+    /**
+     * \brief      Handle SDL events
+     *
+     * \param[in]  evnt  The event
+     */
     void OnSDLEvent(const SDL_Event& evnt);
 
+    /**
+     * \brief      Gets the FPS.
+     *
+     * \return     The FPS.
+     */
     const float GetFps() const { return m_fps; }
 
+    /// The input manager.
     InputManager inputManager;
 
  protected:
-    // Custom update function
+    /// Custom update function
     virtual void Update();
-    // Custom render function
+    /// Custom render function
     virtual void Draw();
 
+    /**
+     * \brief      Initialize the main game.
+     *
+     * \return     
+     */
     bool Init();
     bool InitSystems();
 

@@ -22,9 +22,16 @@
 #include <string>
 
 namespace GangerEngine {
-// Loads images into GLTextures
+/// Loads images into GLTextures
 class ImageLoader {
  public:
+    /**
+     * \brief      Loads a png.
+     *
+     * \param[in]  filePath  The file path
+     *
+     * \return     An GLTexture of the texture file.
+     */
     static GLTexture LoadPNG(std::string filePath);
 };
 }  // namespace GangerEngine

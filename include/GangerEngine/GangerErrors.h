@@ -20,6 +20,7 @@
 #include <string>
 
 namespace GangerEngine {
+    /// Prints the erros and shudown the app.
     extern void FatalError(std::string errorString);
 }  // namespace GangerEngine
 

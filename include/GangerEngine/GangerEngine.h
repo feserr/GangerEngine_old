@@ -18,6 +18,7 @@
 #define _GANGERENGINE_H_
 
 namespace GangerEngine {
+    /// Intialize the game engine.
     extern int Init();
 }  // namespasce GangerEngine
 

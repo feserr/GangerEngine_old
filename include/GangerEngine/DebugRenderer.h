@@ -24,25 +24,65 @@
 #include <vector>
 
 namespace GangerEngine {
+/// A class to draw debug graphics.
 class DebugRenderer {
  public:
+    /// Default constructor.
     DebugRenderer();
+    /// Default destructor.
     ~DebugRenderer();
 
+    /// Initialize the debug renderer.
     void Init();
+
+    /// End the debug renderer.
     void End();
+
+    /**
+     * \brief      Draws a line.
+     *
+     * \param[in]  a      Start position
+     * \param[in]  b      End position
+     * \param[in]  color  The color
+     */
     void DrawLine(const glm::vec2& a, const glm::vec2& b,
         const ColorRGBA8& color);
+
+    /**
+     * \brief      Draws a box.
+     *
+     * \param[in]  destRect  The destination rectangle
+     * \param[in]  color     The color
+     * \param[in]  angle     The angle
+     */
     void DrawBox(const glm::vec4& destRect, const ColorRGBA8& color,
         float angle);
+
+    /**
+     * \brief      Draws a circle.
+     *
+     * \param[in]  center  The center
+     * \param[in]  color   The color
+     * \param[in]  radius  The radius
+     */
     void DrawCircle(const glm::vec2& center, const ColorRGBA8& color,
         float radius);
+
+    /**
+     * \brief      Renders the debug graphics.
+     *
+     * \param[in]  projectionMatrix  The projection matrix
+     * \param[in]  lineWidth         The line width
+     */
     void Render(const glm::mat4& projectionMatrix, float lineWidth);
+
+    /// Terminates the debug renderer.
     void Dispose();
 
+    /// Struct for vertex.
     struct DebugVertex {
-        glm::vec2 position;
-        GangerEngine::ColorRGBA8 color;
+        glm::vec2 position;  ///< The position
+        GangerEngine::ColorRGBA8 color; ///< The color
     };
 
  private:

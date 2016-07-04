@@ -20,6 +20,7 @@
 const int SCREEN_INDEX_NO_SCREEN = -1;
 
 namespace GangerEngine {
+/// Main game interface
 class IMainGame;
 
 enum class ScreenState {
@@ -30,39 +31,73 @@ enum class ScreenState {
     CHANGE_PREVIOUS
 };
 
+/// Game screen interface
 class IGameScreen {
  public:
     friend class ScreenList;
 
+    /// Default constructor
     IGameScreen() {
     }
 
+    /// Default destructor
     virtual ~IGameScreen() {
     }
 
-    // Return the index of the next or previous screen when changing screens
+    /**
+     * \brief      Gets the next screen index.
+     *
+     * \return     The next screen index.
+     */
     virtual int GetNextScreenIndex() const = 0;
+
+    /**
+     * \brief      Gets the previous screen index.
+     *
+     * \return     The previous screen index.
+     */
     virtual int GetPreviousScreenIndex() const = 0;
 
-    // Called at beginning and end of application
+    /// Builds the game.
     virtual void Build() = 0;
+
+    /// Destroy the game.
     virtual void Destroy() = 0;
 
-    // Called when a screen enters and exits focus
+    /// Called when a screen enters focus
     virtual void OnEntry() = 0;
+
+    /// Called when a screen exits focus.
     virtual void OnExit() = 0;
 
-    // Called in the main game loop
+    /// Updates the game screen.
     virtual void Update() = 0;
+
+    /// Draw the game screen.
     virtual void Draw() = 0;
 
-    // Gets the index of the current screen
+    /**
+     * \brief      Gets the screen index.
+     *
+     * \return     The screen index.
+     */
     int GetScreenIndex() const { return m_screenIndex; }
+
+    /// Sets the running.
     void SetRunning() { m_currentState = ScreenState::RUNNING; }
 
+    /**
+     * \brief      Gets the state.
+     *
+     * \return     The state.
+     */
     ScreenState GetState() const { return m_currentState; }
 
-    /// Sets m_game to the parent game
+    /**
+     * \brief      Sets the parent game.
+     *
+     * \param      game  The game
+     */
     void SetParentGame(IMainGame* game) { m_game = game; }
 
  protected:

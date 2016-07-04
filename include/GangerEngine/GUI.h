@@ -25,22 +25,69 @@
 #include <string>
 
 namespace GangerEngine {
+/// The GUI class
 class GUI {
  public:
+    /**
+     * \brief      Initialize the GUI.
+     *
+     * \param[in]  resourceDirectory  The resource directory
+     */
     void Init(const std::string& resourceDirectory);
+
+    /// Destroy the GUI.
     void Destroy();
 
+    /// Draws the GUI.
     void Draw();
+
+    /// Updates the GUI.
     void Update();
 
+    /**
+     * \brief      Sets the mouse cursor.
+     *
+     * \param[in]  imageFile  The image file
+     */
     void SetMouseCursor(const std::string& imageFile);
+
+    /// Shows the mouse cursor.
     void ShowMouseCursor();
+
+    /// Hides the mouse cursor.
     void HideMouseCursor();
 
+    /**
+     * \brief      Handle SDL events.
+     *
+     * \param[in]  evnt  The event
+     */
     void OnSDLEvent(const SDL_Event& evnt);
 
+    /**
+     * \brief      Loads a scheme.
+     *
+     * \param[in]  schemeFile  The scheme file
+     */
     void LoadScheme(const std::string& schemeFile);
+
+    /**
+     * \brief      Sets the font.
+     *
+     * \param[in]  fontFile  The font file
+     */
     void SetFont(const std::string& fontFile);
+
+    /**
+     * \brief      Creates a widget.
+     *
+     * \param[in]  type          The type
+     * \param[in]  destRectPerc  The destination rectangle perc
+     * \param[in]  destRectPix   The destination rectangle pix
+     * \param[in]  name          The name
+     *
+     * \return     Returns a pointer to the widget created.
+     */
     CEGUI::Window* CreateWidget(const std::string& type,
         const glm::vec4& destRectPerc, const glm::vec4& destRectPix,
         const std::string& name = "");
@@ -50,8 +97,18 @@ class GUI {
     static void SetWidgetDestRect(CEGUI::Window* widget,
         const glm::vec4& destRectPerc, const glm::vec4& destRectPix);
 
-    // Getters
+    /**
+     * \brief      Gets the renderer.
+     *
+     * \return     The renderer.
+     */
     static CEGUI::OpenGL3Renderer* GetRenderer() { return m_renderer; }
+
+    /**
+     * \brief      Gets the context.
+     *
+     * \return     The context.
+     */
     const CEGUI::GUIContext* GetContext() { return m_context; }
 
  private:
