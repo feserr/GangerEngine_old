@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>GangerEngine by Reisor</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/Reisor/GangerEngine">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/Reisor/GangerEngine/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/Reisor/GangerEngine/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>GangerEngine</h1>
+          <p>2D game framework</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/Reisor">Reisor</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a id="gangerengine" class="anchor" href="#gangerengine" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GangerEngine</h1>
+
+<ul>
+<li>Windows <a href="https://ci.appveyor.com/project/Reisor/gangerengine/branch/master"><img src="https://ci.appveyor.com/api/projects/status/pta0jukudrmqkwt7/branch/master?svg=true" alt="Build status"></a>
+</li>
+<li>Linux and OSX <a href="https://travis-ci.org/Reisor/GangerEngine"><img src="https://travis-ci.org/Reisor/GangerEngine.svg" alt="Build Status"></a>
+</li>
+</ul>
+
+<h1>
+<a id="index" class="anchor" href="#index" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Index</h1>
+
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#whats-new">What's New?</a></li>
+<li><a href="#how-to-build">How to Build</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#future">Future features</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#bugs">Bugs?</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+
+<p><a name="about"></a></p>
+
+<h1>
+<a id="gangerengine-004" class="anchor" href="#gangerengine-004" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GangerEngine 0.0.4</h1>
+
+<p>GangerEngine is an open source game framework for desktop games. It is based in a fork of  <a href="https://github.com/Barnold1953/GraphicsTutorials">Bengine</a>, by Benjamin Arnold.</p>
+
+<p>Version: 0.0.4 - Released: 04th July 2016</p>
+
+<p><a name="whats-new"></a></p>
+
+<h2>
+<a id="whats-new-in-004" class="anchor" href="#whats-new-in-004" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What's new in 0.0.4?</h2>
+
+<ul>
+<li>Added class interface for common classes.</li>
+<li>Added a debug renderer.</li>
+<li>Added GUI system based in <a href="http://cegui.org.uk/">CEGUI</a>.</li>
+<li>Added a screen list class to manage different rooms.</li>
+<li>A 2D side-scrolling with level editor demo.</li>
+</ul>
+
+<p><a name="how-to-build"></a></p>
+
+<h2>
+<a id="how-to-build" class="anchor" href="#how-to-build" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to Build</h2>
+
+<p>You need to install <a href="https://cmake.org/">cmake</a> version 2.8 or above.</p>
+
+<p>Then launch one of the following scripts depending in with SO you are using:</p>
+
+<ul>
+<li>BuildLinux.sh for Linux.</li>
+<li>BuildMac.sh for MacOSX.</li>
+<li>BuildVisualStudio for Windows with Visual Studio.</li>
+</ul>
+
+<p><a name="requirements"></a></p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>Games created with GangerEngine require a graphic card compatible with OpenGL 3.3 or newer.</p>
+
+<p><a name="dependencies"></a></p>
+
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<ul>
+<li><a href="http://www.boost.org/">Boost 1.61</a></li>
+<li><a href="http://cegui.org.uk/">CEGUI 0.87</a></li>
+<li><a href="https://www.libsdl.org/index.php">SDL2</a></li>
+<li><a href="http://glew.sourceforge.net/">GLEW</a></li>
+<li><a href="http://glm.g-truc.net/0.9.7/index.html">GLM</a></li>
+<li><a href="http://utfcpp.sourceforge.net/">UTF8-CPP</a></li>
+<li>
+<a href="http://box2d.org/">Box2D</a> (only for the ninja demo).</li>
+</ul>
+
+<p><a name="future"></a></p>
+
+<h2>
+<a id="future-features" class="anchor" href="#future-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Future features</h2>
+
+<ul>
+<li>CMake build script for the demos.</li>
+<li>Collision system inside the engine.</li>
+</ul>
+
+<p><a name="contributing"></a></p>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ul>
+<li><p>If you find a bug then please report it on <a href="https://github.com/Reisor/GangerEngine/issues">GitHub Issues</a>.</p></li>
+<li><p>If you have a feature request, or have written a game or demo that shows GangerEngine in use, then please get in touch. We'd love to hear from you!</p></li>
+<li><p>If you issue a Pull Request for GangerEngine, please only do so against the <code>dev</code> branch and <strong>not</strong> against the <code>master</code> branch.</p></li>
+</ul>
+
+<p><a name="bugs"></a></p>
+
+<h2>
+<a id="bugs" class="anchor" href="#bugs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bugs?</h2>
+
+<p>Please add them to the <a href="https://github.com/Reisor/GangerEngine/issues">Issue Tracker</a> with as much info as possible, especially source code demonstrating the issue.</p>
+
+<p><a name="license"></a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>GangerEngine is released under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache v2 license</a>.</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
