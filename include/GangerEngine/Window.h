@@ -1,5 +1,5 @@
 /*
-    Copyright [2016] [Ganger Games]
+    Copyright [2016] [Elías Serrano]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -36,6 +36,10 @@ class Window {
 
     int GetScreenWidth() { return m_screenWidth; }
     int GetScreenHeight() { return m_screenHeight; }
+
+    void SetWindowName(const char *name) { SDL_SetWindowTitle(m_sdlWindow,
+        name); }
+    void SetWindowSize(int width, int height);
 
  private:
     SDL_Window* m_sdlWindow;

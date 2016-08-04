@@ -242,7 +242,7 @@ void MainGame::drawHud() {
     sprintf(buffer, "%.1f", m_fps);
 
     m_spriteBatch.Begin();
-    m_spriteFont->Draw(m_spriteBatch, buffer, glm::vec2(0.0f, m_screenHeight - 32.0f),
+    m_spriteFont->Draw(m_spriteBatch, buffer, glm::vec2(5.0f, m_screenHeight - 64.0f),
                        glm::vec2(1.0f), 0.0f, fontColor);
     m_spriteBatch.End();
     m_spriteBatch.RenderBatch();

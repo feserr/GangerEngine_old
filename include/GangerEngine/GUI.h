@@ -1,5 +1,5 @@
 /*
-    Copyright [2016] [Ganger Games]
+    Copyright [2016] [Elías Serrano]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -77,6 +77,11 @@ class GUI {
      * \param[in]  fontFile  The font file
      */
     void SetFont(const std::string& fontFile);
+
+    void SetSize(int width, int height) {
+        CEGUI::System::getSingleton().getRenderer()->setDisplaySize(
+            CEGUI::Sizef(width, height));
+    }
 
     /**
      * \brief      Creates a widget.

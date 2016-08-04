@@ -1,5 +1,5 @@
 /*
-    Copyright [2016] [Ganger Games]
+    Copyright [2016] [Elías Serrano]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -36,22 +36,22 @@ class IMainGame {
     /// Default destructor.
     virtual ~IMainGame();
 
-    /// Runs and initializes the game
+    /// Runs and initializes the game.
     void Run();
-    /// Exits the game
+    /// Exits the game.
     void ExitGame();
 
-    /// Called on initialization
+    /// Called on initialization.
     virtual void OnInit() = 0;
-    /// For adding all screens
+    /// For adding all screens.
     virtual void AddScreens() = 0;
-    /// Called when exiting
+    /// Called when exiting.
     virtual void OnExit() = 0;
 
     /**
-     * \brief      Handle SDL events
+     * \brief      Handle SDL events.
      *
-     * \param[in]  evnt  The event
+     * \param[in]  evnt  The event.
      */
     void OnSDLEvent(const SDL_Event& evnt);
 

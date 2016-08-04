@@ -1,5 +1,5 @@
 /*
-    Copyright [2016] [Ganger Games]
+    Copyright [2016] [Elías Serrano]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -29,10 +29,12 @@ class ImageLoader {
      * \brief      Loads a png.
      *
      * \param[in]  filePath  The file path
+     * \param[in]  linear  If linear==true apply linear filter to the texture,
+                           if linear==false apply nearest filter
      *
      * \return     An GLTexture of the texture file.
      */
-    static GLTexture LoadPNG(std::string filePath);
+    static GLTexture LoadPNG(std::string filePath, bool linear = false);
 };
 }  // namespace GangerEngine
 

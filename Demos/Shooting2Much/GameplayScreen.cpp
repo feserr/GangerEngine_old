@@ -1,5 +1,5 @@
 /*
- Copyright [2016] [Ganger Games]
+ Copyright [2016] [Elías Serrano]
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ void GameplayScreen::OnEntry() {
     m_debugRenderer.Init();
 
     // Load the texture
-    m_texture = GangerEngine::ResourceManager::GetTexture("Assets/bricks_top.png");
+    //m_texture = GangerEngine::ResourceManager::GetTexture("Assets/bricks_top.png");
 
     // Initialize spritebatch
     m_spriteBatch.Init();
@@ -64,7 +64,7 @@ void GameplayScreen::OnEntry() {
 
     // Init camera
     m_camera.Init(m_window->GetScreenWidth(), m_window->GetScreenHeight());
-    m_camera.SetScale(16.0f);
+    m_camera.SetScale(32.0f);
 
     // Init player
     glm::vec2 position(0.0f, 0.0f);
@@ -133,17 +133,17 @@ void GameplayScreen::Draw() {
 void GameplayScreen::initUI() {
     // Init the UI
     m_gui.Init("GUI");
-    m_gui.LoadScheme("TaharezLook.scheme");
+    m_gui.LoadScheme("VanillaSkin.scheme");
     m_gui.SetFont("DejaVuSans-10");
-    CEGUI::PushButton* testButton = static_cast<CEGUI::PushButton*>(m_gui.CreateWidget("TaharezLook/Button", glm::vec4(0.01f, 0.01f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton"));
+    CEGUI::PushButton* testButton = static_cast<CEGUI::PushButton*>(m_gui.CreateWidget("Vanilla/Button", glm::vec4(0.01f, 0.01f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton"));
     testButton->setText("Exit Game!");
 
     // Set the event to be called when we click
     testButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&GameplayScreen::onExitClicked, this));
 
-    m_gui.SetMouseCursor("TaharezLook/MouseArrow");
-    m_gui.ShowMouseCursor();
-    SDL_ShowCursor(0);
+    //m_gui.SetMouseCursor("TaharezLook/MouseArrow");
+    //m_gui.ShowMouseCursor();
+    SDL_ShowCursor(1);
 }
 
 void GameplayScreen::checkInput() {

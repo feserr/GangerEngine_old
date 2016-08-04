@@ -1,5 +1,5 @@
 /*
-    Copyright [2016] [Ganger Games]
+    Copyright [2016] [Elías Serrano]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -114,7 +114,7 @@ void main() {
             sizeof(GLuint), m_indices.data());
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-        m_numElements = m_indices.size();
+        m_numElements = static_cast<int>(m_indices.size());
         m_indices.clear();
         m_verts.clear();
     }
@@ -128,7 +128,7 @@ void main() {
 
     void DebugRenderer::DrawLine(const glm::vec2& a, const glm::vec2& b,
         const ColorRGBA8& color) {
-        int i = m_verts.size();
+        int i = static_cast<int>(m_verts.size());
         m_verts.resize(m_verts.size() + 2);
 
         m_verts[i].position = a;
@@ -142,7 +142,7 @@ void main() {
 
     void DebugRenderer::DrawBox(const glm::vec4& destRect,
         const ColorRGBA8& color, float angle) {
-        int i = m_verts.size();
+        int i = static_cast<int>(m_verts.size());
         m_verts.resize(m_verts.size() + 4);
 
         glm::vec2 halfDims(destRect.z / 2.0f, destRect.w / 2.0f);
@@ -188,7 +188,7 @@ void main() {
         const ColorRGBA8& color, float radius) {
         static const int NUM_VERTS = 100;
         // Set up vertices
-        int start = m_verts.size();
+        int start = static_cast<int>(m_verts.size());
         m_verts.resize(m_verts.size() + NUM_VERTS);
         for (int i = 0; i < NUM_VERTS; i++) {
             float angle = (static_cast<float>(i) / NUM_VERTS) * PI * 2.0f;

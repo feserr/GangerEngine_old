@@ -1,5 +1,5 @@
 /*
-    Copyright [2016] [Ganger Games]
+    Copyright [2016] [Elías Serrano]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -93,5 +93,11 @@ namespace GangerEngine {
 
     void Window::SwapBuffer() {
         SDL_GL_SwapWindow(m_sdlWindow);
+    }
+
+    void Window::SetWindowSize(int width, int height) {
+        m_screenWidth = width;
+        m_screenHeight = height;
+        SDL_SetWindowSize(m_sdlWindow, m_screenWidth, m_screenHeight);
     }
 }  // namespace GangerEngine

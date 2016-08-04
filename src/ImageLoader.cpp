@@ -1,5 +1,5 @@
 /*
-    Copyright [2016] [Ganger Games]
+    Copyright [2016] [Elías Serrano]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 #include <vector>
 
 namespace GangerEngine {
-    GLTexture ImageLoader::LoadPNG(std::string filePath) {
+    GLTexture ImageLoader::LoadPNG(std::string filePath, bool linear) {
         // Create a GLTexture and initialize all its fields to 0
         GLTexture texture = {};
 
@@ -53,13 +53,16 @@ namespace GangerEngine {
         // Bind the texture object
         glBindTexture(GL_TEXTURE_2D, texture.id);
         // Upload the pixels to the texture
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0,
-            GL_RGBA, GL_UNSIGNED_BYTE, &(out[0]));
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, static_cast<int>(width),
+            static_cast<int>(height), 0, GL_RGBA, GL_UNSIGNED_BYTE, &(out[0]));
 
         // Set some texture parameters
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        if (linear)
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        else
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
             GL_LINEAR_MIPMAP_LINEAR);
 
@@ -69,8 +72,8 @@ namespace GangerEngine {
         // Unbind the texture
         glBindTexture(GL_TEXTURE_2D, 0);
 
-        texture.width = width;
-        texture.height = height;
+        texture.width = static_cast<int>(width);
+        texture.height = static_cast<int>(height);
         texture.filePath = filePath;
 
         // Return a copy of the texture data

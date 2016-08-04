@@ -153,6 +153,4 @@ void Player::Update(GangerEngine::InputManager& inputManager) {
 
     // Loop through all the contact points
     m_onGround = false;
-
-    printf("%2.fx%2.f\n", m_position.x, m_position.y);
 }

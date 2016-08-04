@@ -217,6 +217,11 @@ void GameplayScreen::checkInput() {
                 break;
         }
     }
+
+    // Check for punch
+    if (m_game->inputManager.IsKeyPressed(SDLK_0)) {
+        m_renderDebug = !m_renderDebug;
+    }
 }
 
 bool GameplayScreen::onExitClicked(const CEGUI::EventArgs& e) {

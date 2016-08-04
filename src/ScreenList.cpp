@@ -1,5 +1,5 @@
 /*
-    Copyright [2016] [Ganger Games]
+    Copyright [2016] [Elías Serrano]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ namespace GangerEngine {
     }
 
     void GangerEngine::ScreenList::AddScreen(IGameScreen* newScreen) {
-        newScreen->m_screenIndex = m_screens.size();
+        newScreen->m_screenIndex = static_cast<int>(m_screens.size());
         m_screens.push_back(newScreen);
         newScreen->Build();
         newScreen->SetParentGame(m_game);

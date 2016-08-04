@@ -36,8 +36,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7A0034391D1C849800C13EF3 /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = ../../../../../../../../usr/local/Cellar/boost/1.60.0_2/lib/libboost_filesystem.dylib; sourceTree = "<group>"; };
-		7A00343A1D1C849800C13EF3 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../../../usr/local/Cellar/boost/1.60.0_2/lib/libboost_system.dylib; sourceTree = "<group>"; };
+		7A0034391D1C849800C13EF3 /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = /usr/local/Cellar/boost/1.60.0_2/lib/libboost_filesystem.dylib; sourceTree = "<absolute>"; };
+		7A00343A1D1C849800C13EF3 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = /usr/local/Cellar/boost/1.60.0_2/lib/libboost_system.dylib; sourceTree = "<absolute>"; };
 		7A227FA41C78DA0700BE563E /* Grid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Grid.cpp; sourceTree = "<group>"; };
 		7A227FA51C78DA0700BE563E /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		7A5FA30F1B83D14C006DD1A8 /* libGangerEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGangerEngine.a; path = ../Build/Products/Debug/libGangerEngine.a; sourceTree = "<group>"; };
@@ -80,6 +80,8 @@
 		7A5FA31B1B83D1E4006DD1A8 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				7A0034391D1C849800C13EF3 /* libboost_filesystem.dylib */,
+				7A00343A1D1C849800C13EF3 /* libboost_system.dylib */,
 				7ACD72251C67A882008945B7 /* libGLEW.1.13.0.dylib */,
 				7A5FA3191B83D196006DD1A8 /* OpenGL.framework */,
 				7A5FA3111B83D175006DD1A8 /* SDL2_mixer.framework */,
@@ -118,8 +120,6 @@
 		7AE36FFB1B83D0F0003DCEFC = {
 			isa = PBXGroup;
 			children = (
-				7A0034391D1C849800C13EF3 /* libboost_filesystem.dylib */,
-				7A00343A1D1C849800C13EF3 /* libboost_system.dylib */,
 				7AE370051B83D0F0003DCEFC /* Products */,
 				7A5FA31B1B83D1E4006DD1A8 /* lib */,
 				7A5FA31C1B83D1FF006DD1A8 /* include */,
