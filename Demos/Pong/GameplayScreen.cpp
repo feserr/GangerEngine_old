@@ -121,12 +121,13 @@ void GameplayScreen::Update() {
     float totalDeltaTime = (float)frameTime / DESIRED_FRAMETIME;
 
     int i = 0;
+    int goal = 0;
     while (totalDeltaTime > 0.0f && i < MAX_PHYSICS_STEPS) {
         // The deltaTime should be the the smaller of the totalDeltaTime and MAX_DELTA_TIME
         float deltaTime = std::min(totalDeltaTime, MAX_DELTA_TIME);
         // Update all physics here and pass in deltaTime
 
-        int goal = m_ball.Update(deltaTime, m_windowSize);
+        int t_goal = m_ball.Update(deltaTime, m_windowSize);
         m_playerOne.Update(deltaTime, m_game->inputManager, m_windowSize, m_ball);
         m_playerTwo.Update(deltaTime, m_game->inputManager, m_windowSize, m_ball);
 
@@ -135,13 +136,18 @@ void GameplayScreen::Update() {
         totalDeltaTime -= deltaTime;
         ++i;
 
-        if (goal == 1) {
-            ++m_iScorePlayerTwo;
-            m_scorePlayerTwo->setText(std::to_string(m_iScorePlayerTwo));
-        } else if (goal == 2) {
-            ++m_iScorePlayerOne;
-            m_scorePlayerOne->setText(std::to_string(m_iScorePlayerOne));
+        // Prevent scoring more than one goal
+        if (goal == 0) {
+            goal = t_goal;
         }
+    }
+
+    if (goal == 1) {
+        ++m_iScorePlayerTwo;
+        m_scorePlayerTwo->setText(std::to_string(m_iScorePlayerTwo));
+    } else if (goal == 2) {
+        ++m_iScorePlayerOne;
+        m_scorePlayerOne->setText(std::to_string(m_iScorePlayerOne));
     }
 
     m_camera.Update();
@@ -200,9 +206,9 @@ void GameplayScreen::Draw() {
 
 void GameplayScreen::initUI() {
     // Init the UI
-    m_gui.Init("GUI");
+    m_gui.Init("Assets/Pong/GUI");
     m_gui.LoadScheme("VanillaSkin.scheme");
-    m_gui.SetFont("DejaVuSans-10");
+    m_gui.SetFont("nokiafc22-10");
     m_gui.SetSize(m_window->GetScreenWidth(), m_window->GetScreenHeight());
     CEGUI::PushButton* exitButton =
         static_cast<CEGUI::PushButton*>(m_gui.CreateWidget("Vanilla/Button",
