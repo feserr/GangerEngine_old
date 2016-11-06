@@ -49,14 +49,16 @@ Games created with GangerEngine require a graphic card compatible with OpenGL 3.
 ## Dependencies
 
 * Included:
+  * [GLM](http://glm.g-truc.net/0.9.7/index.html)
   * [UTF8-CPP](http://utfcpp.sourceforge.net/)
   * [filesystem](https://github.com/wjakob/filesystem)
+  * [Lua](https://www.lua.org)
+  * [LuaBridge](https://github.com/vinniefalco/LuaBridge)
 
 * External:
   * [CEGUI 0.87](http://cegui.org.uk/)
   * [SDL2](https://www.libsdl.org/index.php)
   * [GLEW](http://glew.sourceforge.net/)
-  * [GLM](http://glm.g-truc.net/0.9.7/index.html)
   * [Box2D](http://box2d.org/) (only for the simple platformer demo).
 
 
