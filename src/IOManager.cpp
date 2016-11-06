@@ -16,8 +16,8 @@
 
 #include <GangerEngine/IOManager.h>
 
-#include <GangerEngine/filesystem/path.h>
-#include <GangerEngine/filesystem/resolver.h>
+#include <filesystem/path.h>
+#include <filesystem/resolver.h>
 
 #include <string>
 #include <vector>
