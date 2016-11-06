@@ -16,13 +16,12 @@
 
 #include <GangerEngine/IOManager.h>
 
-#include <boost/filesystem.hpp>
+#include <GangerEngine/filesystem/path.h>
+#include <GangerEngine/filesystem/resolver.h>
+
 #include <string>
 #include <vector>
 #include <fstream>
-
-// Namespace alias
-namespace fs = boost::filesystem;
 
 namespace GangerEngine {
     bool IOManager::ReadFileToBuffer(std::string filePath,
@@ -77,15 +76,15 @@ namespace GangerEngine {
 
     bool IOManager::GetDirectoryEntries(const char* path,
         std::vector<DirEntry>* rvEntries) {
-        auto dpath = fs::path(path);
+        auto dpath = filesystem::path(path);
         // Must be directory
-        if (!fs::is_directory(dpath)) return false;
+        if (!dpath.is_directory()) return false;
 
-        for (auto it = fs::directory_iterator(dpath); it !=
-            fs::directory_iterator(); ++it) {
+        for (auto it = filesystem::resolver().begin(); it !=
+            filesystem::resolver().end(); ++it) {
             rvEntries->emplace_back();
-            rvEntries->back().path = it->path().string();
-            if (is_directory(it->path())) {
+            rvEntries->back().path = it->str();
+            if (it->is_directory()) {
                 rvEntries->back().isDirectory = true;
             } else {
                 rvEntries->back().isDirectory = false;
@@ -95,6 +94,6 @@ namespace GangerEngine {
     }
 
     bool IOManager::MakeDirectory(const char* path) {
-        return fs::create_directory(fs::path(path));
+        return filesystem::create_directory(filesystem::path(path));
     }
 }  // namespace GangerEngine

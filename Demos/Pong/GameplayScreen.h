@@ -74,7 +74,7 @@ private:
     Ball m_ball;
     std::vector<Environment> m_enviroment;
 
-    int m_iScorePlayerOne, m_iScorePlayerTwo = 0;
+    int m_iScorePlayerOne = 0, m_iScorePlayerTwo = 0;
 
     CEGUI::DefaultWindow *m_scorePlayerOne;
     CEGUI::DefaultWindow *m_scorePlayerTwo;

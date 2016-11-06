@@ -11,26 +11,24 @@ GangerEngine
 - [How to Build](#how-to-build)
 - [Requirements](#requirements)
 - [Dependencies](#dependencies)
+- [Demos](#demos)
 - [Future features](#future)
 - [Contributing](#contributing)
 - [Bugs?](#bugs)
+- [Honorable mentions?](#mentions)
 - [License](#license)
 
 <a name="about"></a>
-# GangerEngine 0.0.4
+# GangerEngine 0.0.4.1
 
-GangerEngine is an open source game framework for desktop games. It is based in a fork of  [Bengine](https://github.com/Barnold1953/GraphicsTutorials), by Benjamin Arnold.
+GangerEngine is an open source game framework for desktop games.
 
-Version: 0.0.4 - Released: 04th July 2016
+Version: 0.0.4.1 - Released: 06th November 2016
 
 <a name="whats-new"></a>
-## What's new in 0.0.4?
+## What's new in 0.0.4.1?
 
-* Added class interface for common classes.
-* Added a debug renderer.
-* Added GUI system based in [CEGUI](http://cegui.org.uk/).
-* Added a screen list class to manage different rooms.
-* A 2D side-scrolling with level editor demo.
+* Replace boost filesystem for [Wenzel Jakob](https://github.com/wjakob) solution.
 
 <a name="how-to-build"></a>
 ## How to Build
@@ -45,24 +43,37 @@ Then launch one of the following scripts depending in with SO you are using:
 <a name="requirements"></a>
 ## Requirements
 
-Games created with GangerEngine require a graphic card compatible with OpenGL 3.3 or newer.
+Games created with GangerEngine require a graphic card compatible with OpenGL 3.3 or newer and C++ compiler compatible with C++14.
 
 <a name="dependencies"></a>
 ## Dependencies
 
-* [Boost 1.61](http://www.boost.org/)
-* [CEGUI 0.87](http://cegui.org.uk/)
-* [SDL2](https://www.libsdl.org/index.php)
-* [GLEW](http://glew.sourceforge.net/)
-* [GLM](http://glm.g-truc.net/0.9.7/index.html)
-* [UTF8-CPP](http://utfcpp.sourceforge.net/)
-* [Box2D](http://box2d.org/) (only for the ninja demo).
+* Included:
+  * [UTF8-CPP](http://utfcpp.sourceforge.net/)
+  * [filesystem](https://github.com/wjakob/filesystem)
+
+* External:
+  * [CEGUI 0.87](http://cegui.org.uk/)
+  * [SDL2](https://www.libsdl.org/index.php)
+  * [GLEW](http://glew.sourceforge.net/)
+  * [GLM](http://glm.g-truc.net/0.9.7/index.html)
+  * [Box2D](http://box2d.org/) (only for the simple platformer demo).
+
+
+I do not include the libraries for the external dependecies.
+
+<a name="demos"></a>
+## Demos
+
+* Massive ball collision simulator.
+* Top-Down zombie shooter.
+* Pong.
+* Simple platformer with editor.
 
 <a name="future"></a>
 ## Future features
 
 * CMake build script for the demos.
-* Collision system inside the engine.
 
 <a name="contributing"></a>
 ## Contributing
@@ -77,6 +88,12 @@ Games created with GangerEngine require a graphic card compatible with OpenGL 3.
 ## Bugs?
 
 Please add them to the [Issue Tracker][issues] with as much info as possible, especially source code demonstrating the issue.
+
+<a name="mentions"></a>
+## Honorable mentions
+
+* [Wenzel Jakob](https://github.com/wjakob) for the filesystem solution.
+* [Benjamin Arnold](https://github.com/Barnold1953) for the awesome 2D game engine tutorial, without it this engine will never exist.
 
 <a name="license"></a>
 ## License
