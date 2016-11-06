@@ -19,16 +19,17 @@ GangerEngine
 - [License](#license)
 
 <a name="about"></a>
-# GangerEngine 0.0.4.1
+# GangerEngine 0.0.4.2
 
 GangerEngine is an open source game framework for desktop games.
 
-Version: 0.0.4.1 - Released: 06th November 2016
+Version: 0.0.4.2 - Released: 06th November 2016
 
 <a name="whats-new"></a>
-## What's new in 0.0.4.1?
+## What's new in 0.0.4.2?
 
 * Replace boost filesystem for [Wenzel Jakob](https://github.com/wjakob) solution.
+* Add cmakes files to build the demos.
 
 <a name="how-to-build"></a>
 ## How to Build
@@ -67,6 +68,9 @@ I do not include the libraries for the external dependecies.
 <a name="demos"></a>
 ## Demos
 
+To build and compile the demos you will need to put the libraries in the lib folder and the dynamic libraries in the same folder of the executable.
+
+The developed demos are:
 * Massive ball collision simulator.
 * Top-Down zombie shooter.
 * Pong.
