@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.7)
-project("Pong")
+project("ZombieGame")
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CSS_FLAGS} -std=c++14")
@@ -9,14 +9,17 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 endif()
 
 set(SOURCES
+  MainGame.cpp
+  Agent.cpp
+  Bullet.cpp
   main.cpp
-  App.cpp
-  GameplayScreen.cpp
-  Ball.cpp
+  Gun.cpp
+  Human.cpp
+  Level.cpp
   Player.cpp
-  Environment.cpp)
+  Zombie.cpp)
 
-add_executable(Pong ${SOURCES})
+add_executable(ZombieGame ${SOURCES})
 
 find_package(OpenGL REQUIRED)
 
@@ -34,7 +37,7 @@ link_directories(
   ${CMAKE_SOURCE_DIR}/../../deps/lib/glew
   ${CMAKE_SOURCE_DIR}/../../deps/lib/SDL)
 
-target_link_libraries(Pong
+target_link_libraries(ZombieGame
   ${OPENGL_LIBRARIES}
   ${CMAKE_SOURCE_DIR}/../../deps/lib/libGangerEngine.a
   ${CMAKE_SOURCE_DIR}/../../deps/lib/SDL/libSDL2-2.0.0.dylib
