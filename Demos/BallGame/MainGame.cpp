@@ -50,7 +50,7 @@ void MainGame::run() {
             // Update all physics here and pass in deltaTime
 
             update(deltaTime);
-          
+
             // Since we just took a step that is length deltaTime, subtract from totalDeltaTime
             totalDeltaTime -= deltaTime;
             // Increment our frame counter so we can limit steps to MAX_PHYSICS_STEPS
@@ -74,7 +74,7 @@ void MainGame::init() {
     m_camera.Init(m_screenWidth, m_screenHeight);
     // Point the camera to the center of the screen
     m_camera.SetPosition(glm::vec2(m_screenWidth / 2.0f, m_screenHeight / 2.0f));
-    
+
     m_spriteBatch.Init();
     // Initialize sprite font
     m_spriteFont = std::make_unique<GangerEngine::SpriteFont>("Fonts/nokiafc22.ttf", 40);
@@ -89,7 +89,7 @@ void MainGame::init() {
     m_fpsLimiter.SetMaxFPS(60.0f);
 
     initRenderers();
-    
+
 }
 
 void MainGame::initRenderers() {
