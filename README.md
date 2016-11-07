@@ -49,26 +49,20 @@ Games created with GangerEngine require a graphic card compatible with OpenGL 3.
 <a name="dependencies"></a>
 ## Dependencies
 
-* Included:
-  * [GLM](http://glm.g-truc.net/0.9.7/index.html)
-  * [UTF8-CPP](http://utfcpp.sourceforge.net/)
-  * [filesystem](https://github.com/wjakob/filesystem)
-  * [Lua](https://www.lua.org)
-  * [LuaBridge](https://github.com/vinniefalco/LuaBridge)
+* [GLM](http://glm.g-truc.net/0.9.7/index.html)
+* [UTF8-CPP](http://utfcpp.sourceforge.net/)
+* [filesystem](https://github.com/wjakob/filesystem)
+* [Lua](https://www.lua.org)
+* [LuaBridge](https://github.com/vinniefalco/LuaBridge)
+* [CEGUI 0.87](http://cegui.org.uk/)
+* [SDL2](https://www.libsdl.org/index.php)
+* [GLEW](http://glew.sourceforge.net/)
+* [Box2D](http://box2d.org/) (only for the simple platformer demo).
 
-* External:
-  * [CEGUI 0.87](http://cegui.org.uk/)
-  * [SDL2](https://www.libsdl.org/index.php)
-  * [GLEW](http://glew.sourceforge.net/)
-  * [Box2D](http://box2d.org/) (only for the simple platformer demo).
-
-
-I do not include the libraries for the external dependecies.
+Remember to put the dynamic libraries in the executable folder.
 
 <a name="demos"></a>
 ## Demos
-
-To build and compile the demos you will need to put the libraries in the lib folder and the dynamic libraries in the same folder of the executable.
 
 The developed demos are:
 * Massive ball collision simulator.

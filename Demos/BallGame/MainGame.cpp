@@ -127,7 +127,7 @@ void MainGame::initBalls() {
     possibleBalls.emplace_back(__VA_ARGS__);
 
     // Number of balls to spawn
-    const int NUM_BALLS = 10000;
+    const int NUM_BALLS = 20000;
 
     // Random engine stuff
     std::mt19937 randomEngine((unsigned int)time(nullptr));

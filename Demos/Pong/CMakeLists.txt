@@ -20,6 +20,78 @@ add_executable(Pong ${SOURCES})
 
 find_package(OpenGL REQUIRED)
 
+find_library(GangerEngine
+    NAMES GangerEngine
+    PATHS ${LIBRARY_DIR}
+    NO_DEFAULT_PATH
+)
+
+find_library(SDL2
+    NAMES SDL2
+    PATHS ${LIBRARY_DIR}/SDL
+    NO_DEFAULT_PATH
+)
+
+find_library(SDL2_MIXER
+    NAMES SDL2_mixer
+    PATHS ${LIBRARY_DIR}/SDL
+    NO_DEFAULT_PATH
+)
+
+find_library(SDL2_TTF
+    NAMES SDL2_ttf
+    PATHS ${LIBRARY_DIR}/SDL
+    NO_DEFAULT_PATH
+)
+
+find_library(SDL2MAIN
+    NAMES SDL2main
+    PATHS ${LIBRARY_DIR}/SDL
+    NO_DEFAULT_PATH
+)
+
+find_library(CEGUIBASE_DEBUG
+    NAMES CEGUIBase-0_d
+    PATHS ${LIBRARY_DIR}/CEGUI
+    NO_DEFAULT_PATH
+)
+
+find_library(CEGUIEXPATPARSER_DEBUG
+    NAMES CEGUIExpatParser_d
+    PATHS ${LIBRARY_DIR}/CEGUI
+    NO_DEFAULT_PATH
+)
+
+find_library(CEGUIOPENGLRENDERER_DEBUG
+    NAMES CEGUIOpenGLRenderer-0_d
+    PATHS ${LIBRARY_DIR}/CEGUI
+    NO_DEFAULT_PATH
+)
+
+find_library(CEGUIBASE
+    NAMES CEGUIBase-0
+    PATHS ${LIBRARY_DIR}/CEGUI
+    NO_DEFAULT_PATH
+)
+
+find_library(CEGUIEXPATPARSER
+    NAMES CEGUIExpatParser
+    PATHS ${LIBRARY_DIR}/CEGUI
+    NO_DEFAULT_PATH
+)
+
+find_library(CEGUIOPENGLRENDERER
+    NAMES CEGUIOpenGLRenderer-0
+    PATHS ${LIBRARY_DIR}/CEGUI
+    NO_DEFAULT_PATH
+)
+
+find_library(GLEW
+    NAMES glew32
+    PATHS ${LIBRARY_DIR}/glew
+    NO_DEFAULT_PATH
+)
+
 #Bring the headers into the project
 include_directories(
   ${OPENGL_INCLUDE_DIRS}
@@ -36,11 +108,10 @@ link_directories(
 
 target_link_libraries(Pong
   ${OPENGL_LIBRARIES}
-  ${CMAKE_SOURCE_DIR}/../../deps/lib/libGangerEngine.a
-  ${CMAKE_SOURCE_DIR}/../../deps/lib/SDL/libSDL2-2.0.0.dylib
-  ${CMAKE_SOURCE_DIR}/../../deps/lib/SDL/libSDL2_mixer-2.0.0.dylib
-  ${CMAKE_SOURCE_DIR}/../../deps/lib/SDL/libSDL2_ttf-2.0.0.dylib
-  ${CMAKE_SOURCE_DIR}/../../deps/lib/CEGUI/libCEGUIBase-0_d.dylib
-  ${CMAKE_SOURCE_DIR}/../../deps/lib/CEGUI/libCEGUIExpatParser_d.dylib
-  ${CMAKE_SOURCE_DIR}/../../deps/lib/CEGUI/libCEGUIOpenGLRenderer-0_d.dylib
-  ${CMAKE_SOURCE_DIR}/../../deps/lib/glew/libGLEW.2.0.0.dylib)
+  ${GangerEngine}
+  ${SDL2} ${SDL2MAIN} ${SDL2_MIXER} ${SDL2_TTF}
+  debug ${CEGUIBASE_DEBUG} optimized ${CEGUIBASE}
+  debug ${CEGUIEXPATPARSER_DEBUG} optimized ${CEGUIEXPATPARSER}
+  debug ${CEGUIOPENGLRENDERER_DEBUG} optimized ${CEGUIOPENGLRENDERER}
+  ${GLEW}
+)
