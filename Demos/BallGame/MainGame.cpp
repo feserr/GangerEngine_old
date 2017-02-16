@@ -3,6 +3,7 @@
 
 #include <GangerEngine/GangerEngine.h>
 #include <GangerEngine/ResourceManager.h>
+#include <GangerEngine/CppUtils.h>
 #include <SDL/SDL.h>
 #include <random>
 #include <ctime>
@@ -77,7 +78,7 @@ void MainGame::init() {
     
     m_spriteBatch.Init();
     // Initialize sprite font
-    m_spriteFont = std::make_unique<GangerEngine::SpriteFont>("Fonts/nokiafc22.ttf", 40);
+    m_spriteFont = GangerEngine::make_unique<GangerEngine::SpriteFont>("Fonts/nokiafc22.ttf", 40);
 
     // Compile our texture shader
     m_textureProgram.CompileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
@@ -120,7 +121,7 @@ struct BallSpawn {
 void MainGame::initBalls() {
 
     // Initialize the grid
-    m_grid = std::make_unique<Grid>(m_screenWidth, m_screenHeight, CELL_SIZE);
+    m_grid = GangerEngine::make_unique<Grid>(m_screenWidth, m_screenHeight, CELL_SIZE);
 
 #define ADD_BALL(p, ...) \
     totalProbability += p; \

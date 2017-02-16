@@ -18,6 +18,8 @@
 
 #include <GangerEngine/ScreenList.h>
 
+#include <GangerEngine/CppUtils.h>
+
 App::App() {
 }
 
@@ -31,7 +33,7 @@ void App::OnInit() {
 
 void App::AddScreens() {
     //m_mainMenuScreen = std::make_unique<MainMenuScreen>(&m_window);
-    m_gameplayScreen = std::make_unique<GameplayScreen>(&m_window);
+    m_gameplayScreen = GangerEngine::make_unique<GameplayScreen>(&m_window);
 
     //m_screenList->AddScreen(m_mainMenuScreen.get());
     m_screenList->AddScreen(m_gameplayScreen.get());

@@ -1,11 +1,13 @@
 #include "BallRenderer.h"
 
+#include <GangerEngine/CppUtils.h>
+
 void BallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, const std::vector<Ball>& balls,
                                const glm::mat4& projectionMatrix) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     // Lazily initialize the program
     if (m_program == nullptr) {
-        m_program = std::make_unique<GangerEngine::GLSLProgram>();
+        m_program = GangerEngine::make_unique<GangerEngine::GLSLProgram>();
         m_program->CompileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
         m_program->AddAttribute("vertexPosition");
         m_program->AddAttribute("vertexUV");
@@ -46,7 +48,7 @@ void MomentumBallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, c
 
     // Lazily initialize the program
     if (m_program == nullptr) {
-        m_program = std::make_unique<GangerEngine::GLSLProgram>();
+        m_program = GangerEngine::make_unique<GangerEngine::GLSLProgram>();
         m_program->CompileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
         m_program->AddAttribute("vertexPosition");
         m_program->AddAttribute("vertexUV");
@@ -99,7 +101,7 @@ void VelocityBallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, c
 
     // Lazily initialize the program
     if (m_program == nullptr) {
-        m_program = std::make_unique<GangerEngine::GLSLProgram>();
+        m_program = GangerEngine::make_unique<GangerEngine::GLSLProgram>();
         m_program->CompileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
         m_program->AddAttribute("vertexPosition");
         m_program->AddAttribute("vertexUV");
@@ -152,7 +154,7 @@ void TrippyBallRenderer::renderBalls(GangerEngine::SpriteBatch& spriteBatch, con
 
     // Lazily initialize the program
     if (m_program == nullptr) {
-        m_program = std::make_unique<GangerEngine::GLSLProgram>();
+        m_program = GangerEngine::make_unique<GangerEngine::GLSLProgram>();
         m_program->CompileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
         m_program->AddAttribute("vertexPosition");
         m_program->AddAttribute("vertexUV");
